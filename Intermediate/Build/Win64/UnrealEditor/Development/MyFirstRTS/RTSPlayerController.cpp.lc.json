@@ -1,0 +1,15 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\private\\rtsplayercontroller.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\myfirstrtseditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\development\\myfirstrts\\definitions.myfirstrts.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsplayercontroller.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsplayercontroller.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

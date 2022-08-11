@@ -1,0 +1,36 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\private\\rtsplayerpawn.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\myfirstrtseditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\development\\myfirstrts\\definitions.myfirstrts.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsplayerpawn.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsplayerpawn.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\camera\\cameracomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\cameracomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\springarmcomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\springarmcomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\shapecomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\spherecomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\floatingpawnmovement.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\pawnmovementcomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\navmovementcomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\ai\\navigation\\pathfollowingagentinterface.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\pathfollowingagentinterface.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\movementcomponent.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\movementcomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\navmovementcomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\pawnmovementcomponent.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\floatingpawnmovement.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmathlibrary.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\kismetmathlibrary.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmathlibrary.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

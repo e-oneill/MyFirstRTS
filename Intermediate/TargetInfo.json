@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "MyFirstRTS",
+			"Path": "E:\\Gits\\New\\MyFirstRTS\\Source\\MyFirstRTS.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "MyFirstRTSEditor",
+			"Path": "E:\\Gits\\New\\MyFirstRTS\\Source\\MyFirstRTSEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

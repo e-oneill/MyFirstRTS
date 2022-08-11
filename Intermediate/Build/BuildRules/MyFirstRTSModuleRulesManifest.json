@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"E:\\Gits\\New\\MyFirstRTS\\Source\\MyFirstRTS\\MyFirstRTS.Build.cs",
+		"E:\\Gits\\New\\MyFirstRTS\\Source\\MyFirstRTS.Target.cs",
+		"E:\\Gits\\New\\MyFirstRTS\\Source\\MyFirstRTSEditor.Target.cs"
+	],
+	"EngineVersion": "5.0.2"
+}

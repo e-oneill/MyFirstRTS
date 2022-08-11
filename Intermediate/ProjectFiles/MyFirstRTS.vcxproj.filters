@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\MyFirstRTS.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\MyFirstRTS.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\MyFirstRTSEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Config\HoloLens">
+      <UniqueIdentifier>{4C8DD267-CDE7-336F-8602-F5F485D22BAB}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\HoloLens\HoloLensEngine.ini">
+      <Filter>Config\HoloLens</Filter>
+    </None>
+    <Filter Include="Source\MyFirstRTS">
+      <UniqueIdentifier>{C1325E17-18F3-33A9-941A-DE6EF1B30C48}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\MyFirstRTS\MyFirstRTS.Build.cs">
+      <Filter>Source\MyFirstRTS</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\MyFirstRTS\MyFirstRTS.cpp">
+      <Filter>Source\MyFirstRTS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyFirstRTS\MyFirstRTS.h">
+      <Filter>Source\MyFirstRTS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MyFirstRTS\MyFirstRTSGameModeBase.cpp">
+      <Filter>Source\MyFirstRTS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyFirstRTS\MyFirstRTSGameModeBase.h">
+      <Filter>Source\MyFirstRTS</Filter>
+    </ClInclude>
+    <Filter Include="Source\MyFirstRTS\Public">
+      <UniqueIdentifier>{44295DAC-D66D-33DC-AB6F-28419543015E}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameMode.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerController.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <Filter Include="Source\MyFirstRTS\Private">
+      <UniqueIdentifier>{A239BA06-FDF3-320B-A742-C1BEBF675D64}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSGameMode.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerController.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

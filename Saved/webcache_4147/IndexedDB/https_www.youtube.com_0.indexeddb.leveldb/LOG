@@ -1,0 +1,15 @@
+2022/08/11-16:14:17.971 5750 Reusing MANIFEST E:/Gits/New/MyFirstRTS/Saved/webcache_4147\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/08/11-16:14:17.971 5750 Recovering log #4
+2022/08/11-16:14:17.971 5750 Reusing old log E:/Gits/New/MyFirstRTS/Saved/webcache_4147\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000004.log 
+2022/08/11-16:19:49.131 13a8 Level-0 table #8: started
+2022/08/11-16:19:49.139 13a8 Level-0 table #8: 28399 bytes OK
+2022/08/11-16:19:49.141 13a8 Delete type=0 #4
+2022/08/11-16:19:49.144 13a8 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2022/08/11-16:19:49.152 13a8 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x02\x01\x1f\x04\x03\x01\x03\x00N\x00E\x00W\x03\x00\x00\x00\x00\x00\x00L@\x03=\xa6\x9b\xd7\xd7(xB\x00\x03\x00\x00\x00\x00\x00\x80@@' @ 778 : 1
+2022/08/11-16:19:49.152 13a8 Compacting 1@1 + 1@2 files
+2022/08/11-16:19:49.159 13a8 Generated table #9@1: 69 keys, 3577 bytes
+2022/08/11-16:19:49.159 13a8 Compacted 1@1 + 1@2 files => 3577 bytes
+2022/08/11-16:19:49.161 13a8 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/08/11-16:19:49.162 13a8 Delete type=2 #5
+2022/08/11-16:19:49.162 13a8 Delete type=2 #8
+2022/08/11-16:19:49.168 13a8 Manual compaction at level-1 from '\x00\x02\x01\x1f\x04\x03\x01\x03\x00N\x00E\x00W\x03\x00\x00\x00\x00\x00\x00L@\x03=\xa6\x9b\xd7\xd7(xB\x00\x03\x00\x00\x00\x00\x00\x80@@' @ 778 : 1 .. (end); will stop at (end)

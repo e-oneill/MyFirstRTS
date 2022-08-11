@@ -1,0 +1,5 @@
+2022/08/10-13:11:18.187 6a30 Reusing MANIFEST E:/Gits/New/ActionRoguelike/MyFirstRTS/Saved/webcache_4147\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/08/10-13:39:18.983 1b24 Level-0 table #5: started
+2022/08/10-13:39:19.164 1b24 Level-0 table #5: 6994 bytes OK
+2022/08/10-13:39:19.203 1b24 Delete type=0 #3
+2022/08/10-13:39:19.206 1b24 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
