@@ -1,0 +1,15 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\private\\rtsorderable.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\myfirstrtseditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\development\\myfirstrts\\definitions.myfirstrts.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsorderable.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsorderable.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

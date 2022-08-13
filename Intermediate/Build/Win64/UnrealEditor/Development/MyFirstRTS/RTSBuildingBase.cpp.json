@@ -1,0 +1,19 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\private\\rtsbuildingbase.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\myfirstrtseditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\development\\myfirstrts\\definitions.myfirstrts.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsbuildingbase.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsselectable.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsselectable.generated.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsbuildingbase.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsplayerpawn.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsplayerpawn.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

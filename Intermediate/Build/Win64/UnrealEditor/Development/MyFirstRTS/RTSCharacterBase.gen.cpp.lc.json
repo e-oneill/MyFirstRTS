@@ -1,0 +1,21 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtscharacterbase.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\myfirstrtseditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\development\\myfirstrts\\definitions.myfirstrts.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtscharacterbase.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\charactermovementreplication.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\rootmotionsource.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\character.generated.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtscharacterbase.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

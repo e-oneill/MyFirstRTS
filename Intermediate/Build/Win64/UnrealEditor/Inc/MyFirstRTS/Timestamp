@@ -1,4 +1,11 @@
-E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSPlayerController.h
-E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSPlayerPawn.h
 E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSGameMode.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSPlayerController.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSSelectable.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSBuildingBase.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSOrderable.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSPlayerPawn.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSUnitComponent.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSResource.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSAIController.h
+E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\Public\RTSCharacterBase.h
 E:\Gits\New\MyFirstRTS\Source\MyFirstRTS\MyFirstRTSGameModeBase.h

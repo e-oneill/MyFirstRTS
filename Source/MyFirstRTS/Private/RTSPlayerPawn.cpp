@@ -7,6 +7,13 @@
 #include "Components/SphereComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "RTSSelectable.h"
+#include "RTSOrderable.h"
+#include "Kismet/GameplayStatics.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "Sound/SoundCue.h"
+
 // Sets default values
 ARTSPlayerPawn::ARTSPlayerPawn()
 {
@@ -53,6 +60,83 @@ void ARTSPlayerPawn::BeginPlay()
 	TargetCameraPitch = PlayerDefaultRotation.Pitch;
 }
 
+void ARTSPlayerPawn::ClickInteract()
+{
+	while (SelectedActors.Num() >= 1)
+	{
+		AActor* CurrentActor = SelectedActors[0];
+		IRTSSelectable* SelectionInterface = Cast<IRTSSelectable>(CurrentActor);
+		if (SelectionInterface)
+		{
+			//RemoveActorFromSelection(CurrentActor);
+			IRTSSelectable::Execute_Deselect(CurrentActor);
+		}
+	}
+	//Add actor to 
+	ClickAddToSelect();
+
+}
+
+void ARTSPlayerPawn::ClickAddToSelect()
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	
+	SelectActorBeneathMouse(PC);
+}
+
+void ARTSPlayerPawn::GiveOrder()
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		FHitResult Hit;
+		if (PC->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit))
+		{
+			if (ClickEffect)
+			{
+				FRotator Rotation;
+				//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ClickEffect, Hit.Location, FRotator(0.f, 0.f, 0.f));
+				UNiagaraComponent* ClickNiagaraComponent = UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ClickEffect, Hit.Location);
+			}
+		}
+	}
+	for (int i = 0; i < SelectedActors.Num(); i++)
+	{
+		IRTSOrderable* OrderInterface = Cast<IRTSOrderable>(SelectedActors[i]);
+		if (OrderInterface)
+		{
+			IRTSOrderable::Execute_ExecuteOrder(SelectedActors[i]);
+		}
+	}
+}
+
+void ARTSPlayerPawn::SelectActorBeneathMouse(APlayerController* PC)
+{
+	if (PC)
+	{
+		FHitResult Hit;
+		if (PC->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit))
+		{
+			AActor* ClickedActor = Hit.GetActor();
+			if (ClickedActor == nullptr)
+			{
+				UE_LOG(LogTemp, Log, TEXT("Clicking Empty Space"));
+			}
+			else
+			{
+				FString ActorName;
+				ClickedActor->GetName(ActorName);
+				UE_LOG(LogTemp, Log, TEXT("Click on Actor: %s"), *(ActorName));
+				IRTSSelectable* SelectionInterface = Cast<IRTSSelectable>(ClickedActor);
+				if (SelectionInterface)
+				{
+					IRTSSelectable::Execute_Select(ClickedActor);
+				}
+			}
+		}
+	}
+}
+
 void ARTSPlayerPawn::MoveForward(float InMovement)
 {
 	
@@ -97,6 +181,11 @@ void ARTSPlayerPawn::ResetCamera()
 void ARTSPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	PlayerCameraTick(DeltaTime);
+}
+
+void ARTSPlayerPawn::PlayerCameraTick(float DeltaTime)
+{
 	FRotator CurrentRotation = SpringArmComp->GetRelativeRotation();
 	if (bRevertToDefaultZoom)
 	{
@@ -112,10 +201,10 @@ void ARTSPlayerPawn::Tick(float DeltaTime)
 		//if the zoom is below 1500, start decreasing the Y rotation
 		if (SpringArmComp->TargetArmLength < PitchRotationThreshold)
 		{
-				//We are zooming in
-				float DistanceFromZero = PitchRotationThreshold - CameraZoom;
-				float PercentageDistance = 1 - (DistanceFromZero / PitchRotationThreshold);
-				TargetCameraPitch = PlayerDefaultRotation.Pitch * PercentageDistance;
+			//We are zooming in
+			float DistanceFromZero = PitchRotationThreshold - CameraZoom;
+			float PercentageDistance = 1 - (DistanceFromZero / PitchRotationThreshold);
+			TargetCameraPitch = PlayerDefaultRotation.Pitch * PercentageDistance;
 		}
 		else
 		{
@@ -123,7 +212,7 @@ void ARTSPlayerPawn::Tick(float DeltaTime)
 		}
 		//if the zoom is nearing 1500 start increasing the Y rotation
 	}
-	
+
 	if (TargetCameraRotation != SpringArmComp->GetRelativeRotation().Yaw)
 	{
 		//FRotator CurrentRotation = SpringArmComp->GetRelativeRotation();
@@ -162,6 +251,21 @@ void ARTSPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("MoveLateral", this, &ARTSPlayerPawn::MoveLateral);
 	PlayerInputComponent->BindAxis("RotateCamera", this, &ARTSPlayerPawn::RotateCamera);
 	PlayerInputComponent->BindAxis("ZoomCamera", this, &ARTSPlayerPawn::ZoomCamera);
+
+	PlayerInputComponent->BindAction("Select", IE_Released, this, &ARTSPlayerPawn::ClickInteract);
+	PlayerInputComponent->BindAction("CumulativeSelect", IE_Released, this, &ARTSPlayerPawn::ClickAddToSelect);
+	PlayerInputComponent->BindAction("Order", IE_Released, this, &ARTSPlayerPawn::GiveOrder);
 	PlayerInputComponent->BindAction("ResetCamera", IE_Pressed, this, &ARTSPlayerPawn::ResetCamera);
+
+}
+
+void ARTSPlayerPawn::AddActorToSelection(AActor* NewActor)
+{
+	SelectedActors.AddUnique(NewActor);
+}
+
+void ARTSPlayerPawn::RemoveActorFromSelection(AActor* RemovedActor)
+{
+	SelectedActors.Remove(RemovedActor);
 }
 
