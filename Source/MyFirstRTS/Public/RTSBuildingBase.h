@@ -38,6 +38,9 @@ public:
 
 	void Select_Implementation() override;
 
+	bool GetIsResourceDropOff() const {return bIsResourceDropOff;}
+
+	TArray<TEnumAsByte<EResourceType>> GetValidResources() const {return ValidResources;}
 
 	void Deselect_Implementation() override;
 

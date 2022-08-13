@@ -92,9 +92,12 @@ void ARTSPlayerPawn::GiveOrder()
 		FHitResult Hit;
 		if (PC->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit))
 		{
+			TargetActor = Hit.GetActor();
+			TargetLocation = Hit.Location;
 			if (ClickEffect)
 			{
 				FRotator Rotation;
+				
 				//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ClickEffect, Hit.Location, FRotator(0.f, 0.f, 0.f));
 				UNiagaraComponent* ClickNiagaraComponent = UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ClickEffect, Hit.Location);
 			}

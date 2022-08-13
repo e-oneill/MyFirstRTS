@@ -13,13 +13,49 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSCharacterBase();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
+	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSResource_NoRegister();
 	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSUnitComponent_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSSelectable_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSOrderable_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ARTSCharacterBase::execFinishExploitResource)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->FinishExploitResource();
+		P_NATIVE_END;
+	}
 	void ARTSCharacterBase::StaticRegisterNativesARTSCharacterBase()
 	{
+		UClass* Class = ARTSCharacterBase::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "FinishExploitResource", &ARTSCharacterBase::execFinishExploitResource },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ARTSCharacterBase, nullptr, "FinishExploitResource", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ARTSCharacterBase);
 	UClass* Z_Construct_UClass_ARTSCharacterBase_NoRegister()
@@ -29,9 +65,28 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 	struct Z_Construct_UClass_ARTSCharacterBase_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OrderTarget_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OrderTarget;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsAttacking_MetaData[];
+#endif
+		static void NewProp_bIsAttacking_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsAttacking;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsExtracting_MetaData[];
+#endif
+		static void NewProp_bIsExtracting_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsExtracting;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LastExploitedResource_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_LastExploitedResource;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bCanExtractResource_MetaData[];
 #endif
@@ -41,6 +96,10 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ExtractionCooldown_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_ExtractionCooldown;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ExtractionDistance_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_ExtractionDistance;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ExtractionRate_MetaData[];
 #endif
@@ -74,6 +133,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 		(UObject* (*)())Z_Construct_UClass_ACharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_ARTSCharacterBase_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ARTSCharacterBase_FinishExploitResource, "FinishExploitResource" }, // 3313052311
+	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::Class_MetaDataParams[] = {
 		{ "HideCategories", "Navigation" },
@@ -81,6 +143,44 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTarget_MetaData[] = {
+		{ "Category", "RTSCharacterBase" },
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTarget = { "OrderTarget", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, OrderTarget), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTarget_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTarget_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking_MetaData[] = {
+		{ "Category", "RTSCharacterBase" },
+		{ "Comment", "//the actor that the character is moving to\n" },
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+		{ "ToolTip", "the actor that the character is moving to" },
+	};
+#endif
+	void Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking_SetBit(void* Obj)
+	{
+		((ARTSCharacterBase*)Obj)->bIsAttacking = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking = { "bIsAttacking", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ARTSCharacterBase), &Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking_SetBit, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting_MetaData[] = {
+		{ "Category", "RTSCharacterBase" },
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+	};
+#endif
+	void Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting_SetBit(void* Obj)
+	{
+		((ARTSCharacterBase*)Obj)->bIsExtracting = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting = { "bIsExtracting", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ARTSCharacterBase), &Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting_SetBit, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_LastExploitedResource_MetaData[] = {
+		{ "Category", "RTSCharacterBase" },
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_LastExploitedResource = { "LastExploitedResource", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, LastExploitedResource), Z_Construct_UClass_ARTSResource_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_LastExploitedResource_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_LastExploitedResource_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bCanExtractResource_MetaData[] = {
 		{ "Category", "Unit Actions" },
@@ -100,6 +200,14 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionCooldown = { "ExtractionCooldown", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, ExtractionCooldown), METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionCooldown_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionCooldown_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionDistance_MetaData[] = {
+		{ "Category", "Unit Actions" },
+		{ "EditCondition", "bCanExtractResource" },
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionDistance = { "ExtractionDistance", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, ExtractionDistance), METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionDistance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionDistance_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionRate_MetaData[] = {
 		{ "Category", "Unit Actions" },
@@ -150,8 +258,13 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_UnitComponent = { "UnitComponent", nullptr, (EPropertyFlags)0x00200800000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, UnitComponent), Z_Construct_UClass_URTSUnitComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_UnitComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_UnitComponent_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARTSCharacterBase_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTarget,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsAttacking,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bIsExtracting,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_LastExploitedResource,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_bCanExtractResource,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionCooldown,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionDistance,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_ExtractionRate,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_TimeToExtract,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CarriedResource,
@@ -171,11 +284,11 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 		"Game",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_ARTSCharacterBase_Statics::PropPointers,
 		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::PropPointers),
 		UE_ARRAY_COUNT(InterfaceParams),
 		0x009000A4u,
@@ -199,9 +312,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSCharacterBase, ARTSCharacterBase::StaticClass, TEXT("ARTSCharacterBase"), &Z_Registration_Info_UClass_ARTSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSCharacterBase), 2060437481U) },
+		{ Z_Construct_UClass_ARTSCharacterBase, ARTSCharacterBase::StaticClass, TEXT("ARTSCharacterBase"), &Z_Registration_Info_UClass_ARTSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSCharacterBase), 327786996U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_225076258(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_1651390235(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeMyFirstRTS_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xEAA733D6,
+				0x6DEBC538,
 				0xBE951DDC,
 				METADATA_PARAMS(nullptr, 0)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodeMyFirstRTS_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_MyFirstRTS.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_MyFirstRTS(Z_Construct_UPackage__Script_MyFirstRTS, TEXT("/Script/MyFirstRTS"), Z_Registration_Info_UPackage__Script_MyFirstRTS, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xEAA733D6, 0xBE951DDC));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_MyFirstRTS(Z_Construct_UPackage__Script_MyFirstRTS, TEXT("/Script/MyFirstRTS"), Z_Registration_Info_UPackage__Script_MyFirstRTS, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x6DEBC538, 0xBE951DDC));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

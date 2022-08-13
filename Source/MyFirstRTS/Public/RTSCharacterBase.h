@@ -11,6 +11,9 @@
 
 class URTSUnitComponent;
 enum EResourceType;
+class ARTSResource;
+struct FAIRequestID;
+struct FPathFollowingResult;
 
 UCLASS()
 class MYFIRSTRTS_API ARTSCharacterBase : public ACharacter, public IRTSSelectable, public IRTSOrderable
@@ -33,6 +36,34 @@ public:
 	
 
 protected:
+	//Very strangely, because I am using AddUObject on the AI Controller, this function should not be marked UFUNCTION(), unlike all other delegates
+	void ExploitResource(FAIRequestID Request, const FPathFollowingResult& Result);
+
+	UFUNCTION()
+	void FinishExploitResource();
+
+	void MoveToLocation(FVector Target);
+
+	void MoveToResourceAndExploit(ARTSResource* TargetResource);
+
+	void DepositToNearestCollector();
+
+	void DepositResource(FAIRequestID Request, const FPathFollowingResult& Result);
+
+	UPROPERTY(BlueprintReadWrite)
+	AActor* OrderTarget; //the actor that the character is moving to
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsAttacking;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsExtracting;
+
+	UPROPERTY(BlueprintReadWrite)
+	ARTSResource* LastExploitedResource;
+
+	FDelegateHandle MoveCompleteDelegate;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -43,10 +74,15 @@ protected:
 	float ExtractionCooldown;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions", meta = (EditCondition = "bCanExtractResource"))
+	float ExtractionDistance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions", meta = (EditCondition = "bCanExtractResource"))
 	uint8 ExtractionRate;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions", meta = (EditCondition = "bCanExtractResource"))
 	float TimeToExtract;
+
+	FTimerHandle ResourceExploitTimer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Unit Actions")
 	TEnumAsByte<EResourceType> CarriedResource;

@@ -34,4 +34,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	TEnumAsByte<EResourceType> GetType() const {return Type;}
+
+	int GetResourceValue() const {return ResourceValue; }
+
+	void SetResourceValue(int NewResourceValue) { ResourceValue = NewResourceValue; }
+
 };

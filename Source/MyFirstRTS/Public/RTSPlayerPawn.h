@@ -8,6 +8,7 @@
 
 class UNiagaraSystem;
 class USoundCue;
+class ARTSResource;
 
 UCLASS()
 class MYFIRSTRTS_API ARTSPlayerPawn : public APawn
@@ -53,6 +54,12 @@ protected:
 	USoundCue* ClickSound;
 
 	void GiveOrder();
+
+	AActor* TargetActor; //the target actor of the player pawn's Order
+
+	FVector TargetLocation; //the FVector of the location of the order
+
+	ARTSResource* LastExploitedResource;
 
 	void SelectActorBeneathMouse(APlayerController* PC);
 
@@ -103,4 +110,12 @@ public:
 	void RemoveActorFromSelection(AActor* RemovedActor);
 
 	void SetSelectedActor(AActor* NewActor) { SelectedActor = NewActor; }
+
+	AActor* GetTargetActor() const {return TargetActor;}
+
+	FVector GetOrderTargetLocation() const {return TargetLocation;}
+
+	ARTSResource* GetLastExploitedResource() const {return LastExploitedResource;}
+
+	void SetLastExploitedResource(ARTSResource* NewResource) { LastExploitedResource = NewResource; }
 };
