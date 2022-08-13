@@ -9,6 +9,7 @@
 #include "RTSOrderable.h"
 #include "RTSPlayerPawn.h"
 #include "RTSResource.h"
+#include "EResourceType.h"
 // Sets default values
 ARTSCharacterBase::ARTSCharacterBase()
 {

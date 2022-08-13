@@ -4,15 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "EResourceType.h"
 #include "RTSResource.generated.h"
 
-UENUM()
-enum EResourceType
-{
-	None UMETA(DisplayName = "None"),
-	Gold UMETA(DisplayName = "Gold"),
-	Stone UMETA(DisplayName = "Stone")
-};
+enum EResourceType;
 
 UCLASS()
 class MYFIRSTRTS_API ARTSResource : public AActor

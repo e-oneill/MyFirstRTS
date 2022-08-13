@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MYFIRSTRTS_RTSResource_generated_h
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_SPARSE_DATA
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_RPC_WRAPPERS
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_RPC_WRAPPERS_NO_PURE_DECLS
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_INCLASS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_SPARSE_DATA
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_RPC_WRAPPERS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARTSResource(); \
 	friend struct Z_Construct_UClass_ARTSResource_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(ARTSResource)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_INCLASS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_INCLASS \
 private: \
 	static void StaticRegisterNativesARTSResource(); \
 	friend struct Z_Construct_UClass_ARTSResource_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(ARTSResource)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_STANDARD_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ARTSResource(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ARTSResource) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_ENHANCED_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ARTSResource(ARTSResource&&); \
@@ -58,25 +58,25 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ARTSResource)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_17_PROLOG
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_GENERATED_BODY_LEGACY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_12_PROLOG
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_RPC_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_INCLASS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_STANDARD_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_INCLASS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_INCLASS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_20_ENHANCED_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_INCLASS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -87,8 +87,4 @@ template<> MYFIRSTRTS_API UClass* StaticClass<class ARTSResource>();
 #define CURRENT_FILE_ID FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h
 
 
-#define FOREACH_ENUM_ERESOURCETYPE(op) \
-	op(None) \
-	op(Gold) \
-	op(Stone) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

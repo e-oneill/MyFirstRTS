@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "RTSSelectable.h"
 #include "RTSOrderable.h"
+#include "EResourceType.h"
 #include "RTSCharacterBase.generated.h"
 
 class URTSUnitComponent;

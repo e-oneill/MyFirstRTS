@@ -9,69 +9,12 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 // Cross Module References
-	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType();
-	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSResource_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSResource();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
+	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
+	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType();
 // End Cross Module References
-	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EResourceType;
-	static UEnum* EResourceType_StaticEnum()
-	{
-		if (!Z_Registration_Info_UEnum_EResourceType.OuterSingleton)
-		{
-			Z_Registration_Info_UEnum_EResourceType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_MyFirstRTS_EResourceType, Z_Construct_UPackage__Script_MyFirstRTS(), TEXT("EResourceType"));
-		}
-		return Z_Registration_Info_UEnum_EResourceType.OuterSingleton;
-	}
-	template<> MYFIRSTRTS_API UEnum* StaticEnum<EResourceType>()
-	{
-		return EResourceType_StaticEnum();
-	}
-	struct Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics
-	{
-		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FEnumParams EnumParams;
-	};
-	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enumerators[] = {
-		{ "None", (int64)None },
-		{ "Gold", (int64)Gold },
-		{ "Stone", (int64)Stone },
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enum_MetaDataParams[] = {
-		{ "Gold.DisplayName", "Gold" },
-		{ "Gold.Name", "Gold" },
-		{ "ModuleRelativePath", "Public/RTSResource.h" },
-		{ "None.DisplayName", "None" },
-		{ "None.Name", "None" },
-		{ "Stone.DisplayName", "Stone" },
-		{ "Stone.Name", "Stone" },
-	};
-#endif
-	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::EnumParams = {
-		(UObject*(*)())Z_Construct_UPackage__Script_MyFirstRTS,
-		nullptr,
-		"EResourceType",
-		"EResourceType",
-		Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enumerators,
-		UE_ARRAY_COUNT(Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enumerators),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EEnumFlags::None,
-		(uint8)UEnum::ECppForm::Regular,
-		METADATA_PARAMS(Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enum_MetaDataParams))
-	};
-	UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType()
-	{
-		if (!Z_Registration_Info_UEnum_EResourceType.InnerSingleton)
-		{
-			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EResourceType.InnerSingleton, Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::EnumParams);
-		}
-		return Z_Registration_Info_UEnum_EResourceType.InnerSingleton;
-	}
 	void ARTSResource::StaticRegisterNativesARTSResource()
 	{
 	}
@@ -132,7 +75,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 		{ "ModuleRelativePath", "Public/RTSResource.h" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, Type), Z_Construct_UEnum_MyFirstRTS_EResourceType, METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData)) }; // 2557795391
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, Type), Z_Construct_UEnum_MyFirstRTS_EResourceType, METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData)) }; // 4157312209
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARTSResource_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_TimesCanBeExploited,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_ResourceValue,
@@ -171,17 +114,13 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ARTSResource);
 	struct Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics
 	{
-		static const FEnumRegisterCompiledInInfo EnumInfo[];
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::EnumInfo[] = {
-		{ EResourceType_StaticEnum, TEXT("EResourceType"), &Z_Registration_Info_UEnum_EResourceType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2557795391U) },
-	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSResource, ARTSResource::StaticClass, TEXT("ARTSResource"), &Z_Registration_Info_UClass_ARTSResource, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSResource), 1537392889U) },
+		{ Z_Construct_UClass_ARTSResource, ARTSResource::StaticClass, TEXT("ARTSResource"), &Z_Registration_Info_UClass_ARTSResource, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSResource), 565515018U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_257672568(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_2476476619(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::ClassInfo),
 		nullptr, 0,
-		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::EnumInfo));
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -7,6 +7,8 @@
 #include "RTSSelectable.h"
 #include "RTSBuildingBase.generated.h"
 
+enum EResourceType;
+
 UCLASS()
 class MYFIRSTRTS_API ARTSBuildingBase : public AActor, public IRTSSelectable
 {
@@ -21,6 +23,12 @@ protected:
 	virtual void BeginPlay() override;
 
 	class AActor* SelectedActor;
+
+	UPROPERTY(EditAnywhere, Category = "Building Functions")
+	bool bIsResourceDropOff;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Building Functions", meta = (EditCondition = "bIsResourceDropOff"))
+	TArray<TEnumAsByte<EResourceType>> ValidResources;
 
 public:	
 	// Called every frame
