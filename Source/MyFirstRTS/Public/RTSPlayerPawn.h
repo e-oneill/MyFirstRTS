@@ -9,6 +9,10 @@
 class UNiagaraSystem;
 class USoundCue;
 class ARTSResource;
+class ARTSPlayerController;
+class ARTSSelectionMarqueeActor;
+
+DECLARE_DELEGATE_OneParam(FInputSelectionGroupSwitchDelegate, const int32);
 
 UCLASS()
 class MYFIRSTRTS_API ARTSPlayerPawn : public APawn
@@ -20,11 +24,21 @@ public:
 	ARTSPlayerPawn();
 
 protected:
+	ARTSPlayerController* MyPlayerController;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ARTSSelectionMarqueeActor> SelectionMarqueeClass;
+
+	UPROPERTY(BlueprintReadOnly)
+	ARTSSelectionMarqueeActor* SelectionMarquee;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	// Function to carry out tick updates on the player camera
 	void PlayerCameraTick(float DeltaTime);
+
+
 
 	UPROPERTY(EditAnywhere)
 	class USphereComponent* PlayerCollisionComponent;
@@ -43,9 +57,28 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UFloatingPawnMovement* MovementComponent;
 
+	//The click interaction is started
 	void ClickInteract();
 
+	FTimerHandle StartSelectionMarqueeTimer;
+
+	FVector MouseStartPosition;
+
+	FVector MouseEndPosition;
+
+	//Callback to start the selection box (after a brief delay from click interaction start
+	void StartSelectionMarquee();
+
+	//Interaction key is released, select actors
+	void FinishClickInteract();
+
 	void ClickAddToSelect();
+
+	UFUNCTION(BlueprintCallable, Category = "User Interface")
+	void SaveSelection(const int SelectionGroupNumber);
+
+	UFUNCTION(BlueprintCallable, Category = "User Interface")
+	void SelectSavedGroup(const int SelectionGroupNumber);
 
 	UPROPERTY(EditDefaultsOnly, Category = "User Interface")
 	UNiagaraSystem* ClickEffect;

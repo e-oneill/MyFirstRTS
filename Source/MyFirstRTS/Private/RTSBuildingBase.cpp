@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "RTSPlayerPawn.h"
 #include "RTSSelectable.h"
+#include "RTSGameState.h"
 
 // Sets default values
 ARTSBuildingBase::ARTSBuildingBase()
@@ -26,6 +27,26 @@ void ARTSBuildingBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+bool ARTSBuildingBase::SetOwningPlayerId(int NewID)
+{
+	ARTSGameState* GameState = Cast<ARTSGameState>(GetWorld()->GetGameState());
+	if (GameState)
+	{
+		if (GameState->GetPlayerRecords().Num() > NewID)
+		{
+			OwningPlayerId = NewID;
+			return true;
+		}
+		else
+		{
+			FString BuildingName = GetName();
+			UE_LOG(LogTemp, Warning, TEXT("Attempted to set the owning player of %s to an invalid ID"), *(BuildingName));
+			return false;
+		}
+	}
+	return false;
 }
 
 void ARTSBuildingBase::Deselect_Implementation()

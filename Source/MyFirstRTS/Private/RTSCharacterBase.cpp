@@ -16,6 +16,8 @@
 #include "AITypes.h"
 #include "RTSBuildingBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "RTSGameState.h"
+
 // Sets default values
 ARTSCharacterBase::ARTSCharacterBase()
 {
@@ -84,6 +86,7 @@ void ARTSCharacterBase::ExecuteOrder_Implementation()
 				//Move to the location of the order
 				MoveToLocation(MoveTarget);
 				//check target for the type of actor
+				//To start with, if we are a resource extractor, run check for if this order would interact with a resource extractor
 				if (bCanExtractResource)
 				{
 					ARTSResource* ResourceTarget = Cast<ARTSResource>(OrderTarget);
@@ -93,6 +96,23 @@ void ARTSCharacterBase::ExecuteOrder_Implementation()
 						MoveToResourceAndExploit(LastExploitedResource);
 						
 						//ExploitResource();
+					}
+					else
+					{
+						bIsExtracting = false;
+						GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
+					}
+				}
+				if (ResourcesCarried > 0)
+				{
+					ARTSBuildingBase* TargetBuilding = Cast<ARTSBuildingBase>(OrderTarget);
+					if (TargetBuilding)
+					{
+						if (TargetBuilding->GetIsResourceDropOff() && TargetBuilding->GetValidResources().Contains(CarriedResource) &&TargetBuilding->GetOwningPlayerId() == OwningPlayerId)
+						{
+							bShouldAutoReturnToResource = false;
+							MoveToAndDepositResources(OrderTarget);
+						}
 					}
 				}
 
@@ -113,12 +133,24 @@ void ARTSCharacterBase::MoveToResourceAndExploit(ARTSResource* TargetResource)
 		DepositToNearestCollector();
 		return;
 	}
+	bIsMovingToExploitResource = true;
 	//FVector MoveTarget = TargetResource->GetActorLocation();
 	MoveToLocation(TargetResource->GetActorLocation());
 	AAIController* AIController = Cast<AAIController>(GetController());
 	if (AIController)
 	{
 		MoveCompleteDelegate = AIController->GetPathFollowingComponent()->OnRequestFinished.AddUObject(this, &ARTSCharacterBase::ExploitResource);
+	}
+}
+
+void ARTSCharacterBase::MoveToAndDepositResources(AActor* TargetActor)
+{
+	MoveToLocation(TargetActor->GetActorLocation());
+
+	AAIController* AIController = Cast<AAIController>(GetController());
+	if (AIController)
+	{
+		MoveCompleteDelegate = AIController->GetPathFollowingComponent()->OnRequestFinished.AddUObject(this, &ARTSCharacterBase::DepositResource);
 	}
 }
 
@@ -131,13 +163,14 @@ void ARTSCharacterBase::ExploitResource(FAIRequestID Request, const FPathFollowi
 	}
 	GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
 	float DistanceToTarget = GetDistanceTo(LastExploitedResource);
-	if (DistanceToTarget <= ExtractionDistance)
+	if (DistanceToTarget >= ExtractionDistance)
 	{
-		bIsExtracting = true;
-		GetWorldTimerManager().SetTimer(ResourceExploitTimer, this, &ARTSCharacterBase::FinishExploitResource, ExtractionCooldown, true, 0.f);
-	}
-	else {
 		MoveToResourceAndExploit(LastExploitedResource);
+	}
+	else
+	{
+		GetWorldTimerManager().SetTimer(ResourceExploitTimer,this, &ARTSCharacterBase::FinishExploitResource, ExtractionCooldown, true,ExtractionCooldown);
+		//bIsMovingToExploitResource = false;
 	}
 
 
@@ -145,14 +178,20 @@ void ARTSCharacterBase::ExploitResource(FAIRequestID Request, const FPathFollowi
 
 void ARTSCharacterBase::FinishExploitResource()
 {
-	if (ResourcesCarried >= ResourceCapacity)
+	if (!LastExploitedResource)
+	{
+		return;
+	}
+
+	if (ResourcesCarried >= ResourceCapacity || LastExploitedResource->GetResourceValue() <= 0)
 	{
 		bIsExtracting = false;
 		GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
 		return;
 	}
 
-	if (CarriedResource != LastExploitedResource->GetType())
+
+	if (LastExploitedResource && CarriedResource != LastExploitedResource->GetType())
 	{
 		ResourcesCarried = 0;
 		CarriedResource = LastExploitedResource->GetType();
@@ -194,6 +233,7 @@ void ARTSCharacterBase::MoveToLocation(FVector Target)
 void ARTSCharacterBase::DepositToNearestCollector()
 {
 	bIsExtracting = false;
+	bShouldAutoReturnToResource = true;
 	GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
 	TArray<AActor*> Buildings;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARTSBuildingBase::StaticClass(), Buildings);
@@ -202,7 +242,7 @@ void ARTSCharacterBase::DepositToNearestCollector()
 	for (int i = 0; i < Buildings.Num(); i++)
 	{
 		ARTSBuildingBase* Building =  (Cast<ARTSBuildingBase>(Buildings[i]));
-		if (Building->GetIsResourceDropOff())
+		if (Building->GetIsResourceDropOff() && Building->GetOwningPlayerId() == OwningPlayerId)
 		{
 			if (Building->GetValidResources().Contains(CarriedResource))
 			{
@@ -214,13 +254,15 @@ void ARTSCharacterBase::DepositToNearestCollector()
 			}
 		}
 	}
-	OrderTarget = BestBuilding;
-	MoveToLocation(BestBuilding->GetActorLocation());
-	AAIController* AIController = Cast<AAIController>(GetController());
-	if (AIController)
+	if (BestDistance == -1 || BestBuilding == nullptr)
 	{
-		MoveCompleteDelegate = AIController->GetPathFollowingComponent()->OnRequestFinished.AddUObject(this, &ARTSCharacterBase::DepositResource);
+		
+		return;
 	}
+	
+	OrderTarget = BestBuilding;
+	MoveToAndDepositResources(OrderTarget);
+
 }
 
 void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowingResult& Result)
@@ -232,12 +274,22 @@ void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowi
 	}
 	if (GetDistanceTo(OrderTarget) <= 800.f)
 	{
+		ARTSGameState* GameState = Cast<ARTSGameState>(GetWorld()->GetGameState());
+		if (GameState)
+		{
+			
+			if (OwningPlayerId < GameState->GetPlayerRecords().Num())
+			{
+				FPlayerRecord* OwningPlayerRecord = GameState->GetPlayerRecordByIndex(OwningPlayerId);
+				OwningPlayerRecord->ModifyResource(CarriedResource, ResourcesCarried);
+			}
+		}
 		//CarriedResource 
 		ResourcesCarried = 0;
 		UE_LOG(LogTemp, Log, TEXT("Resources Carried: %d"), ResourcesCarried);
 	}
 
-	if (LastExploitedResource)
+	if (LastExploitedResource && bShouldAutoReturnToResource)
 		MoveToResourceAndExploit(LastExploitedResource);
 }
 
@@ -246,13 +298,25 @@ void ARTSCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+
 }
 
 // Called every frame
 void ARTSCharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (bIsMovingToExploitResource)
+	{
+		if (GetDistanceTo(LastExploitedResource) <= ExtractionDistance)
+		{
+			bIsExtracting = true;
+			FPathFollowingResult Result;
+			FAIRequestID ID;
+			ExploitResource(ID, Result);
+			bIsMovingToExploitResource = false;
+		}
 
+	}
 }
 
 // Called to bind functionality to input

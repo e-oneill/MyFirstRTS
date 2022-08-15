@@ -34,17 +34,18 @@ void EmptyLinkFunctionForGeneratedCodeEResourceType() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enumerators[] = {
-		{ "None", (int64)None },
 		{ "Gold", (int64)Gold },
 		{ "Wood", (int64)Wood },
+		{ "END", (int64)END },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_MyFirstRTS_EResourceType_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "END.DisplayName", "END" },
+		{ "END.Name", "END" },
 		{ "Gold.DisplayName", "Gold" },
 		{ "Gold.Name", "Gold" },
 		{ "ModuleRelativePath", "Public/EResourceType.h" },
-		{ "None.DisplayName", "None" },
-		{ "None.Name", "None" },
 		{ "Wood.DisplayName", "Wood" },
 		{ "Wood.Name", "Wood" },
 	};
@@ -74,9 +75,9 @@ void EmptyLinkFunctionForGeneratedCodeEResourceType() {}
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h_Statics::EnumInfo[] = {
-		{ EResourceType_StaticEnum, TEXT("EResourceType"), &Z_Registration_Info_UEnum_EResourceType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4157312209U) },
+		{ EResourceType_StaticEnum, TEXT("EResourceType"), &Z_Registration_Info_UEnum_EResourceType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2352757931U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h_540706560(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h_2972357514(TEXT("/Script/MyFirstRTS"),
 		nullptr, 0,
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h_Statics::EnumInfo));

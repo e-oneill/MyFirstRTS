@@ -22,10 +22,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	bool bIsDepleted;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Resource)
 	uint8 TimesCanBeExploited;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Resource)
+	float RespawnTimer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Resource)
 	int ResourceValue;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Resource)
@@ -38,6 +43,12 @@ public:
 
 	int GetResourceValue() const {return ResourceValue; }
 
-	void SetResourceValue(int NewResourceValue) { ResourceValue = NewResourceValue; }
+	void SetResourceValue(int NewResourceValue);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ResourcedExtracted();
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void ResourceDepleted();
 
 };

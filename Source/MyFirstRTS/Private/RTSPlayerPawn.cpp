@@ -13,7 +13,9 @@
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 #include "Sound/SoundCue.h"
-
+#include "RTSPlayerController.h"
+#include "RTSSelectionMarqueeActor.h"
+#include "Components/BoxComponent.h"
 // Sets default values
 ARTSPlayerPawn::ARTSPlayerPawn()
 {
@@ -54,6 +56,11 @@ ARTSPlayerPawn::ARTSPlayerPawn()
 void ARTSPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
+	MyPlayerController = Cast<ARTSPlayerController>(GetController());
+	if (!MyPlayerController)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Player Controller class is invalid."));
+	}
 	TargetCameraRotation = SpringArmComp->GetRelativeRotation().Yaw;
 	TargetCameraZoom = SpringArmComp->TargetArmLength;
 	PlayerDefaultRotation = SpringArmComp->GetRelativeRotation();
@@ -72,16 +79,90 @@ void ARTSPlayerPawn::ClickInteract()
 			IRTSSelectable::Execute_Deselect(CurrentActor);
 		}
 	}
-	//Add actor to 
-	ClickAddToSelect();
+
+	//GetInitialMousePosition
+	FHitResult Hit;
+	MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
+	MouseStartPosition = Hit.Location;
+
+	////Add actor to 
+	//ClickAddToSelect();
+	GetWorldTimerManager().SetTimer(StartSelectionMarqueeTimer, this, &ARTSPlayerPawn::StartSelectionMarquee, 0.1f);
+}
+
+void ARTSPlayerPawn::StartSelectionMarquee()
+{
+	//SelectionMarquee = GetWorld()->SpawnActor(Selection)
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Instigator = this;
+	SelectionMarquee = Cast<ARTSSelectionMarqueeActor>(GetWorld()->SpawnActor(SelectionMarqueeClass, &MouseStartPosition, &FRotator::ZeroRotator, SpawnParams));
+	SelectionMarquee->bIsSelecting = true;
+}
+
+void ARTSPlayerPawn::FinishClickInteract()
+{
+	GetWorldTimerManager().ClearTimer(StartSelectionMarqueeTimer);
+	FHitResult Hit;
+	MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
+	MouseEndPosition = Hit.Location;
+
+	SelectActorBeneathMouse(MyPlayerController);
+	
+	if (SelectionMarquee && !SelectionMarquee->IsPendingKill())
+	{
+		for (int i = 0; i < SelectionMarquee->SelectedActors.Num(); i++)
+		{
+			if (SelectionMarquee->SelectedActors[i])
+			{
+				SelectedActors.Add(SelectionMarquee->SelectedActors[i]);
+				IRTSSelectable* SelectionInterface = Cast<IRTSSelectable>(SelectionMarquee->SelectedActors[i]);
+				if (SelectionInterface)
+				{
+					IRTSSelectable::Execute_Select(SelectionMarquee->SelectedActors[i]);
+				}
+			}
+		}
+		SelectionMarquee->BoxCollider->OnComponentEndOverlap.Clear();
+		SelectionMarquee->Destroy();
+	}
 
 }
 
 void ARTSPlayerPawn::ClickAddToSelect()
 {
-	APlayerController* PC = Cast<APlayerController>(GetController());
+	//APlayerController* PC = Cast<APlayerController>(GetController());
 	
-	SelectActorBeneathMouse(PC);
+	SelectActorBeneathMouse(MyPlayerController);
+}
+
+void ARTSPlayerPawn::SaveSelection(const int SelectionGroupNumber)
+{
+	ARTSPlayerController* PC = Cast<ARTSPlayerController>(GetController());
+	if (PC)
+		PC->SetSelectionGroup(SelectionGroupNumber, SelectedActors);
+}
+
+void ARTSPlayerPawn::SelectSavedGroup(const int SelectionGroupNumber)
+{
+	ARTSPlayerController* PC = Cast<ARTSPlayerController>(GetController());
+	if (PC)
+	{
+		if (PC->CheckSelectionGroupLength(SelectionGroupNumber) > 0)
+		{
+			TArray<AActor*> SelectionGroup = PC->GetSelectionGroup(SelectionGroupNumber);
+			for (int i = 0; i < SelectionGroup.Num(); i++)
+			{
+				if (SelectionGroup[i])
+				{
+					IRTSSelectable* SelectionInterface = Cast<IRTSSelectable>(SelectionGroup[i]);
+					if (SelectionInterface)
+					{
+						IRTSSelectable::Execute_Select(SelectionGroup[i]);
+					}
+				}
+			}
+		}
+	}
 }
 
 void ARTSPlayerPawn::GiveOrder()
@@ -185,6 +266,26 @@ void ARTSPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	PlayerCameraTick(DeltaTime);
+
+	if (SelectionMarquee && SelectionMarquee->bIsSelecting)
+	{
+		FHitResult Hit;
+		MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
+		FVector CurrentMousePosition = Hit.Location;
+
+		
+
+		FVector LerpedVector = UKismetMathLibrary::VLerp(CurrentMousePosition, MouseStartPosition, 0.5f);
+		//FVector LerpedPosition = LerpedVector;
+		/*LerpedPosition.Z = CurrentMousePosition.Z;*/
+		SelectionMarquee->BoxCollider->SetWorldLocation(LerpedVector);
+
+		FVector NewBoxExtents = UKismetMathLibrary::Vector_GetAbs(CurrentMousePosition - MouseStartPosition);
+		//Abs(CurrentMousePosition - MouseStartPosition);
+		NewBoxExtents /= 2.f;
+		NewBoxExtents.Z = 500.f;
+		SelectionMarquee->BoxCollider->SetBoxExtent(NewBoxExtents);
+	}
 }
 
 void ARTSPlayerPawn::PlayerCameraTick(float DeltaTime)
@@ -255,11 +356,31 @@ void ARTSPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("RotateCamera", this, &ARTSPlayerPawn::RotateCamera);
 	PlayerInputComponent->BindAxis("ZoomCamera", this, &ARTSPlayerPawn::ZoomCamera);
 
-	PlayerInputComponent->BindAction("Select", IE_Released, this, &ARTSPlayerPawn::ClickInteract);
+	PlayerInputComponent->BindAction("Select", IE_Pressed, this, &ARTSPlayerPawn::ClickInteract);
+	PlayerInputComponent->BindAction("Select", IE_Released, this, &ARTSPlayerPawn::FinishClickInteract);
 	PlayerInputComponent->BindAction("CumulativeSelect", IE_Released, this, &ARTSPlayerPawn::ClickAddToSelect);
 	PlayerInputComponent->BindAction("Order", IE_Released, this, &ARTSPlayerPawn::GiveOrder);
 	PlayerInputComponent->BindAction("ResetCamera", IE_Pressed, this, &ARTSPlayerPawn::ResetCamera);
 
+	//Selection Groups
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup1", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 0);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup1", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 0);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup2", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 1);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup2", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 1);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup3", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 2);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup3", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 2);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup4", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 3);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup4", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 3);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup5", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 4);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup5", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 4);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup6", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 5);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup6", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 5);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup7", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 6);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup7", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 6);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup8", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 7);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup8", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 7);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SaveGroup9", IE_Pressed, this, &ARTSPlayerPawn::SaveSelection, 8);
+	PlayerInputComponent->BindAction<FInputSelectionGroupSwitchDelegate>("SelectGroup9", IE_Pressed, this, &ARTSPlayerPawn::SelectSavedGroup, 8);
 }
 
 void ARTSPlayerPawn::AddActorToSelection(AActor* NewActor)

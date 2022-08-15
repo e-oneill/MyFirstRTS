@@ -22,6 +22,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int OwningPlayerId = 0;
+
 	class AActor* SelectedActor;
 
 	UPROPERTY(EditAnywhere, Category = "Building Functions")
@@ -35,8 +38,11 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-
 	void Select_Implementation() override;
+
+	int GetOwningPlayerId() const {return OwningPlayerId; }
+
+	bool SetOwningPlayerId(int NewID);
 
 	bool GetIsResourceDropOff() const {return bIsResourceDropOff;}
 

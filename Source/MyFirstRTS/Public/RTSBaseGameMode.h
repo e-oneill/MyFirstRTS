@@ -14,4 +14,6 @@ class MYFIRSTRTS_API ARTSBaseGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+	protected:
+
 };

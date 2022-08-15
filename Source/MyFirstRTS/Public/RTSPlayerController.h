@@ -14,4 +14,20 @@ class MYFIRSTRTS_API ARTSPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+
+	protected:
+	TArray<TArray<AActor*>> SelectionGroups;
+
+	UPROPERTY(EditDefaultsOnly)
+	int NumOfSelectionGroups = 9;
+
+	void BeginPlay() override;
+
+public:
+
+	void SetSelectionGroup(int GroupNumber, TArray<AActor*> Actors);
+
+	TArray<AActor*> GetSelectionGroup(int GroupNumber) const {return SelectionGroups[GroupNumber]; }
+
+	int CheckSelectionGroupLength(int GroupNumber) const { return SelectionGroups[GroupNumber].Num(); }
 };

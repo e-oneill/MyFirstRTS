@@ -19,13 +19,13 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
-    <None Include="..\..\Config\DefaultInput.ini">
-      <Filter>Config</Filter>
-    </None>
     <None Include="..\..\Config\DefaultEngine.ini">
       <Filter>Config</Filter>
     </None>
     <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
     <Filter Include="Config\HoloLens">
@@ -55,18 +55,6 @@
     <Filter Include="Source\MyFirstRTS\Public">
       <UniqueIdentifier>{44295DAC-D66D-33DC-AB6F-28419543015E}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameMode.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerController.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectable.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSUnitComponent.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
@@ -76,34 +64,82 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSAIController.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerState.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBaseGameMode.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerState.h">
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\EResourceType.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameState.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameMode.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSCharacterBase.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerController.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSResource.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectable.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectionMarqueeActor.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <Filter Include="Source\MyFirstRTS\Public\Structs">
+      <UniqueIdentifier>{66BDE95D-6216-30A1-ABC7-491986C6BCEF}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\Structs\FPlayerStateStructs.h">
+      <Filter>Source\MyFirstRTS\Public\Structs</Filter>
     </ClInclude>
     <Filter Include="Source\MyFirstRTS\Private">
       <UniqueIdentifier>{A239BA06-FDF3-320B-A742-C1BEBF675D64}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSGameMode.cpp">
-      <Filter>Source\MyFirstRTS\Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerController.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectable.cpp">
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSGameMode.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSCharacterBase.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSBaseGameMode.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerState.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSBuildingBase.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSGameState.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSResource.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectionMarqueeActor.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectable.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSUnitComponent.cpp">
@@ -115,28 +151,5 @@
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSAIController.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
-      <Filter>Source\MyFirstRTS\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSResource.cpp">
-      <Filter>Source\MyFirstRTS\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSBaseGameMode.cpp">
-      <Filter>Source\MyFirstRTS\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerState.cpp">
-      <Filter>Source\MyFirstRTS\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSCharacterBase.cpp">
-      <Filter>Source\MyFirstRTS\Private</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\EResourceType.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\Structs\FPlayerStateStructs.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

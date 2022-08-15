@@ -13,22 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MYFIRSTRTS_RTSPlayerState_generated_h
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_SPARSE_DATA
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execModifyResourceCount); \
-	DECLARE_FUNCTION(execRemoveFromResource); \
-	DECLARE_FUNCTION(execAddToResource);
-
-
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execModifyResourceCount); \
-	DECLARE_FUNCTION(execRemoveFromResource); \
-	DECLARE_FUNCTION(execAddToResource);
-
-
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_INCLASS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_SPARSE_DATA
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_RPC_WRAPPERS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARTSPlayerState(); \
 	friend struct Z_Construct_UClass_ARTSPlayerState_Statics; \
@@ -37,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(ARTSPlayerState)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_INCLASS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_INCLASS \
 private: \
 	static void StaticRegisterNativesARTSPlayerState(); \
 	friend struct Z_Construct_UClass_ARTSPlayerState_Statics; \
@@ -46,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(ARTSPlayerState)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_STANDARD_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ARTSPlayerState(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ARTSPlayerState) \
@@ -59,7 +47,7 @@ private: \
 public:
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_ENHANCED_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ARTSPlayerState(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
@@ -72,25 +60,25 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ARTSPlayerState)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_16_PROLOG
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_GENERATED_BODY_LEGACY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_17_PROLOG
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_RPC_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_INCLASS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_STANDARD_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_INCLASS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_INCLASS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_19_ENHANCED_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_INCLASS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerState_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

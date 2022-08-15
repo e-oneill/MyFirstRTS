@@ -36,8 +36,17 @@ public:
 	
 
 protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int OwningPlayerId = 0;
+
 	//Very strangely, because I am using AddUObject on the AI Controller, this function should not be marked UFUNCTION(), unlike all other delegates
 	void ExploitResource(FAIRequestID Request, const FPathFollowingResult& Result);
+
+	//the bot is moving to exploit a resource, and so the tick should check their distance to that object
+	bool bIsMovingToExploitResource;
+
+	//whether the bot should automatically return to the resource they have just exploited
+	bool bShouldAutoReturnToResource = false;
 
 	UFUNCTION()
 	void FinishExploitResource();
@@ -45,6 +54,8 @@ protected:
 	void MoveToLocation(FVector Target);
 
 	void MoveToResourceAndExploit(ARTSResource* TargetResource);
+
+	void MoveToAndDepositResources(AActor* TargetActor);
 
 	void DepositToNearestCollector();
 

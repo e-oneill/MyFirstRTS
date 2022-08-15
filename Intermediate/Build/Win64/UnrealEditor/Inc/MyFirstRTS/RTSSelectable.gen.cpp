@@ -14,6 +14,20 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UInterface();
 	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
 // End Cross Module References
+	DEFINE_FUNCTION(IRTSSelectable::execEndPreviewSelect)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->EndPreviewSelect_Implementation();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(IRTSSelectable::execPreviewSelect)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->PreviewSelect_Implementation();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(IRTSSelectable::execDeselect)
 	{
 		P_FINISH;
@@ -32,6 +46,14 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 	{
 		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_Deselect instead.");
 	}
+	void IRTSSelectable::EndPreviewSelect()
+	{
+		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_EndPreviewSelect instead.");
+	}
+	void IRTSSelectable::PreviewSelect()
+	{
+		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_PreviewSelect instead.");
+	}
 	void IRTSSelectable::Select()
 	{
 		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_Select instead.");
@@ -41,6 +63,8 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 		UClass* Class = URTSSelectable::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "Deselect", &IRTSSelectable::execDeselect },
+			{ "EndPreviewSelect", &IRTSSelectable::execEndPreviewSelect },
+			{ "PreviewSelect", &IRTSSelectable::execPreviewSelect },
 			{ "Select", &IRTSSelectable::execSelect },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -58,13 +82,59 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 		{ "ModuleRelativePath", "Public/RTSSelectable.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSSelectable_Deselect_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSSelectable, nullptr, "Deselect", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSSelectable_Deselect_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSSelectable_Deselect_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSSelectable_Deselect_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSSelectable, nullptr, "Deselect", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSSelectable_Deselect_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSSelectable_Deselect_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_URTSSelectable_Deselect()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSSelectable_Deselect_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_URTSSelectable_EndPreviewSelect_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSSelectable_EndPreviewSelect_Statics::Function_MetaDataParams[] = {
+		{ "Category", "User Interaction" },
+		{ "ModuleRelativePath", "Public/RTSSelectable.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSSelectable_EndPreviewSelect_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSSelectable, nullptr, "EndPreviewSelect", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSSelectable_EndPreviewSelect_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSSelectable_EndPreviewSelect_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_URTSSelectable_EndPreviewSelect()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSSelectable_EndPreviewSelect_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_URTSSelectable_PreviewSelect_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSSelectable_PreviewSelect_Statics::Function_MetaDataParams[] = {
+		{ "Category", "User Interaction" },
+		{ "ModuleRelativePath", "Public/RTSSelectable.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSSelectable_PreviewSelect_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSSelectable, nullptr, "PreviewSelect", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSSelectable_PreviewSelect_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSSelectable_PreviewSelect_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_URTSSelectable_PreviewSelect()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSSelectable_PreviewSelect_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -83,7 +153,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 		{ "ToolTip", "UFUNCTION(BlueprintNativeEvent)" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSSelectable_Select_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSSelectable, nullptr, "Select", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSSelectable_Select_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSSelectable_Select_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSSelectable_Select_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSSelectable, nullptr, "Select", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSSelectable_Select_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSSelectable_Select_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_URTSSelectable_Select()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -113,11 +183,15 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_URTSSelectable_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_URTSSelectable_Deselect, "Deselect" }, // 2587315109
-		{ &Z_Construct_UFunction_URTSSelectable_Select, "Select" }, // 1967440508
+		{ &Z_Construct_UFunction_URTSSelectable_Deselect, "Deselect" }, // 2753214147
+		{ &Z_Construct_UFunction_URTSSelectable_EndPreviewSelect, "EndPreviewSelect" }, // 1313571266
+		{ &Z_Construct_UFunction_URTSSelectable_PreviewSelect, "PreviewSelect" }, // 1258294401
+		{ &Z_Construct_UFunction_URTSSelectable_Select, "Select" }, // 2183387538
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URTSSelectable_Statics::Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "Public/RTSSelectable.h" },
 	};
 #endif
@@ -167,6 +241,36 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 			I->Deselect_Implementation();
 		}
 	}
+	static FName NAME_URTSSelectable_EndPreviewSelect = FName(TEXT("EndPreviewSelect"));
+	void IRTSSelectable::Execute_EndPreviewSelect(UObject* O)
+	{
+		check(O != NULL);
+		check(O->GetClass()->ImplementsInterface(URTSSelectable::StaticClass()));
+		UFunction* const Func = O->FindFunction(NAME_URTSSelectable_EndPreviewSelect);
+		if (Func)
+		{
+			O->ProcessEvent(Func, NULL);
+		}
+		else if (auto I = (IRTSSelectable*)(O->GetNativeInterfaceAddress(URTSSelectable::StaticClass())))
+		{
+			I->EndPreviewSelect_Implementation();
+		}
+	}
+	static FName NAME_URTSSelectable_PreviewSelect = FName(TEXT("PreviewSelect"));
+	void IRTSSelectable::Execute_PreviewSelect(UObject* O)
+	{
+		check(O != NULL);
+		check(O->GetClass()->ImplementsInterface(URTSSelectable::StaticClass()));
+		UFunction* const Func = O->FindFunction(NAME_URTSSelectable_PreviewSelect);
+		if (Func)
+		{
+			O->ProcessEvent(Func, NULL);
+		}
+		else if (auto I = (IRTSSelectable*)(O->GetNativeInterfaceAddress(URTSSelectable::StaticClass())))
+		{
+			I->PreviewSelect_Implementation();
+		}
+	}
 	static FName NAME_URTSSelectable_Select = FName(TEXT("Select"));
 	void IRTSSelectable::Execute_Select(UObject* O)
 	{
@@ -187,9 +291,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSSelectable() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_URTSSelectable, URTSSelectable::StaticClass, TEXT("URTSSelectable"), &Z_Registration_Info_UClass_URTSSelectable, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URTSSelectable), 4127889431U) },
+		{ Z_Construct_UClass_URTSSelectable, URTSSelectable::StaticClass, TEXT("URTSSelectable"), &Z_Registration_Info_UClass_URTSSelectable, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URTSSelectable), 3114470803U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_2607503987(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_310603812(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

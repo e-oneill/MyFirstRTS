@@ -7,7 +7,7 @@
 #include "RTSSelectable.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE(Blueprintable, MinimalAPI)
 class URTSSelectable : public UInterface
 {
 	GENERATED_BODY()
@@ -23,9 +23,15 @@ class MYFIRSTRTS_API IRTSSelectable
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	//UFUNCTION(BlueprintNativeEvent)
-	UFUNCTION(BlueprintNativeEvent, Category = "User Interaction")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "User Interaction")
 	void Select();
 
-	UFUNCTION(BlueprintNativeEvent, Category = "User Interaction")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "User Interaction")
 	void Deselect();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "User Interaction")
+	void PreviewSelect();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "User Interaction")
+	void EndPreviewSelect();
 };

@@ -28,6 +28,11 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerController() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NumOfSelectionGroups_MetaData[];
+#endif
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_NumOfSelectionGroups;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -43,6 +48,16 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerController() {}
 		{ "ModuleRelativePath", "Public/RTSPlayerController.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSPlayerController_Statics::NewProp_NumOfSelectionGroups_MetaData[] = {
+		{ "Category", "RTSPlayerController" },
+		{ "ModuleRelativePath", "Public/RTSPlayerController.h" },
+	};
+#endif
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ARTSPlayerController_Statics::NewProp_NumOfSelectionGroups = { "NumOfSelectionGroups", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSPlayerController, NumOfSelectionGroups), METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerController_Statics::NewProp_NumOfSelectionGroups_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerController_Statics::NewProp_NumOfSelectionGroups_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARTSPlayerController_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerController_Statics::NewProp_NumOfSelectionGroups,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ARTSPlayerController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ARTSPlayerController>::IsAbstract,
 	};
@@ -52,11 +67,11 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerController() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_ARTSPlayerController_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerController_Statics::PropPointers),
 		0,
 		0x009002A4u,
 		METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerController_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerController_Statics::Class_MetaDataParams))
@@ -79,9 +94,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerController() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSPlayerController, ARTSPlayerController::StaticClass, TEXT("ARTSPlayerController"), &Z_Registration_Info_UClass_ARTSPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSPlayerController), 3901039557U) },
+		{ Z_Construct_UClass_ARTSPlayerController, ARTSPlayerController::StaticClass, TEXT("ARTSPlayerController"), &Z_Registration_Info_UClass_ARTSPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSPlayerController), 1972246909U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerController_h_84436750(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerController_h_3159490353(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

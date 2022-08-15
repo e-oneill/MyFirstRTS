@@ -31,6 +31,10 @@ void EmptyLinkFunctionForGeneratedCodeRTSBuildingBase() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningPlayerId_MetaData[];
+#endif
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_OwningPlayerId;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsResourceDropOff_MetaData[];
 #endif
 		static void NewProp_bIsResourceDropOff_SetBit(void* Obj);
@@ -56,6 +60,13 @@ void EmptyLinkFunctionForGeneratedCodeRTSBuildingBase() {}
 	};
 #endif
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_OwningPlayerId_MetaData[] = {
+		{ "Category", "RTSBuildingBase" },
+		{ "ModuleRelativePath", "Public/RTSBuildingBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_OwningPlayerId = { "OwningPlayerId", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSBuildingBase, OwningPlayerId), METADATA_PARAMS(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_OwningPlayerId_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_OwningPlayerId_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_bIsResourceDropOff_MetaData[] = {
 		{ "Category", "Building Functions" },
 		{ "ModuleRelativePath", "Public/RTSBuildingBase.h" },
@@ -66,7 +77,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSBuildingBase() {}
 		((ARTSBuildingBase*)Obj)->bIsResourceDropOff = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_bIsResourceDropOff = { "bIsResourceDropOff", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ARTSBuildingBase), &Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_bIsResourceDropOff_SetBit, METADATA_PARAMS(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_bIsResourceDropOff_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_bIsResourceDropOff_MetaData)) };
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_Inner = { "ValidResources", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UEnum_MyFirstRTS_EResourceType, METADATA_PARAMS(nullptr, 0) }; // 4157312209
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_Inner = { "ValidResources", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UEnum_MyFirstRTS_EResourceType, METADATA_PARAMS(nullptr, 0) }; // 2352757931
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_MetaData[] = {
 		{ "Category", "Building Functions" },
@@ -74,14 +85,15 @@ void EmptyLinkFunctionForGeneratedCodeRTSBuildingBase() {}
 		{ "ModuleRelativePath", "Public/RTSBuildingBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources = { "ValidResources", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSBuildingBase, ValidResources), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_MetaData)) }; // 4157312209
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources = { "ValidResources", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSBuildingBase, ValidResources), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_MetaData)) }; // 2352757931
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARTSBuildingBase_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_OwningPlayerId,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_bIsResourceDropOff,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSBuildingBase_Statics::NewProp_ValidResources,
 	};
 		const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_ARTSBuildingBase_Statics::InterfaceParams[] = {
-			{ Z_Construct_UClass_URTSSelectable_NoRegister, (int32)VTABLE_OFFSET(ARTSBuildingBase, IRTSSelectable), false },  // 4127889431
+			{ Z_Construct_UClass_URTSSelectable_NoRegister, (int32)VTABLE_OFFSET(ARTSBuildingBase, IRTSSelectable), false },  // 3114470803
 		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ARTSBuildingBase_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ARTSBuildingBase>::IsAbstract,
@@ -119,9 +131,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSBuildingBase() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSBuildingBase, ARTSBuildingBase::StaticClass, TEXT("ARTSBuildingBase"), &Z_Registration_Info_UClass_ARTSBuildingBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSBuildingBase), 1782436223U) },
+		{ Z_Construct_UClass_ARTSBuildingBase, ARTSBuildingBase::StaticClass, TEXT("ARTSBuildingBase"), &Z_Registration_Info_UClass_ARTSBuildingBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSBuildingBase), 1258385704U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingBase_h_794186502(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingBase_h_1198735446(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

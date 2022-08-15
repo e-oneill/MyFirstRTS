@@ -3,10 +3,10 @@
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum EResourceType
 {
-	None UMETA(DisplayName = "None"),
 	Gold UMETA(DisplayName = "Gold"),
-	Wood UMETA(DisplayName = "Wood")
+	Wood UMETA(DisplayName = "Wood"),
+	END UMETA(DisplayName = "END")
 };

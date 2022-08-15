@@ -25,3 +25,20 @@ void ARTSResource::Tick(float DeltaTime)
 
 }
 
+void ARTSResource::SetResourceValue(int NewResourceValue)
+{
+	if (ResourceValue > NewResourceValue)
+	{
+		//play extraction effect
+		ResourcedExtracted();
+	}
+	if (NewResourceValue == 0)
+	{
+		TimesCanBeExploited--;
+		bIsDepleted = true;
+		//change to depleted version
+		ResourceDepleted();
+	}
+
+	ResourceValue = NewResourceValue; 
+}

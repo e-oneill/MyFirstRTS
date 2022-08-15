@@ -13,5 +13,10 @@ UCLASS()
 class MYFIRSTRTS_API ARTSGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+		int NumPlayers = 2;
+public:
+	void StartPlay() override;
+
+protected:
+	bool SetupPlayerData();
 };

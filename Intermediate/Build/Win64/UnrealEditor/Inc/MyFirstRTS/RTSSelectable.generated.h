@@ -15,17 +15,25 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_13_SPARSE_DATA
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_13_RPC_WRAPPERS \
+	virtual void EndPreviewSelect_Implementation() {}; \
+	virtual void PreviewSelect_Implementation() {}; \
 	virtual void Deselect_Implementation() {}; \
 	virtual void Select_Implementation() {}; \
  \
+	DECLARE_FUNCTION(execEndPreviewSelect); \
+	DECLARE_FUNCTION(execPreviewSelect); \
 	DECLARE_FUNCTION(execDeselect); \
 	DECLARE_FUNCTION(execSelect);
 
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSSelectable_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void EndPreviewSelect_Implementation() {}; \
+	virtual void PreviewSelect_Implementation() {}; \
 	virtual void Deselect_Implementation() {}; \
 	virtual void Select_Implementation() {}; \
  \
+	DECLARE_FUNCTION(execEndPreviewSelect); \
+	DECLARE_FUNCTION(execPreviewSelect); \
 	DECLARE_FUNCTION(execDeselect); \
 	DECLARE_FUNCTION(execSelect);
 
@@ -89,6 +97,8 @@ public: \
 	typedef URTSSelectable UClassType; \
 	typedef IRTSSelectable ThisClass; \
 	static void Execute_Deselect(UObject* O); \
+	static void Execute_EndPreviewSelect(UObject* O); \
+	static void Execute_PreviewSelect(UObject* O); \
 	static void Execute_Select(UObject* O); \
 	virtual UObject* _getUObject() const { return nullptr; }
 
@@ -100,6 +110,8 @@ public: \
 	typedef URTSSelectable UClassType; \
 	typedef IRTSSelectable ThisClass; \
 	static void Execute_Deselect(UObject* O); \
+	static void Execute_EndPreviewSelect(UObject* O); \
+	static void Execute_PreviewSelect(UObject* O); \
 	static void Execute_Select(UObject* O); \
 	virtual UObject* _getUObject() const { return nullptr; }
 
