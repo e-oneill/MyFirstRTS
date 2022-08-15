@@ -10,6 +10,7 @@
 #include "RTSCharacterBase.generated.h"
 
 class URTSUnitComponent;
+class URTSAttributeComponent;
 enum EResourceType;
 class ARTSResource;
 struct FAIRequestID;
@@ -47,6 +48,9 @@ protected:
 
 	//whether the bot should automatically return to the resource they have just exploited
 	bool bShouldAutoReturnToResource = false;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	URTSAttributeComponent* AttributeComponent;
 
 	UFUNCTION()
 	void FinishExploitResource();

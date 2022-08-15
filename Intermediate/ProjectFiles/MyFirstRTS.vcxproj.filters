@@ -91,13 +91,16 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSResource.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectionMarqueeActor.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectable.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectionMarqueeActor.h">
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSAttributeComponent.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <Filter Include="Source\MyFirstRTS\Public\Structs">
@@ -130,13 +133,16 @@
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSGameState.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectionMarqueeActor.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSResource.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectionMarqueeActor.cpp">
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSAttributeComponent.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectable.cpp">

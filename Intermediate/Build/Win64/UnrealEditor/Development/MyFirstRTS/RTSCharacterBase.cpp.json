@@ -87,7 +87,9 @@
             "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\gamestatebase.generated.h",
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\structs\\fplayerstatestructs.h",
             "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\fplayerstatestructs.generated.h",
-            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsgamestate.generated.h"
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsgamestate.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsattributecomponent.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsattributecomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

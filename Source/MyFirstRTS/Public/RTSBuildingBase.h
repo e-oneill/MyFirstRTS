@@ -7,6 +7,8 @@
 #include "RTSSelectable.h"
 #include "RTSBuildingBase.generated.h"
 
+class URTSAttributeComponent;
+
 enum EResourceType;
 
 UCLASS()
@@ -32,6 +34,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Building Functions", meta = (EditCondition = "bIsResourceDropOff"))
 	TArray<TEnumAsByte<EResourceType>> ValidResources;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	URTSAttributeComponent* AttributeComponent;
 
 public:	
 	// Called every frame

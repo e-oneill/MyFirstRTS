@@ -6,6 +6,7 @@
 #include "RTSPlayerPawn.h"
 #include "RTSSelectable.h"
 #include "RTSGameState.h"
+#include "RTSAttributeComponent.h"
 
 // Sets default values
 ARTSBuildingBase::ARTSBuildingBase()
@@ -13,6 +14,7 @@ ARTSBuildingBase::ARTSBuildingBase()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
 }
 
 // Called when the game starts or when spawned

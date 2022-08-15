@@ -17,6 +17,7 @@
 #include "RTSBuildingBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "RTSGameState.h"
+#include "RTSAttributeComponent.h"
 
 // Sets default values
 ARTSCharacterBase::ARTSCharacterBase()
@@ -24,7 +25,7 @@ ARTSCharacterBase::ARTSCharacterBase()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	UnitComponent = CreateDefaultSubobject<URTSUnitComponent>(TEXT("UnitComponent"));
-
+	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
 	ExtractionDistance = 800.f;
 }
 
