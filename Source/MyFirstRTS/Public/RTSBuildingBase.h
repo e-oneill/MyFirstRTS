@@ -8,8 +8,10 @@
 #include "RTSBuildingBase.generated.h"
 
 class URTSAttributeComponent;
-
+//class UMeshComponent;
 enum EResourceType;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnConstructionSignature, ARTSBuildingBase*, ConstructedBuilding, float, PercentDone, AActor*, Builder);
 
 UCLASS()
 class MYFIRSTRTS_API ARTSBuildingBase : public AActor, public IRTSSelectable
@@ -20,6 +22,9 @@ public:
 	// Sets default values for this actor's properties
 	ARTSBuildingBase();
 
+	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	//UMeshComponent* MeshComponent;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,6 +33,9 @@ protected:
 	int OwningPlayerId = 0;
 
 	class AActor* SelectedActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsConstructed = false;
 
 	UPROPERTY(EditAnywhere, Category = "Building Functions")
 	bool bIsResourceDropOff;
@@ -54,5 +62,17 @@ public:
 	TArray<TEnumAsByte<EResourceType>> GetValidResources() const {return ValidResources;}
 
 	void Deselect_Implementation() override;
+
+	//Function that must be implemented in blueprint, as buildings can have either a static or skeletal mesh, this lets the C++ code work with this mesh
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	UMeshComponent* GetBuildingMesh(); 
+
+	UFUNCTION(BlueprintCallable)
+	bool GetIsConstructed() const {return bIsConstructed;}
+
+	URTSAttributeComponent* GetAttributeComponent() const {return AttributeComponent;}
+
+	UPROPERTY(BlueprintAssignable, Category = "RTS Building Events")
+	FOnConstructionSignature OnConstruction;
 
 };

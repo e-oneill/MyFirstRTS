@@ -117,6 +117,10 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FPlayerRecord>()
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PlayerNum_MetaData[];
 #endif
 		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_PlayerNum;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TeamNum_MetaData[];
+#endif
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_TeamNum;
 		static const UECodeGen_Private::FStructPropertyParams NewProp_PlayerResources_Inner;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PlayerResources_MetaData[];
@@ -147,6 +151,13 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FPlayerRecord>()
 	};
 #endif
 	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerNum = { "PlayerNum", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPlayerRecord, PlayerNum), METADATA_PARAMS(Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerNum_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerNum_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_TeamNum_MetaData[] = {
+		{ "Category", "PlayerRecord" },
+		{ "ModuleRelativePath", "Public/Structs/FPlayerStateStructs.h" },
+	};
+#endif
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_TeamNum = { "TeamNum", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPlayerRecord, TeamNum), METADATA_PARAMS(Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_TeamNum_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_TeamNum_MetaData)) };
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerResources_Inner = { "PlayerResources", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FPlayerStateResource, METADATA_PARAMS(nullptr, 0) }; // 3117980838
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerResources_MetaData[] = {
@@ -165,6 +176,7 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FPlayerRecord>()
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_Buildings = { "Buildings", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPlayerRecord, Buildings), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_Buildings_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_Buildings_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPlayerRecord_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerNum,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_TeamNum,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerResources_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_PlayerResources,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewProp_Buildings_Inner,
@@ -197,9 +209,9 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FPlayerRecord>()
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_Statics::ScriptStructInfo[] = {
 		{ FPlayerStateResource::StaticStruct, Z_Construct_UScriptStruct_FPlayerStateResource_Statics::NewStructOps, TEXT("PlayerStateResource"), &Z_Registration_Info_UScriptStruct_PlayerStateResource, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPlayerStateResource), 3117980838U) },
-		{ FPlayerRecord::StaticStruct, Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewStructOps, TEXT("PlayerRecord"), &Z_Registration_Info_UScriptStruct_PlayerRecord, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPlayerRecord), 2832788538U) },
+		{ FPlayerRecord::StaticStruct, Z_Construct_UScriptStruct_FPlayerRecord_Statics::NewStructOps, TEXT("PlayerRecord"), &Z_Registration_Info_UScriptStruct_PlayerRecord, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPlayerRecord), 3161735594U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_3206664737(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_2643723001(TEXT("/Script/MyFirstRTS"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_Statics::ScriptStructInfo),
 		nullptr, 0);

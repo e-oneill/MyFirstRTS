@@ -59,4 +59,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetHealth() const {return Health;}
+
+	//Function to heal a target, will return the current percentage HP of the target
+	UFUNCTION(BlueprintCallable)
+	float Heal(AActor* Healer, float HealingAmount);
 };

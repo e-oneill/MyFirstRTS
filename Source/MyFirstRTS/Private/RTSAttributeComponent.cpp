@@ -84,6 +84,15 @@ void URTSAttributeComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	// ...
 }
 
+float URTSAttributeComponent::Heal(AActor* Healer, float HealingAmount)
+{
+	Health = FMath::Clamp(Health + HealingAmount, 0.f, MaxHealth);
+
+	OnHealthChanged.Broadcast(this, Health, (HealingAmount*-1), nullptr, Healer->GetInstigatorController(), Healer);
+
+	return Health/MaxHealth;
+}
+
 void URTSAttributeComponent::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

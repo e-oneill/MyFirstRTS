@@ -188,8 +188,8 @@
       <ForcedIncludeFiles>$(SolutionDir)Intermediate\Build\Win64\MyFirstRTSEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h;$(SolutionDir)Intermediate\Build\Win64\UnrealEditor\Development\MyFirstRTS\Definitions.MyFirstRTS.h</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Source\MyFirstRTS\MyFirstRTSGameModeBase.h"/>
-    <None Include="..\..\Source\MyFirstRTS\MyFirstRTS.Build.cs"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\MyFirstRTS.h"/>
+    <None Include="..\..\Source\MyFirstRTS\MyFirstRTS.Build.cs"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSUnitComponent.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSOrderable.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSAIController.h"/>
@@ -197,15 +197,16 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBaseGameMode.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\EResourceType.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameState.h"/>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameMode.h"/>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSCharacterBase.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerController.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSResource.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectionMarqueeActor.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectable.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h"/>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h"/>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSCharacterBase.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSAttributeComponent.h"/>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingPlacement.h"/>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\Structs\FPlayerStateStructs.h"/>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerController.cpp">
       <AdditionalIncludeDirectories>$(NMakeIncludeSearchPath);D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\mimalloc\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source\Win64;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\cudamanager;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\filebuf;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\foundation;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\pvd;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\task;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\cooking;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\common;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\extensions;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\geometry;</AdditionalIncludeDirectories>
@@ -248,6 +249,10 @@
       <ForcedIncludeFiles>$(SolutionDir)Intermediate\Build\Win64\MyFirstRTSEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h;$(SolutionDir)Intermediate\Build\Win64\UnrealEditor\Development\MyFirstRTS\Definitions.MyFirstRTS.h</ForcedIncludeFiles>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
+      <AdditionalIncludeDirectories>$(NMakeIncludeSearchPath);D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\mimalloc\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source\Win64;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\cudamanager;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\filebuf;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\foundation;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\pvd;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\task;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\cooking;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\common;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\extensions;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\geometry;</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(SolutionDir)Intermediate\Build\Win64\MyFirstRTSEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h;$(SolutionDir)Intermediate\Build\Win64\UnrealEditor\Development\MyFirstRTS\Definitions.MyFirstRTS.h</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSBuildingPlacement.cpp">
       <AdditionalIncludeDirectories>$(NMakeIncludeSearchPath);D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\mimalloc\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source\Win64;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\cudamanager;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\filebuf;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\foundation;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\pvd;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\task;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\cooking;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\common;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\extensions;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\geometry;</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(SolutionDir)Intermediate\Build\Win64\MyFirstRTSEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h;$(SolutionDir)Intermediate\Build\Win64\UnrealEditor\Development\MyFirstRTS\Definitions.MyFirstRTS.h</ForcedIncludeFiles>
     </ClCompile>

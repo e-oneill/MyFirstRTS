@@ -44,6 +44,9 @@ struct FPlayerRecord
 	int PlayerNum;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int TeamNum;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FPlayerStateResource> PlayerResources;
 
 	UPROPERTY(BlueprintReadWrite)

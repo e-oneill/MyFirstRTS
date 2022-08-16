@@ -11,6 +11,7 @@
 
 class URTSUnitComponent;
 class URTSAttributeComponent;
+class ARTSBuildingBase;
 enum EResourceType;
 class ARTSResource;
 struct FAIRequestID;
@@ -37,8 +38,18 @@ public:
 	
 
 protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int OwningPlayerId = 0;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	URTSAttributeComponent* AttributeComponent;
+
+	void MoveToLocation(FVector Target);
+
+	void MoveToResourceAndExploit(ARTSResource* TargetResource);
 
 	//Very strangely, because I am using AddUObject on the AI Controller, this function should not be marked UFUNCTION(), unlike all other delegates
 	void ExploitResource(FAIRequestID Request, const FPathFollowingResult& Result);
@@ -49,21 +60,26 @@ protected:
 	//whether the bot should automatically return to the resource they have just exploited
 	bool bShouldAutoReturnToResource = false;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	URTSAttributeComponent* AttributeComponent;
-
 	UFUNCTION()
 	void FinishExploitResource();
-
-	void MoveToLocation(FVector Target);
-
-	void MoveToResourceAndExploit(ARTSResource* TargetResource);
 
 	void MoveToAndDepositResources(AActor* TargetActor);
 
 	void DepositToNearestCollector();
 
 	void DepositResource(FAIRequestID Request, const FPathFollowingResult& Result);
+
+	void MoveToBuildingAndConstruct(ARTSBuildingBase* TargetBuilding);
+
+	void ConstructBuilding(FAIRequestID Request, const FPathFollowingResult& Result);
+
+	UFUNCTION()
+	void FinishConstructBuilding();
+
+	void ConstructNearestUnfinishedBuilding();
+
+	//the max distance the bot should move to the next unconstructed building
+	float MaxDistanceToNewBuilding;
 
 	UPROPERTY(BlueprintReadWrite)
 	AActor* OrderTarget; //the actor that the character is moving to
@@ -75,12 +91,16 @@ protected:
 	bool bIsExtracting;
 
 	UPROPERTY(BlueprintReadWrite)
+	bool bIsConstructing;
+
+	UPROPERTY(BlueprintReadWrite)
 	ARTSResource* LastExploitedResource;
 
 	FDelegateHandle MoveCompleteDelegate;
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+
+
+	FTimerHandle PrimaryActionTimer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions")
 	bool bCanExtractResource;
@@ -97,7 +117,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions", meta = (EditCondition = "bCanExtractResource"))
 	float TimeToExtract;
 
-	FTimerHandle ResourceExploitTimer;
+	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Unit Actions")
 	TEnumAsByte<EResourceType> CarriedResource;
@@ -107,6 +127,17 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Unit Actions", meta = (EditCondition = "bCanExtractResource"))
 	int ResourcesCarried;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions")
+	bool bCanConstruct;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions", meta = (EditCondition = "bCanConstruct"))
+	float ConstructRate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Unit Actions", meta = (EditCondition = "bCanConstruct"))
+	float ConstructTickCooldown;
+
+	//FTimerHandle ConstructTimer;
 
 	//UPROPERTY(EditAnywhere)
 	//TArray<TEnumAsByte<ResourceType>> ExtractableResources;

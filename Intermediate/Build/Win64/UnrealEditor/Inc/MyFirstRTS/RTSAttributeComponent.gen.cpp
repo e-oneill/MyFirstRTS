@@ -88,6 +88,15 @@ void EmptyLinkFunctionForGeneratedCodeRTSAttributeComponent() {}
 		}
 		return ReturnFunction;
 	}
+	DEFINE_FUNCTION(URTSAttributeComponent::execHeal)
+	{
+		P_GET_OBJECT(AActor,Z_Param_Healer);
+		P_GET_PROPERTY(FFloatProperty,Z_Param_HealingAmount);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(float*)Z_Param__Result=P_THIS->Heal(Z_Param_Healer,Z_Param_HealingAmount);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(URTSAttributeComponent::execGetHealth)
 	{
 		P_FINISH;
@@ -121,6 +130,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSAttributeComponent() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "GetHealth", &URTSAttributeComponent::execGetHealth },
 			{ "HandleTakeDamage", &URTSAttributeComponent::execHandleTakeDamage },
+			{ "Heal", &URTSAttributeComponent::execHeal },
 			{ "OnRep_Health", &URTSAttributeComponent::execOnRep_Health },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -213,6 +223,48 @@ void EmptyLinkFunctionForGeneratedCodeRTSAttributeComponent() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics
+	{
+		struct RTSAttributeComponent_eventHeal_Parms
+		{
+			AActor* Healer;
+			float HealingAmount;
+			float ReturnValue;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Healer;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_HealingAmount;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::NewProp_Healer = { "Healer", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSAttributeComponent_eventHeal_Parms, Healer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::NewProp_HealingAmount = { "HealingAmount", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSAttributeComponent_eventHeal_Parms, HealingAmount), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSAttributeComponent_eventHeal_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::NewProp_Healer,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::NewProp_HealingAmount,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "//Function to heal a target, will return the current percentage HP of the target\n" },
+		{ "ModuleRelativePath", "Public/RTSAttributeComponent.h" },
+		{ "ToolTip", "Function to heal a target, will return the current percentage HP of the target" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSAttributeComponent, nullptr, "Heal", nullptr, nullptr, sizeof(Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::RTSAttributeComponent_eventHeal_Parms), Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_URTSAttributeComponent_Heal()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSAttributeComponent_Heal_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_URTSAttributeComponent_OnRep_Health_Statics
 	{
 		struct RTSAttributeComponent_eventOnRep_Health_Parms
@@ -297,6 +349,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSAttributeComponent() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_URTSAttributeComponent_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_URTSAttributeComponent_GetHealth, "GetHealth" }, // 2886488941
 		{ &Z_Construct_UFunction_URTSAttributeComponent_HandleTakeDamage, "HandleTakeDamage" }, // 2017111758
+		{ &Z_Construct_UFunction_URTSAttributeComponent_Heal, "Heal" }, // 914009338
 		{ &Z_Construct_UFunction_URTSAttributeComponent_OnRep_Health, "OnRep_Health" }, // 1346068597
 	};
 #if WITH_METADATA
@@ -416,9 +469,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSAttributeComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_URTSAttributeComponent, URTSAttributeComponent::StaticClass, TEXT("URTSAttributeComponent"), &Z_Registration_Info_UClass_URTSAttributeComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URTSAttributeComponent), 1926832670U) },
+		{ Z_Construct_UClass_URTSAttributeComponent, URTSAttributeComponent::StaticClass, TEXT("URTSAttributeComponent"), &Z_Registration_Info_UClass_URTSAttributeComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URTSAttributeComponent), 2725008052U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_2210123379(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_1874928029(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

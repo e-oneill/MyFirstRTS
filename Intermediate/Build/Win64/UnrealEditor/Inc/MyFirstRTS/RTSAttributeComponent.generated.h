@@ -43,6 +43,7 @@ static inline void FOnAttributeChangedSignature_DelegateWrapper(const FMulticast
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_17_SPARSE_DATA
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_17_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execHeal); \
 	DECLARE_FUNCTION(execGetHealth); \
 	DECLARE_FUNCTION(execHandleTakeDamage); \
 	DECLARE_FUNCTION(execOnRep_Health);
@@ -50,6 +51,7 @@ static inline void FOnAttributeChangedSignature_DelegateWrapper(const FMulticast
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSAttributeComponent_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execHeal); \
 	DECLARE_FUNCTION(execGetHealth); \
 	DECLARE_FUNCTION(execHandleTakeDamage); \
 	DECLARE_FUNCTION(execOnRep_Health);

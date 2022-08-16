@@ -7,6 +7,7 @@
 #include "RTSSelectable.h"
 #include "RTSGameState.h"
 #include "RTSAttributeComponent.h"
+#include "Components/MeshComponent.h"
 
 // Sets default values
 ARTSBuildingBase::ARTSBuildingBase()
@@ -15,6 +16,8 @@ ARTSBuildingBase::ARTSBuildingBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
+
+	//MeshComponent = CreateDefaultSubobject<UMeshComponent>(TEXT("MeshComponent"));
 }
 
 // Called when the game starts or when spawned
@@ -49,6 +52,12 @@ bool ARTSBuildingBase::SetOwningPlayerId(int NewID)
 		}
 	}
 	return false;
+}
+
+UMeshComponent* ARTSBuildingBase::GetBuildingMesh_Implementation()
+{
+	UE_LOG(LogTemp, Error, TEXT("The Get Mesh method has not been implemented for this Blueprint"));
+	return nullptr;
 }
 
 void ARTSBuildingBase::Deselect_Implementation()

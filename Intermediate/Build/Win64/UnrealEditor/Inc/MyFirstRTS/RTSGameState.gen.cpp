@@ -58,7 +58,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
 	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_index = { "index", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetPlayerRecordForBlueprint_Parms, index), METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetPlayerRecordForBlueprint_Parms, ReturnValue), Z_Construct_UScriptStruct_FPlayerRecord, METADATA_PARAMS(nullptr, 0) }; // 2832788538
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetPlayerRecordForBlueprint_Parms, ReturnValue), Z_Construct_UScriptStruct_FPlayerRecord, METADATA_PARAMS(nullptr, 0) }; // 3161735594
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_index,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_ReturnValue,
@@ -140,7 +140,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ARTSGameState_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint, "GetPlayerRecordForBlueprint" }, // 1183227000
+		{ &Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint, "GetPlayerRecordForBlueprint" }, // 624579100
 		{ &Z_Construct_UFunction_ARTSGameState_GetPlayerResourceQuantity, "GetPlayerResourceQuantity" }, // 3651918767
 	};
 #if WITH_METADATA
@@ -188,9 +188,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSGameState, ARTSGameState::StaticClass, TEXT("ARTSGameState"), &Z_Registration_Info_UClass_ARTSGameState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSGameState), 3397166886U) },
+		{ Z_Construct_UClass_ARTSGameState, ARTSGameState::StaticClass, TEXT("ARTSGameState"), &Z_Registration_Info_UClass_ARTSGameState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSGameState), 3957125259U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_3848863627(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_2811379091(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

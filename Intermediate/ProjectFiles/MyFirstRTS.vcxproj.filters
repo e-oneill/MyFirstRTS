@@ -46,12 +46,12 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\MyFirstRTSGameModeBase.h">
       <Filter>Source\MyFirstRTS</Filter>
     </ClInclude>
-    <None Include="..\..\Source\MyFirstRTS\MyFirstRTS.Build.cs">
-      <Filter>Source\MyFirstRTS</Filter>
-    </None>
     <ClInclude Include="..\..\Source\MyFirstRTS\MyFirstRTS.h">
       <Filter>Source\MyFirstRTS</Filter>
     </ClInclude>
+    <None Include="..\..\Source\MyFirstRTS\MyFirstRTS.Build.cs">
+      <Filter>Source\MyFirstRTS</Filter>
+    </None>
     <Filter Include="Source\MyFirstRTS\Public">
       <UniqueIdentifier>{44295DAC-D66D-33DC-AB6F-28419543015E}</UniqueIdentifier>
     </Filter>
@@ -76,13 +76,7 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameState.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSGameMode.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSCharacterBase.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerController.h">
@@ -100,7 +94,16 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSCharacterBase.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSAttributeComponent.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingPlacement.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <Filter Include="Source\MyFirstRTS\Public\Structs">
@@ -143,6 +146,9 @@
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSPlayerPawn.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSBuildingPlacement.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectable.cpp">

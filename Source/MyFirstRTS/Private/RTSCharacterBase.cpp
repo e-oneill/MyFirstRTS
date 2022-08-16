@@ -67,6 +67,10 @@ void ARTSCharacterBase::Select_Implementation()
 
 void ARTSCharacterBase::ExecuteOrder_Implementation()
 {
+	bIsExtracting = false;
+	bIsConstructing = false;
+	GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
+
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
 
 	AAIController* AIController = Cast<AAIController>(GetController());
@@ -74,9 +78,10 @@ void ARTSCharacterBase::ExecuteOrder_Implementation()
 	{
 		AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
 	}
+
 	if (PC)
 	{
-		APawn* SelectorPawn = PC->GetPawn();
+sa		APawn* SelectorPawn = PC->GetPawn();
 		if (SelectorPawn)
 		{
 			ARTSPlayerPawn* RTSPawn = Cast<ARTSPlayerPawn>(SelectorPawn);
@@ -87,36 +92,33 @@ void ARTSCharacterBase::ExecuteOrder_Implementation()
 				//Move to the location of the order
 				MoveToLocation(MoveTarget);
 				//check target for the type of actor
-				//To start with, if we are a resource extractor, run check for if this order would interact with a resource extractor
-				if (bCanExtractResource)
+				//Split orders up based on the target
+				
+				//Target is a resource
+				ARTSResource* ResourceTarget = Cast<ARTSResource>(OrderTarget);
+				if (ResourceTarget)
 				{
-					ARTSResource* ResourceTarget = Cast<ARTSResource>(OrderTarget);
-					if (ResourceTarget)
+					if (bCanExtractResource)
 					{
 						LastExploitedResource = ResourceTarget;
 						MoveToResourceAndExploit(LastExploitedResource);
-						
-						//ExploitResource();
-					}
-					else
-					{
-						bIsExtracting = false;
-						GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
 					}
 				}
-				if (ResourcesCarried > 0)
-				{
-					ARTSBuildingBase* TargetBuilding = Cast<ARTSBuildingBase>(OrderTarget);
-					if (TargetBuilding)
+				//Target is a building
+				ARTSBuildingBase* TargetBuilding = Cast<ARTSBuildingBase>(OrderTarget);
+				if (TargetBuilding)
+				{	
+					if (ResourcesCarried > 0 && TargetBuilding->GetIsConstructed() && TargetBuilding->GetIsResourceDropOff() && TargetBuilding->GetValidResources().Contains(CarriedResource) && TargetBuilding->GetOwningPlayerId() == OwningPlayerId)
 					{
-						if (TargetBuilding->GetIsResourceDropOff() && TargetBuilding->GetValidResources().Contains(CarriedResource) &&TargetBuilding->GetOwningPlayerId() == OwningPlayerId)
-						{
-							bShouldAutoReturnToResource = false;
-							MoveToAndDepositResources(OrderTarget);
-						}
+						//we are manually ordering to return to a building, drop of resources and don't return to resource
+						bShouldAutoReturnToResource = false;
+						MoveToAndDepositResources(OrderTarget);
+					}
+					if (bCanConstruct && !TargetBuilding->GetIsConstructed())
+					{
+						MoveToBuildingAndConstruct(TargetBuilding);
 					}
 				}
-
 			}
 		}
 	}
@@ -144,6 +146,8 @@ void ARTSCharacterBase::MoveToResourceAndExploit(ARTSResource* TargetResource)
 	}
 }
 
+
+
 void ARTSCharacterBase::MoveToAndDepositResources(AActor* TargetActor)
 {
 	MoveToLocation(TargetActor->GetActorLocation());
@@ -157,12 +161,17 @@ void ARTSCharacterBase::MoveToAndDepositResources(AActor* TargetActor)
 
 void ARTSCharacterBase::ExploitResource(FAIRequestID Request, const FPathFollowingResult& Result)
 {
+	if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
+	{
+		MoveToLocation(OrderTarget->GetActorLocation());
+		return;
+	}
 	AAIController* AIController = Cast<AAIController>(GetController());
 	if (AIController)
 	{
 		AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
 	}
-	GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
+	GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
 	float DistanceToTarget = GetDistanceTo(LastExploitedResource);
 	if (DistanceToTarget >= ExtractionDistance)
 	{
@@ -170,7 +179,7 @@ void ARTSCharacterBase::ExploitResource(FAIRequestID Request, const FPathFollowi
 	}
 	else
 	{
-		GetWorldTimerManager().SetTimer(ResourceExploitTimer,this, &ARTSCharacterBase::FinishExploitResource, ExtractionCooldown, true,ExtractionCooldown);
+		GetWorldTimerManager().SetTimer(PrimaryActionTimer,this, &ARTSCharacterBase::FinishExploitResource, ExtractionCooldown, true,ExtractionCooldown);
 		//bIsMovingToExploitResource = false;
 	}
 
@@ -187,7 +196,7 @@ void ARTSCharacterBase::FinishExploitResource()
 	if (ResourcesCarried >= ResourceCapacity || LastExploitedResource->GetResourceValue() <= 0)
 	{
 		bIsExtracting = false;
-		GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
+		GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
 		return;
 	}
 
@@ -235,7 +244,7 @@ void ARTSCharacterBase::DepositToNearestCollector()
 {
 	bIsExtracting = false;
 	bShouldAutoReturnToResource = true;
-	GetWorldTimerManager().ClearTimer(ResourceExploitTimer);
+	GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
 	TArray<AActor*> Buildings;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARTSBuildingBase::StaticClass(), Buildings);
 	float BestDistance = -1;
@@ -243,7 +252,7 @@ void ARTSCharacterBase::DepositToNearestCollector()
 	for (int i = 0; i < Buildings.Num(); i++)
 	{
 		ARTSBuildingBase* Building =  (Cast<ARTSBuildingBase>(Buildings[i]));
-		if (Building->GetIsResourceDropOff() && Building->GetOwningPlayerId() == OwningPlayerId)
+		if (Building->GetIsConstructed() && Building->GetIsResourceDropOff() && Building->GetOwningPlayerId() == OwningPlayerId)
 		{
 			if (Building->GetValidResources().Contains(CarriedResource))
 			{
@@ -268,6 +277,11 @@ void ARTSCharacterBase::DepositToNearestCollector()
 
 void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowingResult& Result)
 {
+	if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
+	{
+		MoveToLocation(OrderTarget->GetActorLocation());
+		return;
+	}
 	AAIController* AIController = Cast<AAIController>(GetController());
 	if (AIController)
 	{
@@ -292,6 +306,52 @@ void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowi
 
 	if (LastExploitedResource && bShouldAutoReturnToResource)
 		MoveToResourceAndExploit(LastExploitedResource);
+}
+
+void ARTSCharacterBase::MoveToBuildingAndConstruct(ARTSBuildingBase* TargetBuilding)
+{
+	MoveToLocation(TargetBuilding->GetActorLocation());
+	AAIController* AIController = Cast<AAIController>(GetController());
+	if (AIController)
+	{
+		MoveCompleteDelegate = AIController->GetPathFollowingComponent()->OnRequestFinished.AddUObject(this, &ARTSCharacterBase::ConstructBuilding);
+	}
+}
+
+void ARTSCharacterBase::ConstructBuilding(FAIRequestID Request, const FPathFollowingResult& Result)
+{
+	if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
+	{
+		MoveToLocation(OrderTarget->GetActorLocation());
+		return;
+	}
+	AAIController* AIController = Cast<AAIController>(GetController());
+	if (AIController)
+	{
+		AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
+	}
+	bIsConstructing = true;
+	GetWorldTimerManager().SetTimer(PrimaryActionTimer, this, &ARTSCharacterBase::FinishConstructBuilding, ConstructTickCooldown, true, ConstructTickCooldown);
+}
+
+void ARTSCharacterBase::FinishConstructBuilding()
+{
+	ARTSBuildingBase* TargetBuilding = Cast<ARTSBuildingBase>(OrderTarget);
+	if (TargetBuilding && !TargetBuilding->GetIsConstructed())
+	{
+		float BuiltPercent = TargetBuilding->GetAttributeComponent()->Heal(this, ConstructRate);
+		TargetBuilding->OnConstruction.Broadcast(TargetBuilding, BuiltPercent, this);
+	}
+	else
+	{
+		bIsConstructing = false;
+		GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
+	}
+}
+
+void ARTSCharacterBase::ConstructNearestUnfinishedBuilding()
+{
+
 }
 
 // Called when the game starts or when spawned
