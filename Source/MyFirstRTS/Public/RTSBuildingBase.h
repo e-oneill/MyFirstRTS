@@ -8,7 +8,7 @@
 #include "RTSBuildingBase.generated.h"
 
 class URTSAttributeComponent;
-//class UMeshComponent;
+class URTSOrderTargetComponent;
 enum EResourceType;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnConstructionSignature, ARTSBuildingBase*, ConstructedBuilding, float, PercentDone, AActor*, Builder);
@@ -21,6 +21,9 @@ class MYFIRSTRTS_API ARTSBuildingBase : public AActor, public IRTSSelectable
 public:	
 	// Sets default values for this actor's properties
 	ARTSBuildingBase();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	URTSOrderTargetComponent* OrderTargetComponent;
 
 	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	//UMeshComponent* MeshComponent;

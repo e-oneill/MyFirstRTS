@@ -7,7 +7,7 @@
 #include "RTSOrderable.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE(Blueprintable, MinimalAPI)
 class URTSOrderable : public UInterface
 {
 	GENERATED_BODY()
@@ -22,10 +22,15 @@ class MYFIRSTRTS_API IRTSOrderable
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-
-	UFUNCTION(BlueprintNativeEvent, Category = "User Interaction")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Player Interaction")
 	void ExecuteOrder();
 
-	UFUNCTION(BlueprintNativeEvent, Category = "User Interaction")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
+	void HandleOrderToLocation(FVector Location);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
+	void HandleOrderToActor(AActor* Actor);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
 	void CancelOrder();
 };

@@ -13,8 +13,20 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSResource();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
-	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType();
+	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSOrderTargetComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ARTSResource::execHandleResourceQuantityChanged)
+	{
+		P_GET_OBJECT(URTSOrderTargetComponent,Z_Param_ModifiedComponent);
+		P_GET_PROPERTY(FIntProperty,Z_Param_NewValue);
+		P_GET_PROPERTY(FFloatProperty,Z_Param_PercentDone);
+		P_GET_OBJECT(AActor,Z_Param_AffectingActor);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->HandleResourceQuantityChanged(Z_Param_ModifiedComponent,Z_Param_NewValue,Z_Param_PercentDone,Z_Param_AffectingActor);
+		P_NATIVE_END;
+	}
 	static FName NAME_ARTSResource_ResourceDepleted = FName(TEXT("ResourceDepleted"));
 	void ARTSResource::ResourceDepleted()
 	{
@@ -27,6 +39,63 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 	}
 	void ARTSResource::StaticRegisterNativesARTSResource()
 	{
+		UClass* Class = ARTSResource::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "HandleResourceQuantityChanged", &ARTSResource::execHandleResourceQuantityChanged },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics
+	{
+		struct RTSResource_eventHandleResourceQuantityChanged_Parms
+		{
+			URTSOrderTargetComponent* ModifiedComponent;
+			int32 NewValue;
+			float PercentDone;
+			AActor* AffectingActor;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ModifiedComponent_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ModifiedComponent;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_NewValue;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_PercentDone;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AffectingActor;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_ModifiedComponent_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_ModifiedComponent = { "ModifiedComponent", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSResource_eventHandleResourceQuantityChanged_Parms, ModifiedComponent), Z_Construct_UClass_URTSOrderTargetComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_ModifiedComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_ModifiedComponent_MetaData)) };
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_NewValue = { "NewValue", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSResource_eventHandleResourceQuantityChanged_Parms, NewValue), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_PercentDone = { "PercentDone", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSResource_eventHandleResourceQuantityChanged_Parms, PercentDone), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_AffectingActor = { "AffectingActor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSResource_eventHandleResourceQuantityChanged_Parms, AffectingActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_ModifiedComponent,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_NewValue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_PercentDone,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::NewProp_AffectingActor,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/RTSResource.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ARTSResource, nullptr, "HandleResourceQuantityChanged", nullptr, nullptr, sizeof(Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::RTSResource_eventHandleResourceQuantityChanged_Parms), Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ARTSResource_ResourceDepleted_Statics
 	{
@@ -85,21 +154,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_TimesCanBeExploited_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OrderTargetComponent_MetaData[];
 #endif
-		static const UECodeGen_Private::FBytePropertyParams NewProp_TimesCanBeExploited;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_RespawnTimer_MetaData[];
-#endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_RespawnTimer;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ResourceValue_MetaData[];
-#endif
-		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_ResourceValue;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Type_MetaData[];
-#endif
-		static const UECodeGen_Private::FBytePropertyParams NewProp_Type;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OrderTargetComponent;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -109,6 +166,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ARTSResource_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ARTSResource_HandleResourceQuantityChanged, "HandleResourceQuantityChanged" }, // 3495091470
 		{ &Z_Construct_UFunction_ARTSResource_ResourceDepleted, "ResourceDepleted" }, // 2437951146
 		{ &Z_Construct_UFunction_ARTSResource_ResourcedExtracted, "ResourcedExtracted" }, // 772578573
 	};
@@ -119,38 +177,15 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 	};
 #endif
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSResource_Statics::NewProp_TimesCanBeExploited_MetaData[] = {
-		{ "Category", "Resource" },
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSResource_Statics::NewProp_OrderTargetComponent_MetaData[] = {
+		{ "Category", "RTSResource" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/RTSResource.h" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_TimesCanBeExploited = { "TimesCanBeExploited", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, TimesCanBeExploited), nullptr, METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_TimesCanBeExploited_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_TimesCanBeExploited_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSResource_Statics::NewProp_RespawnTimer_MetaData[] = {
-		{ "Category", "Resource" },
-		{ "ModuleRelativePath", "Public/RTSResource.h" },
-	};
-#endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_RespawnTimer = { "RespawnTimer", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, RespawnTimer), METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_RespawnTimer_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_RespawnTimer_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSResource_Statics::NewProp_ResourceValue_MetaData[] = {
-		{ "Category", "Resource" },
-		{ "ModuleRelativePath", "Public/RTSResource.h" },
-	};
-#endif
-	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_ResourceValue = { "ResourceValue", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, ResourceValue), METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_ResourceValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_ResourceValue_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData[] = {
-		{ "Category", "Resource" },
-		{ "ModuleRelativePath", "Public/RTSResource.h" },
-	};
-#endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, Type), Z_Construct_UEnum_MyFirstRTS_EResourceType, METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_Type_MetaData)) }; // 2352757931
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSResource_Statics::NewProp_OrderTargetComponent = { "OrderTargetComponent", nullptr, (EPropertyFlags)0x001000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSResource, OrderTargetComponent), Z_Construct_UClass_URTSOrderTargetComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSResource_Statics::NewProp_OrderTargetComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSResource_Statics::NewProp_OrderTargetComponent_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARTSResource_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_TimesCanBeExploited,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_RespawnTimer,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_ResourceValue,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_Type,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSResource_Statics::NewProp_OrderTargetComponent,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ARTSResource_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ARTSResource>::IsAbstract,
@@ -188,9 +223,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSResource() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSResource, ARTSResource::StaticClass, TEXT("ARTSResource"), &Z_Registration_Info_UClass_ARTSResource, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSResource), 2077771993U) },
+		{ Z_Construct_UClass_ARTSResource, ARTSResource::StaticClass, TEXT("ARTSResource"), &Z_Registration_Info_UClass_ARTSResource, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSResource), 2751236189U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_3951449020(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_1664273880(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSResource_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -8,6 +8,7 @@
 #include "RTSGameState.h"
 #include "RTSAttributeComponent.h"
 #include "Components/MeshComponent.h"
+#include "RTSOrderTargetComponent.h"
 
 // Sets default values
 ARTSBuildingBase::ARTSBuildingBase()
@@ -16,7 +17,7 @@ ARTSBuildingBase::ARTSBuildingBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
-
+	OrderTargetComponent = CreateDefaultSubobject<URTSOrderTargetComponent>(TEXT("OrderTargetComponent"));
 	//MeshComponent = CreateDefaultSubobject<UMeshComponent>(TEXT("MeshComponent"));
 }
 
@@ -24,7 +25,7 @@ ARTSBuildingBase::ARTSBuildingBase()
 void ARTSBuildingBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	OrderTargetComponent->AttributeComponent = AttributeComponent;
 }
 
 // Called every frame

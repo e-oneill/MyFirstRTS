@@ -18,7 +18,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "RTSGameState.h"
 #include "RTSAttributeComponent.h"
-
+#include "RTSOrderTargetComponent.h"
 // Sets default values
 ARTSCharacterBase::ARTSCharacterBase()
 {
@@ -27,7 +27,19 @@ ARTSCharacterBase::ARTSCharacterBase()
 	UnitComponent = CreateDefaultSubobject<URTSUnitComponent>(TEXT("UnitComponent"));
 	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
 	ExtractionDistance = 800.f;
+
+	OrderTargetComponent = CreateDefaultSubobject<URTSOrderTargetComponent>(TEXT("OrderTargetComponent"));
 }
+
+
+// Called when the game starts or when spawned
+void ARTSCharacterBase::BeginPlay()
+{
+	Super::BeginPlay();
+
+	OrderTargetComponent->AttributeComponent = AttributeComponent;
+}
+
 
 void ARTSCharacterBase::Deselect_Implementation()
 {
@@ -67,61 +79,86 @@ void ARTSCharacterBase::Select_Implementation()
 
 void ARTSCharacterBase::ExecuteOrder_Implementation()
 {
+
+	//in this function, we handle the order and decide whether it is coming from a player a pawn or is an AI driven command.
+	//start by cancelling the current state of the AI and unbind the delegate tied to the AI controller's stop move event
 	bIsExtracting = false;
 	bIsConstructing = false;
 	GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
-
-	APlayerController* PC = GetWorld()->GetFirstPlayerController();
-
 	AAIController* AIController = Cast<AAIController>(GetController());
 	if (AIController)
 	{
 		AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
 	}
 
+	//check if we have been given an order by a player
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
 	if (PC)
 	{
-sa		APawn* SelectorPawn = PC->GetPawn();
+		APawn* SelectorPawn = PC->GetPawn();
 		if (SelectorPawn)
 		{
 			ARTSPlayerPawn* RTSPawn = Cast<ARTSPlayerPawn>(SelectorPawn);
 			if (RTSPawn)
 			{
 				OrderTarget = RTSPawn->GetTargetActor();
-				FVector MoveTarget = RTSPawn->GetOrderTargetLocation();
-				//Move to the location of the order
-				MoveToLocation(MoveTarget);
-				//check target for the type of actor
-				//Split orders up based on the target
-				
-				//Target is a resource
-				ARTSResource* ResourceTarget = Cast<ARTSResource>(OrderTarget);
-				if (ResourceTarget)
+				URTSOrderTargetComponent* TargetOrderComponent = Cast<URTSOrderTargetComponent>(OrderTarget->GetComponentByClass(URTSOrderTargetComponent::StaticClass()));
+				if (TargetOrderComponent)
 				{
-					if (bCanExtractResource)
-					{
-						LastExploitedResource = ResourceTarget;
-						MoveToResourceAndExploit(LastExploitedResource);
-					}
+					IRTSOrderable::Execute_HandleOrderToActor(this, OrderTarget);
 				}
-				//Target is a building
-				ARTSBuildingBase* TargetBuilding = Cast<ARTSBuildingBase>(OrderTarget);
-				if (TargetBuilding)
-				{	
-					if (ResourcesCarried > 0 && TargetBuilding->GetIsConstructed() && TargetBuilding->GetIsResourceDropOff() && TargetBuilding->GetValidResources().Contains(CarriedResource) && TargetBuilding->GetOwningPlayerId() == OwningPlayerId)
-					{
-						//we are manually ordering to return to a building, drop of resources and don't return to resource
-						bShouldAutoReturnToResource = false;
-						MoveToAndDepositResources(OrderTarget);
-					}
-					if (bCanConstruct && !TargetBuilding->GetIsConstructed())
-					{
-						MoveToBuildingAndConstruct(TargetBuilding);
-					}
+				else
+				{
+					IRTSOrderable::Execute_HandleOrderToLocation(this, RTSPawn->GetOrderTargetLocation());
 				}
 			}
 		}
 	}
+}
+
+void ARTSCharacterBase::HandleOrderToActor_Implementation(AActor* TargetActor)
+{
+	//Make sure the Actor based in contains an order component	
+	URTSOrderTargetComponent* TargetOrderComponent = Cast<URTSOrderTargetComponent>(OrderTarget->GetComponentByClass(URTSOrderTargetComponent::StaticClass()));
+	if (!TargetOrderComponent)
+	{
+		MoveToLocation(TargetActor->GetActorLocation());
+		return;
+	}
+	OrderTarget = TargetActor;
+	if (bCanExtractResource && TargetOrderComponent->bResource)
+	{
+		LastExploitedResource = TargetOrderComponent;
+		MoveToResourceAndExploit(LastExploitedResource);
+		return;
+	}
+
+	if (ResourcesCarried > 0 && TargetOrderComponent->bResourceDropOff)
+	{
+		bShouldAutoReturnToResource = false;
+		MoveToAndDepositResources(TargetActor);
+	}
+
+	if (bCanConstruct && TargetOrderComponent->bCanBeConstructed)
+	{
+		//This is old code, to be replaced if I create a construction site actor
+		ARTSBuildingBase* TargetBuilding = Cast<ARTSBuildingBase>(TargetActor);
+		if (TargetBuilding)
+		{
+			if (bCanConstruct && !TargetBuilding->GetIsConstructed())
+			{
+				MoveToBuildingAndConstruct(TargetBuilding);
+			}
+		}
+	}
+	//No Specific order found, fall back to move to actor location
+	MoveToLocation(TargetActor->GetActorLocation());
+}
+
+void ARTSCharacterBase::HandleOrderToLocation_Implementation(FVector Location)
+{
+	MoveToLocation(Location);
+	//throw std::logic_error("The method or operation is not implemented.");
 }
 
 void ARTSCharacterBase::CancelOrder_Implementation()
@@ -129,24 +166,23 @@ void ARTSCharacterBase::CancelOrder_Implementation()
 
 }
 
-void ARTSCharacterBase::MoveToResourceAndExploit(ARTSResource* TargetResource)
+void ARTSCharacterBase::MoveToResourceAndExploit(URTSOrderTargetComponent* TargetResource)
 {
-	if (CarriedResource == TargetResource->GetType() && ResourcesCarried == ResourceCapacity)
+	if (CarriedResource == TargetResource->ResourceType && ResourcesCarried == ResourceCapacity)
 	{
 		DepositToNearestCollector();
 		return;
 	}
 	bIsMovingToExploitResource = true;
 	//FVector MoveTarget = TargetResource->GetActorLocation();
-	MoveToLocation(TargetResource->GetActorLocation());
+	
+	MoveToLocation(TargetResource->GetOwner()->GetActorLocation());
 	AAIController* AIController = Cast<AAIController>(GetController());
 	if (AIController)
 	{
 		MoveCompleteDelegate = AIController->GetPathFollowingComponent()->OnRequestFinished.AddUObject(this, &ARTSCharacterBase::ExploitResource);
 	}
 }
-
-
 
 void ARTSCharacterBase::MoveToAndDepositResources(AActor* TargetActor)
 {
@@ -163,7 +199,7 @@ void ARTSCharacterBase::ExploitResource(FAIRequestID Request, const FPathFollowi
 {
 	if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
 	{
-		MoveToLocation(OrderTarget->GetActorLocation());
+		//MoveToLocation(OrderTarget->GetActorLocation());
 		return;
 	}
 	AAIController* AIController = Cast<AAIController>(GetController());
@@ -172,7 +208,7 @@ void ARTSCharacterBase::ExploitResource(FAIRequestID Request, const FPathFollowi
 		AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
 	}
 	GetWorldTimerManager().ClearTimer(PrimaryActionTimer);
-	float DistanceToTarget = GetDistanceTo(LastExploitedResource);
+	float DistanceToTarget = GetDistanceTo(LastExploitedResource->GetOwner());
 	if (DistanceToTarget >= ExtractionDistance)
 	{
 		MoveToResourceAndExploit(LastExploitedResource);
@@ -201,10 +237,10 @@ void ARTSCharacterBase::FinishExploitResource()
 	}
 
 
-	if (LastExploitedResource && CarriedResource != LastExploitedResource->GetType())
+	if (LastExploitedResource && CarriedResource != LastExploitedResource->ResourceType)
 	{
 		ResourcesCarried = 0;
-		CarriedResource = LastExploitedResource->GetType();
+		CarriedResource = LastExploitedResource->ResourceType;
 	}
 
 	int NewResources = ExtractionRate;
@@ -238,8 +274,6 @@ void ARTSCharacterBase::MoveToLocation(FVector Target)
 	}
 }
 
-
-
 void ARTSCharacterBase::DepositToNearestCollector()
 {
 	bIsExtracting = false;
@@ -252,9 +286,10 @@ void ARTSCharacterBase::DepositToNearestCollector()
 	for (int i = 0; i < Buildings.Num(); i++)
 	{
 		ARTSBuildingBase* Building =  (Cast<ARTSBuildingBase>(Buildings[i]));
-		if (Building->GetIsConstructed() && Building->GetIsResourceDropOff() && Building->GetOwningPlayerId() == OwningPlayerId)
+		URTSOrderTargetComponent* TargetOrderComponent = Cast<URTSOrderTargetComponent>(Building->GetComponentByClass(URTSOrderTargetComponent::StaticClass()));
+		if (TargetOrderComponent && Building->GetIsConstructed() && Building->GetOwningPlayerId() == OwningPlayerId)
 		{
-			if (Building->GetValidResources().Contains(CarriedResource))
+			if (TargetOrderComponent->ValidResources.Contains(CarriedResource))
 			{
 				if (BestDistance == -1 || GetDistanceTo(Building) < BestDistance)
 				{
@@ -279,7 +314,7 @@ void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowi
 {
 	if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
 	{
-		MoveToLocation(OrderTarget->GetActorLocation());
+		//MoveToLocation(OrderTarget->GetActorLocation());
 		return;
 	}
 	AAIController* AIController = Cast<AAIController>(GetController());
@@ -305,7 +340,12 @@ void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowi
 	}
 
 	if (LastExploitedResource && bShouldAutoReturnToResource)
+	{
+		OrderTarget = LastExploitedResource->GetOwner();
 		MoveToResourceAndExploit(LastExploitedResource);
+		
+	}
+		
 }
 
 void ARTSCharacterBase::MoveToBuildingAndConstruct(ARTSBuildingBase* TargetBuilding)
@@ -322,12 +362,13 @@ void ARTSCharacterBase::ConstructBuilding(FAIRequestID Request, const FPathFollo
 {
 	if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
 	{
-		MoveToLocation(OrderTarget->GetActorLocation());
+		//MoveToLocation(OrderTarget->GetActorLocation());
 		return;
 	}
 	AAIController* AIController = Cast<AAIController>(GetController());
 	if (AIController)
 	{
+		//if (AIController->GetPathFollowingComponent()->IsActive)
 		AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
 	}
 	bIsConstructing = true;
@@ -354,21 +395,13 @@ void ARTSCharacterBase::ConstructNearestUnfinishedBuilding()
 
 }
 
-// Called when the game starts or when spawned
-void ARTSCharacterBase::BeginPlay()
-{
-	Super::BeginPlay();
-	
-
-}
-
 // Called every frame
 void ARTSCharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if (bIsMovingToExploitResource)
 	{
-		if (GetDistanceTo(LastExploitedResource) <= ExtractionDistance)
+		if (GetDistanceTo(LastExploitedResource->GetOwner()) <= ExtractionDistance)
 		{
 			bIsExtracting = true;
 			FPathFollowingResult Result;

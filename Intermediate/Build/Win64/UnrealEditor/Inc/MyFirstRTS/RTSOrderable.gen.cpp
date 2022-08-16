@@ -13,12 +13,30 @@ void EmptyLinkFunctionForGeneratedCodeRTSOrderable() {}
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSOrderable();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UInterface();
 	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 // End Cross Module References
 	DEFINE_FUNCTION(IRTSOrderable::execCancelOrder)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->CancelOrder_Implementation();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(IRTSOrderable::execHandleOrderToActor)
+	{
+		P_GET_OBJECT(AActor,Z_Param_Actor);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->HandleOrderToActor_Implementation(Z_Param_Actor);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(IRTSOrderable::execHandleOrderToLocation)
+	{
+		P_GET_STRUCT(FVector,Z_Param_Location);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->HandleOrderToLocation_Implementation(Z_Param_Location);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(IRTSOrderable::execExecuteOrder)
@@ -36,12 +54,22 @@ void EmptyLinkFunctionForGeneratedCodeRTSOrderable() {}
 	{
 		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_ExecuteOrder instead.");
 	}
+	void IRTSOrderable::HandleOrderToActor(AActor* Actor)
+	{
+		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_HandleOrderToActor instead.");
+	}
+	void IRTSOrderable::HandleOrderToLocation(FVector Location)
+	{
+		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_HandleOrderToLocation instead.");
+	}
 	void URTSOrderable::StaticRegisterNativesURTSOrderable()
 	{
 		UClass* Class = URTSOrderable::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "CancelOrder", &IRTSOrderable::execCancelOrder },
 			{ "ExecuteOrder", &IRTSOrderable::execExecuteOrder },
+			{ "HandleOrderToActor", &IRTSOrderable::execHandleOrderToActor },
+			{ "HandleOrderToLocation", &IRTSOrderable::execHandleOrderToLocation },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -54,11 +82,11 @@ void EmptyLinkFunctionForGeneratedCodeRTSOrderable() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::Function_MetaDataParams[] = {
-		{ "Category", "User Interaction" },
+		{ "Category", "Orderable Interface" },
 		{ "ModuleRelativePath", "Public/RTSOrderable.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSOrderable, nullptr, "CancelOrder", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSOrderable, nullptr, "CancelOrder", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_CancelOrder_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_URTSOrderable_CancelOrder()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -77,17 +105,75 @@ void EmptyLinkFunctionForGeneratedCodeRTSOrderable() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::Function_MetaDataParams[] = {
-		{ "Category", "User Interaction" },
+		{ "Category", "Player Interaction" },
 		{ "ModuleRelativePath", "Public/RTSOrderable.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSOrderable, nullptr, "ExecuteOrder", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSOrderable, nullptr, "ExecuteOrder", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_URTSOrderable_ExecuteOrder()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSOrderable_ExecuteOrder_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics
+	{
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Actor;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::NewProp_Actor = { "Actor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSOrderable_eventHandleOrderToActor_Parms, Actor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::NewProp_Actor,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Orderable Interface" },
+		{ "ModuleRelativePath", "Public/RTSOrderable.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSOrderable, nullptr, "HandleOrderToActor", nullptr, nullptr, sizeof(RTSOrderable_eventHandleOrderToActor_Parms), Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_URTSOrderable_HandleOrderToActor()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSOrderable_HandleOrderToActor_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics
+	{
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Location;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::NewProp_Location = { "Location", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSOrderable_eventHandleOrderToLocation_Parms, Location), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::NewProp_Location,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Orderable Interface" },
+		{ "ModuleRelativePath", "Public/RTSOrderable.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_URTSOrderable, nullptr, "HandleOrderToLocation", nullptr, nullptr, sizeof(RTSOrderable_eventHandleOrderToLocation_Parms), Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C820C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -111,11 +197,15 @@ void EmptyLinkFunctionForGeneratedCodeRTSOrderable() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_URTSOrderable_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_URTSOrderable_CancelOrder, "CancelOrder" }, // 1396650911
-		{ &Z_Construct_UFunction_URTSOrderable_ExecuteOrder, "ExecuteOrder" }, // 1911435775
+		{ &Z_Construct_UFunction_URTSOrderable_CancelOrder, "CancelOrder" }, // 1250149129
+		{ &Z_Construct_UFunction_URTSOrderable_ExecuteOrder, "ExecuteOrder" }, // 4075606427
+		{ &Z_Construct_UFunction_URTSOrderable_HandleOrderToActor, "HandleOrderToActor" }, // 753504215
+		{ &Z_Construct_UFunction_URTSOrderable_HandleOrderToLocation, "HandleOrderToLocation" }, // 1860544871
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URTSOrderable_Statics::Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "Public/RTSOrderable.h" },
 	};
 #endif
@@ -180,14 +270,48 @@ void EmptyLinkFunctionForGeneratedCodeRTSOrderable() {}
 			I->ExecuteOrder_Implementation();
 		}
 	}
+	static FName NAME_URTSOrderable_HandleOrderToActor = FName(TEXT("HandleOrderToActor"));
+	void IRTSOrderable::Execute_HandleOrderToActor(UObject* O, AActor* Actor)
+	{
+		check(O != NULL);
+		check(O->GetClass()->ImplementsInterface(URTSOrderable::StaticClass()));
+		RTSOrderable_eventHandleOrderToActor_Parms Parms;
+		UFunction* const Func = O->FindFunction(NAME_URTSOrderable_HandleOrderToActor);
+		if (Func)
+		{
+			Parms.Actor=Actor;
+			O->ProcessEvent(Func, &Parms);
+		}
+		else if (auto I = (IRTSOrderable*)(O->GetNativeInterfaceAddress(URTSOrderable::StaticClass())))
+		{
+			I->HandleOrderToActor_Implementation(Actor);
+		}
+	}
+	static FName NAME_URTSOrderable_HandleOrderToLocation = FName(TEXT("HandleOrderToLocation"));
+	void IRTSOrderable::Execute_HandleOrderToLocation(UObject* O, FVector Location)
+	{
+		check(O != NULL);
+		check(O->GetClass()->ImplementsInterface(URTSOrderable::StaticClass()));
+		RTSOrderable_eventHandleOrderToLocation_Parms Parms;
+		UFunction* const Func = O->FindFunction(NAME_URTSOrderable_HandleOrderToLocation);
+		if (Func)
+		{
+			Parms.Location=Location;
+			O->ProcessEvent(Func, &Parms);
+		}
+		else if (auto I = (IRTSOrderable*)(O->GetNativeInterfaceAddress(URTSOrderable::StaticClass())))
+		{
+			I->HandleOrderToLocation_Implementation(Location);
+		}
+	}
 	struct Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_URTSOrderable, URTSOrderable::StaticClass, TEXT("URTSOrderable"), &Z_Registration_Info_UClass_URTSOrderable, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URTSOrderable), 2507338803U) },
+		{ Z_Construct_UClass_URTSOrderable, URTSOrderable::StaticClass, TEXT("URTSOrderable"), &Z_Registration_Info_UClass_URTSOrderable, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URTSOrderable), 2099184924U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_527716608(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_3222538553(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

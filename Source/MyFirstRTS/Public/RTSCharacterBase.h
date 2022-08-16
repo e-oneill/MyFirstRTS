@@ -11,9 +11,11 @@
 
 class URTSUnitComponent;
 class URTSAttributeComponent;
+class URTSOrderTargetComponent;
 class ARTSBuildingBase;
 enum EResourceType;
 class ARTSResource;
+
 struct FAIRequestID;
 struct FPathFollowingResult;
 
@@ -26,6 +28,8 @@ public:
 	// Sets default values for this character's properties
 	ARTSCharacterBase();
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	URTSOrderTargetComponent* OrderTargetComponent;
 
 	void Select_Implementation() override;
 
@@ -36,6 +40,12 @@ public:
 	void CancelOrder_Implementation() override;
 
 	
+
+
+	void HandleOrderToLocation_Implementation(FVector Location) override;
+
+
+	void HandleOrderToActor_Implementation(AActor* Actor) override;
 
 protected:
 	// Called when the game starts or when spawned
@@ -49,7 +59,7 @@ protected:
 
 	void MoveToLocation(FVector Target);
 
-	void MoveToResourceAndExploit(ARTSResource* TargetResource);
+	void MoveToResourceAndExploit(URTSOrderTargetComponent* TargetResource);
 
 	//Very strangely, because I am using AddUObject on the AI Controller, this function should not be marked UFUNCTION(), unlike all other delegates
 	void ExploitResource(FAIRequestID Request, const FPathFollowingResult& Result);
@@ -94,7 +104,7 @@ protected:
 	bool bIsConstructing;
 
 	UPROPERTY(BlueprintReadWrite)
-	ARTSResource* LastExploitedResource;
+	URTSOrderTargetComponent* LastExploitedResource;
 
 	FDelegateHandle MoveCompleteDelegate;
 

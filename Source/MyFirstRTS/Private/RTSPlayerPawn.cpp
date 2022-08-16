@@ -114,7 +114,7 @@ void ARTSPlayerPawn::FinishClickInteract()
 		{
 			if (SelectionMarquee->SelectedActors[i])
 			{
-				SelectedActors.Add(SelectionMarquee->SelectedActors[i]);
+				//SelectedActors.Add(SelectionMarquee->SelectedActors[i]);
 				IRTSSelectable* SelectionInterface = Cast<IRTSSelectable>(SelectionMarquee->SelectedActors[i]);
 				if (SelectionInterface)
 				{
@@ -163,6 +163,11 @@ void ARTSPlayerPawn::SelectSavedGroup(const int SelectionGroupNumber)
 			}
 		}
 	}
+}
+
+void ARTSPlayerPawn::PrepareOrder_Implementation()
+{
+	
 }
 
 void ARTSPlayerPawn::GiveOrder()
@@ -359,6 +364,7 @@ void ARTSPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Select", IE_Pressed, this, &ARTSPlayerPawn::ClickInteract);
 	PlayerInputComponent->BindAction("Select", IE_Released, this, &ARTSPlayerPawn::FinishClickInteract);
 	PlayerInputComponent->BindAction("CumulativeSelect", IE_Released, this, &ARTSPlayerPawn::ClickAddToSelect);
+	PlayerInputComponent->BindAction("Order", IE_Pressed, this, &ARTSPlayerPawn::PrepareOrder);
 	PlayerInputComponent->BindAction("Order", IE_Released, this, &ARTSPlayerPawn::GiveOrder);
 	PlayerInputComponent->BindAction("ResetCamera", IE_Pressed, this, &ARTSPlayerPawn::ResetCamera);
 

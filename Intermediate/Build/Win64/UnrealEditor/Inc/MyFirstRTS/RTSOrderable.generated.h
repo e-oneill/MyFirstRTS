@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
 #ifdef MYFIRSTRTS_RTSOrderable_generated_h
 #error "RTSOrderable.generated.h already included, missing '#pragma once' in RTSOrderable.h"
 #endif
@@ -16,21 +17,39 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_SPARSE_DATA
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_RPC_WRAPPERS \
 	virtual void CancelOrder_Implementation() {}; \
+	virtual void HandleOrderToActor_Implementation(AActor* Actor) {}; \
+	virtual void HandleOrderToLocation_Implementation(FVector Location) {}; \
 	virtual void ExecuteOrder_Implementation() {}; \
  \
 	DECLARE_FUNCTION(execCancelOrder); \
+	DECLARE_FUNCTION(execHandleOrderToActor); \
+	DECLARE_FUNCTION(execHandleOrderToLocation); \
 	DECLARE_FUNCTION(execExecuteOrder);
 
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void CancelOrder_Implementation() {}; \
+	virtual void HandleOrderToActor_Implementation(AActor* Actor) {}; \
+	virtual void HandleOrderToLocation_Implementation(FVector Location) {}; \
 	virtual void ExecuteOrder_Implementation() {}; \
  \
 	DECLARE_FUNCTION(execCancelOrder); \
+	DECLARE_FUNCTION(execHandleOrderToActor); \
+	DECLARE_FUNCTION(execHandleOrderToLocation); \
 	DECLARE_FUNCTION(execExecuteOrder);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_EVENT_PARMS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_EVENT_PARMS \
+	struct RTSOrderable_eventHandleOrderToActor_Parms \
+	{ \
+		AActor* Actor; \
+	}; \
+	struct RTSOrderable_eventHandleOrderToLocation_Parms \
+	{ \
+		FVector Location; \
+	};
+
+
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_CALLBACK_WRAPPERS
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderable_h_13_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
@@ -90,6 +109,8 @@ public: \
 	typedef IRTSOrderable ThisClass; \
 	static void Execute_CancelOrder(UObject* O); \
 	static void Execute_ExecuteOrder(UObject* O); \
+	static void Execute_HandleOrderToActor(UObject* O, AActor* Actor); \
+	static void Execute_HandleOrderToLocation(UObject* O, FVector Location); \
 	virtual UObject* _getUObject() const { return nullptr; }
 
 
@@ -101,6 +122,8 @@ public: \
 	typedef IRTSOrderable ThisClass; \
 	static void Execute_CancelOrder(UObject* O); \
 	static void Execute_ExecuteOrder(UObject* O); \
+	static void Execute_HandleOrderToActor(UObject* O, AActor* Actor); \
+	static void Execute_HandleOrderToLocation(UObject* O, FVector Location); \
 	virtual UObject* _getUObject() const { return nullptr; }
 
 

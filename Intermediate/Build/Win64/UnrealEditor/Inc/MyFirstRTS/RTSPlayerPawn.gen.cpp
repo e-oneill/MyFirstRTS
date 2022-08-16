@@ -23,6 +23,13 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 	NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ARTSPlayerPawn::execPrepareOrder)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->PrepareOrder_Implementation();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ARTSPlayerPawn::execSelectSavedGroup)
 	{
 		P_GET_PROPERTY(FIntProperty,Z_Param_SelectionGroupNumber);
@@ -39,14 +46,42 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		P_THIS->SaveSelection(Z_Param_SelectionGroupNumber);
 		P_NATIVE_END;
 	}
+	static FName NAME_ARTSPlayerPawn_PrepareOrder = FName(TEXT("PrepareOrder"));
+	void ARTSPlayerPawn::PrepareOrder()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_ARTSPlayerPawn_PrepareOrder),NULL);
+	}
 	void ARTSPlayerPawn::StaticRegisterNativesARTSPlayerPawn()
 	{
 		UClass* Class = ARTSPlayerPawn::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "PrepareOrder", &ARTSPlayerPawn::execPrepareOrder },
 			{ "SaveSelection", &ARTSPlayerPawn::execSaveSelection },
 			{ "SelectSavedGroup", &ARTSPlayerPawn::execSelectSavedGroup },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/RTSPlayerPawn.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ARTSPlayerPawn, nullptr, "PrepareOrder", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ARTSPlayerPawn_SaveSelection_Statics
 	{
@@ -208,6 +243,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ARTSPlayerPawn_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder, "PrepareOrder" }, // 3581453729
 		{ &Z_Construct_UFunction_ARTSPlayerPawn_SaveSelection, "SaveSelection" }, // 3056017169
 		{ &Z_Construct_UFunction_ARTSPlayerPawn_SelectSavedGroup, "SelectSavedGroup" }, // 2119825288
 	};
@@ -376,9 +412,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSPlayerPawn, ARTSPlayerPawn::StaticClass, TEXT("ARTSPlayerPawn"), &Z_Registration_Info_UClass_ARTSPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSPlayerPawn), 4015401964U) },
+		{ Z_Construct_UClass_ARTSPlayerPawn, ARTSPlayerPawn::StaticClass, TEXT("ARTSPlayerPawn"), &Z_Registration_Info_UClass_ARTSPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSPlayerPawn), 3512493919U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_3025701215(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_3637466516(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

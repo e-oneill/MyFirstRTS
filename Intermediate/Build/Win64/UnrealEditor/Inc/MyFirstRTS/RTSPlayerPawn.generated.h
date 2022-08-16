@@ -15,17 +15,23 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_SPARSE_DATA
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS \
+	virtual void PrepareOrder_Implementation(); \
  \
+	DECLARE_FUNCTION(execPrepareOrder); \
 	DECLARE_FUNCTION(execSelectSavedGroup); \
 	DECLARE_FUNCTION(execSaveSelection);
 
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void PrepareOrder_Implementation(); \
  \
+	DECLARE_FUNCTION(execPrepareOrder); \
 	DECLARE_FUNCTION(execSelectSavedGroup); \
 	DECLARE_FUNCTION(execSaveSelection);
 
 
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_EVENT_PARMS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_CALLBACK_WRAPPERS
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARTSPlayerPawn(); \
@@ -68,12 +74,16 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ARTSPlayerPawn)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_17_PROLOG
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_17_PROLOG \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_EVENT_PARMS
+
+
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_SPARSE_DATA \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_CALLBACK_WRAPPERS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_STANDARD_CONSTRUCTORS \
 public: \
@@ -85,6 +95,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_SPARSE_DATA \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_CALLBACK_WRAPPERS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS_NO_PURE_DECLS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_ENHANCED_CONSTRUCTORS \
 private: \

@@ -86,6 +86,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "User Interface")
 	USoundCue* ClickSound;
 
+	UFUNCTION(BlueprintNativeEvent)
+	void PrepareOrder();
+
 	void GiveOrder();
 
 	AActor* TargetActor; //the target actor of the player pawn's Order
