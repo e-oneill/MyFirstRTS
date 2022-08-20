@@ -14,8 +14,32 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define MYFIRSTRTS_RTSBuildingPlacement_generated_h
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_SPARSE_DATA
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_RPC_WRAPPERS
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_RPC_WRAPPERS \
+	virtual bool CanPlaceBuilding_Implementation(); \
+ \
+	DECLARE_FUNCTION(execCanPlaceBuilding);
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual bool CanPlaceBuilding_Implementation(); \
+ \
+	DECLARE_FUNCTION(execCanPlaceBuilding);
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_EVENT_PARMS \
+	struct RTSBuildingPlacement_eventCanPlaceBuilding_Parms \
+	{ \
+		bool ReturnValue; \
+ \
+		/** Constructor, initializes return property only **/ \
+		RTSBuildingPlacement_eventCanPlaceBuilding_Parms() \
+			: ReturnValue(false) \
+		{ \
+		} \
+	};
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_CALLBACK_WRAPPERS
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARTSBuildingPlacement(); \
@@ -58,12 +82,16 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ARTSBuildingPlacement)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_13_PROLOG
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_13_PROLOG \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_EVENT_PARMS
+
+
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_SPARSE_DATA \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_CALLBACK_WRAPPERS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_INCLASS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_STANDARD_CONSTRUCTORS \
 public: \
@@ -75,6 +103,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_SPARSE_DATA \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_CALLBACK_WRAPPERS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_INCLASS_NO_PURE_DECLS \
 	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSBuildingPlacement_h_16_ENHANCED_CONSTRUCTORS \
 private: \

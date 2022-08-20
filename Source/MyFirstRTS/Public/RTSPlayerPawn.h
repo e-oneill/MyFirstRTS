@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Data/FBuildingData.h"
 #include "RTSPlayerPawn.generated.h"
 
 class UNiagaraSystem;
@@ -11,6 +12,7 @@ class USoundCue;
 class ARTSResource;
 class ARTSPlayerController;
 class ARTSSelectionMarqueeActor;
+struct FHitResult;
 
 DECLARE_DELEGATE_OneParam(FInputSelectionGroupSwitchDelegate, const int32);
 
@@ -23,7 +25,10 @@ public:
 	// Sets default values for this pawn's properties
 	ARTSPlayerPawn();
 
+	bool bDrawDebugHelpers = false;
 protected:
+	int OwningPlayerId;
+
 	ARTSPlayerController* MyPlayerController;
 
 	UPROPERTY(EditDefaultsOnly)
@@ -38,9 +43,10 @@ protected:
 	// Function to carry out tick updates on the player camera
 	void PlayerCameraTick(float DeltaTime);
 
+	// Function to carry out tick updates of the order preview markers
+	void OrderPreviewTick(float DeltaTime, FHitResult Hit);
 
-
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class USphereComponent* PlayerCollisionComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -89,6 +95,16 @@ protected:
 	UFUNCTION(BlueprintNativeEvent)
 	void PrepareOrder();
 
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsGivingOrder = false;
+
+	bool bIsSelecting = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<UStaticMeshComponent*> OrderPreviewMarkers;
+	FRotator ForwardFacingRotator;
+	TArray<FVector> OrderTargetLocations;
+
 	void GiveOrder();
 
 	AActor* TargetActor; //the target actor of the player pawn's Order
@@ -131,6 +147,14 @@ protected:
 	float TargetCameraPitch;
 
 	void ResetCamera();
+
+	ARTSBuildingPlacement* BuildingPlacement;
+
+	UFUNCTION(BlueprintCallable)
+	void StartBuildingPlacement(FBuildingData BuildingToPlace);
+
+	FHitResult GetMousePosition();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

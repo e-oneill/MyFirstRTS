@@ -73,6 +73,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool GetIsConstructed() const {return bIsConstructed;}
 
+	void SetIsConstructed(bool bNewIsConstructed) { bIsConstructed = bNewIsConstructed; }
+
 	URTSAttributeComponent* GetAttributeComponent() const {return AttributeComponent;}
 
 	UPROPERTY(BlueprintAssignable, Category = "RTS Building Events")

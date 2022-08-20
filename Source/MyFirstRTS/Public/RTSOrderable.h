@@ -6,6 +6,8 @@
 #include "UObject/Interface.h"
 #include "RTSOrderable.generated.h"
 
+class UStaticMeshComponent;
+
 // This class does not need to be modified.
 UINTERFACE(Blueprintable, MinimalAPI)
 class URTSOrderable : public UInterface
@@ -29,8 +31,14 @@ public:
 	void HandleOrderToLocation(FVector Location);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
+	void HandleOrderToLocationAndRotation(FVector Location, FRotator Rotation);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
 	void HandleOrderToActor(AActor* Actor);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
 	void CancelOrder();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Orderable Interface")
+	TSubclassOf<UStaticMeshComponent> GetOrderPreviewMesh();
 };

@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSPlayerPawn();
 	ENGINE_API UClass* Z_Construct_UClass_APawn();
 	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
+	MYFIRSTRTS_API UScriptStruct* Z_Construct_UScriptStruct_FBuildingData();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSSelectionMarqueeActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
@@ -22,7 +23,16 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 	ENGINE_API UClass* Z_Construct_UClass_UFloatingPawnMovement_NoRegister();
 	NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ARTSPlayerPawn::execStartBuildingPlacement)
+	{
+		P_GET_STRUCT(FBuildingData,Z_Param_BuildingToPlace);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StartBuildingPlacement(Z_Param_BuildingToPlace);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ARTSPlayerPawn::execPrepareOrder)
 	{
 		P_FINISH;
@@ -58,6 +68,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 			{ "PrepareOrder", &ARTSPlayerPawn::execPrepareOrder },
 			{ "SaveSelection", &ARTSPlayerPawn::execSaveSelection },
 			{ "SelectSavedGroup", &ARTSPlayerPawn::execSelectSavedGroup },
+			{ "StartBuildingPlacement", &ARTSPlayerPawn::execStartBuildingPlacement },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -165,6 +176,38 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics
+	{
+		struct RTSPlayerPawn_eventStartBuildingPlacement_Parms
+		{
+			FBuildingData BuildingToPlace;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_BuildingToPlace;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::NewProp_BuildingToPlace = { "BuildingToPlace", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSPlayerPawn_eventStartBuildingPlacement_Parms, BuildingToPlace), Z_Construct_UScriptStruct_FBuildingData, METADATA_PARAMS(nullptr, 0) }; // 458041330
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::NewProp_BuildingToPlace,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/RTSPlayerPawn.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ARTSPlayerPawn, nullptr, "StartBuildingPlacement", nullptr, nullptr, sizeof(Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::RTSPlayerPawn_eventStartBuildingPlacement_Parms), Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ARTSPlayerPawn);
 	UClass* Z_Construct_UClass_ARTSPlayerPawn_NoRegister()
 	{
@@ -215,6 +258,16 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ClickSound;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsGivingOrder_MetaData[];
+#endif
+		static void NewProp_bIsGivingOrder_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsGivingOrder;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OrderPreviewMarkers_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OrderPreviewMarkers_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_OrderPreviewMarkers;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MinZoom_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MinZoom;
@@ -246,6 +299,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		{ &Z_Construct_UFunction_ARTSPlayerPawn_PrepareOrder, "PrepareOrder" }, // 3581453729
 		{ &Z_Construct_UFunction_ARTSPlayerPawn_SaveSelection, "SaveSelection" }, // 3056017169
 		{ &Z_Construct_UFunction_ARTSPlayerPawn_SelectSavedGroup, "SelectSavedGroup" }, // 2119825288
+		{ &Z_Construct_UFunction_ARTSPlayerPawn_StartBuildingPlacement, "StartBuildingPlacement" }, // 870254413
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSPlayerPawn_Statics::Class_MetaDataParams[] = {
@@ -275,7 +329,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		{ "ModuleRelativePath", "Public/RTSPlayerPawn.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PlayerCollisionComponent = { "PlayerCollisionComponent", nullptr, (EPropertyFlags)0x0020080000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSPlayerPawn, PlayerCollisionComponent), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PlayerCollisionComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PlayerCollisionComponent_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PlayerCollisionComponent = { "PlayerCollisionComponent", nullptr, (EPropertyFlags)0x002008000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSPlayerPawn, PlayerCollisionComponent), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PlayerCollisionComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PlayerCollisionComponent_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_SpringArmComp_MetaData[] = {
 		{ "Category", "RTSPlayerPawn" },
@@ -322,6 +376,26 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_ClickSound = { "ClickSound", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSPlayerPawn, ClickSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_ClickSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_ClickSound_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder_MetaData[] = {
+		{ "Category", "RTSPlayerPawn" },
+		{ "ModuleRelativePath", "Public/RTSPlayerPawn.h" },
+	};
+#endif
+	void Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder_SetBit(void* Obj)
+	{
+		((ARTSPlayerPawn*)Obj)->bIsGivingOrder = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder = { "bIsGivingOrder", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ARTSPlayerPawn), &Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder_SetBit, METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers_Inner = { "OrderPreviewMarkers", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers_MetaData[] = {
+		{ "Category", "RTSPlayerPawn" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/RTSPlayerPawn.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers = { "OrderPreviewMarkers", nullptr, (EPropertyFlags)0x002008800000000c, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSPlayerPawn, OrderPreviewMarkers), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_MinZoom_MetaData[] = {
 		{ "Category", "Camera Controls" },
@@ -370,6 +444,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_MovementComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_ClickEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_ClickSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_bIsGivingOrder,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_OrderPreviewMarkers,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_MinZoom,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_PitchRotationThreshold,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSPlayerPawn_Statics::NewProp_MaxZoom,
@@ -412,9 +489,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSPlayerPawn() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSPlayerPawn, ARTSPlayerPawn::StaticClass, TEXT("ARTSPlayerPawn"), &Z_Registration_Info_UClass_ARTSPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSPlayerPawn), 3512493919U) },
+		{ Z_Construct_UClass_ARTSPlayerPawn, ARTSPlayerPawn::StaticClass, TEXT("ARTSPlayerPawn"), &Z_Registration_Info_UClass_ARTSPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSPlayerPawn), 2740370501U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_3637466516(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_1403095650(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

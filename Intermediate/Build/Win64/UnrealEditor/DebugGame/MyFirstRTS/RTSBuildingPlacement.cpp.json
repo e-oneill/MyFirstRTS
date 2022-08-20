@@ -7,7 +7,24 @@
         "Includes": [
             "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\debuggame\\myfirstrts\\definitions.myfirstrts.h",
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsbuildingplacement.h",
-            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsbuildingplacement.generated.h"
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsbuildingplacement.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsbuildingbase.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsselectable.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsselectable.generated.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsbuildingbase.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsgamestate.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamestatebase.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\serverstatreplicator.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\gamemodebase.generated.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\gamestatebase.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\structs\\fplayerstatestructs.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\eresourcetype.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\fplayerstatestructs.generated.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsgamestate.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsattributecomponent.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsattributecomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

@@ -13,11 +13,57 @@ class URTSUnitComponent;
 class URTSAttributeComponent;
 class URTSOrderTargetComponent;
 class ARTSBuildingBase;
+class UStaticMeshComponent;
+class ARTSAIController;
 enum EResourceType;
 class ARTSResource;
 
 struct FAIRequestID;
 struct FPathFollowingResult;
+
+UENUM(BlueprintType)
+enum EBotStatus
+{
+	Idle,
+	Moving,
+	MovingToExtract,
+	MovingToConstruct,
+	MovingToDeposit,
+	MovingToAttack,
+	Extracting,
+	Depositing,
+	Constructing,
+	Attacking,
+};
+
+UENUM(BlueprintType)
+enum EMissionType
+{
+	Nothing,
+	Guard,
+	MoveToLocation,
+	AttackMoveToLocation,
+	MoveToAndBuild,
+	ExtractAndDeposit,
+	AttackTarget
+};
+
+USTRUCT(BlueprintType)
+struct FMission
+{
+	GENERATED_BODY();
+
+	public: 
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TEnumAsByte<EMissionType> MissionType;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	FVector MissionTargetLocation;
+
+	UPROPERTY()
+	AActor* TargetActor;
+};
 
 UCLASS()
 class MYFIRSTRTS_API ARTSCharacterBase : public ACharacter, public IRTSSelectable, public IRTSOrderable
@@ -39,17 +85,24 @@ public:
 
 	void CancelOrder_Implementation() override;
 
-	
-
-
 	void HandleOrderToLocation_Implementation(FVector Location) override;
 
-
 	void HandleOrderToActor_Implementation(AActor* Actor) override;
+
+	void HandleOrderToLocationAndRotation_Implementation(FVector Location, FRotator Rotation) override;
+
+	UPROPERTY(BlueprintReadWrite)
+	TEnumAsByte<EBotStatus> CharacterStatus;
+
+
+
+	TSubclassOf<UStaticMeshComponent> GetOrderPreviewMesh_Implementation() override;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	ARTSAIController* MyController;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int OwningPlayerId = 0;
@@ -57,8 +110,21 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	URTSAttributeComponent* AttributeComponent;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UStaticMeshComponent> OrderPreviewMarker;
+
+	UPROPERTY(BlueprintReadWrite)
+		FMission Mission;
+
 	void MoveToLocation(FVector Target);
 
+	void FaceTargetDirection(FAIRequestID Request, const FPathFollowingResult& Result);
+
+	FVector MoveTargetOnActor;
+
+	FRotator TargetRotation;
+
+	UFUNCTION(BlueprintCallable)
 	void MoveToResourceAndExploit(URTSOrderTargetComponent* TargetResource);
 
 	//Very strangely, because I am using AddUObject on the AI Controller, this function should not be marked UFUNCTION(), unlike all other delegates
@@ -73,12 +139,14 @@ protected:
 	UFUNCTION()
 	void FinishExploitResource();
 
+	UFUNCTION(BlueprintCallable)
 	void MoveToAndDepositResources(AActor* TargetActor);
 
 	void DepositToNearestCollector();
 
 	void DepositResource(FAIRequestID Request, const FPathFollowingResult& Result);
 
+	UFUNCTION(BlueprintCallable)
 	void MoveToBuildingAndConstruct(ARTSBuildingBase* TargetBuilding);
 
 	void ConstructBuilding(FAIRequestID Request, const FPathFollowingResult& Result);
@@ -99,6 +167,9 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bIsExtracting;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsDepositing;
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bIsConstructing;
@@ -155,11 +226,34 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	URTSUnitComponent* UnitComponent;
 
+	//We run AI status ticks in a specific function, so it occurs less often than each frame, for performance reasons
+
+
+	float LastAITick;
+
+	FTimerHandle AIStatusTickTimerHandle;
+
+	//The time between AI updates
+	UPROPERTY(EditDefaultsOnly)
+	float AITickDuration = 0.5f;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintNativeEvent)
+		void AIStatusTick();
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void SetOwningPlayerId(int PlayerId);
+
+	FMission GetMission() const {return Mission;}
+
+	void SetMission(EMissionType MissionType, FVector TargetLocation, AActor* TargetActor);
+
+	void ReturnToIdle();
+
+	void UnbindAllAIDelegates();
 };

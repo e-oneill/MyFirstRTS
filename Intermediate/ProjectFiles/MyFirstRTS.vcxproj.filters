@@ -28,6 +28,9 @@
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultGameplayTags.ini">
+      <Filter>Config</Filter>
+    </None>
     <Filter Include="Config\HoloLens">
       <UniqueIdentifier>{4C8DD267-CDE7-336F-8602-F5F485D22BAB}</UniqueIdentifier>
     </Filter>
@@ -55,19 +58,31 @@
     <Filter Include="Source\MyFirstRTS\Public">
       <UniqueIdentifier>{44295DAC-D66D-33DC-AB6F-28419543015E}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSRallyPoint.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSCharacterBase.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSAttributeComponent.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSOrderable.h">
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingBase.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSOrderTargetComponent.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSResource.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSOrderable.h">
+      <Filter>Source\MyFirstRTS\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSRecruitmentComponent.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSUnitComponent.h">
@@ -94,16 +109,10 @@
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerController.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSResource.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectionMarqueeActor.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSSelectable.h">
-      <Filter>Source\MyFirstRTS\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSPlayerPawn.h">
       <Filter>Source\MyFirstRTS\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MyFirstRTS\Public\RTSBuildingPlacement.h">
@@ -157,6 +166,12 @@
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSOrderTargetComponent.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSRallyPoint.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSRecruitmentComponent.cpp">
+      <Filter>Source\MyFirstRTS\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSSelectable.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
@@ -169,5 +184,21 @@
     <ClCompile Include="..\..\Source\MyFirstRTS\Private\RTSAIController.cpp">
       <Filter>Source\MyFirstRTS\Private</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\MyFirstRTS\Public\Data">
+      <UniqueIdentifier>{3b9318fc-0664-425d-86f3-e5df8b92b312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\MyFirstRTS\Public\Data\DataTypes">
+      <UniqueIdentifier>{9a27aca3-fa01-4ea6-a65b-73717baaa93d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\Data\FBuildingData.h">
+      <Filter>Source\MyFirstRTS\Public\Data\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MyFirstRTS\Public\Data\FResourceCostData.h">
+      <Filter>Source\MyFirstRTS\Public\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

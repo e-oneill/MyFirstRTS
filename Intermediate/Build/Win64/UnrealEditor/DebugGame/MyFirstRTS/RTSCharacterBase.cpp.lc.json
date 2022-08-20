@@ -22,6 +22,13 @@
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsunitcomponent.h",
             "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsunitcomponent.generated.h",
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsplayerpawn.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\data\\fbuildingdata.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\engine\\datatable.h",
+            "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\engine\\public\\datatableutils.h",
+            "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\datatable.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\data\\fresourcecostdata.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\fresourcecostdata.generated.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\fbuildingdata.generated.h",
             "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsplayerpawn.generated.h",
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsresource.h",
             "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsresource.generated.h",
@@ -91,7 +98,9 @@
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsattributecomponent.h",
             "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsattributecomponent.generated.h",
             "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsordertargetcomponent.h",
-            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsordertargetcomponent.generated.h"
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsordertargetcomponent.generated.h",
+            "e:\\gits\\new\\myfirstrts\\source\\myfirstrts\\public\\rtsaicontroller.h",
+            "e:\\gits\\new\\myfirstrts\\intermediate\\build\\win64\\unrealeditor\\inc\\myfirstrts\\rtsaicontroller.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

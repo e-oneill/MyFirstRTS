@@ -16,6 +16,15 @@
 #include "RTSPlayerController.h"
 #include "RTSSelectionMarqueeActor.h"
 #include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "UObject/UObjectGlobals.h"
+#include "DrawDebugHelpers.h"
+#include "RTSOrderTargetComponent.h"
+#include "Data/FBuildingData.h"
+#include "RTSBuildingPlacement.h"
+#include "RTSRecruitmentComponent.h"
+#include "RTSRallyPoint.h"
+
 // Sets default values
 ARTSPlayerPawn::ARTSPlayerPawn()
 {
@@ -65,10 +74,22 @@ void ARTSPlayerPawn::BeginPlay()
 	TargetCameraZoom = SpringArmComp->TargetArmLength;
 	PlayerDefaultRotation = SpringArmComp->GetRelativeRotation();
 	TargetCameraPitch = PlayerDefaultRotation.Pitch;
+
+
+	bDrawDebugHelpers = false;
 }
 
 void ARTSPlayerPawn::ClickInteract()
 {
+	if (BuildingPlacement)
+	{
+		BuildingPlacement->PlaceBuilding(OwningPlayerId);
+		BuildingPlacement->Destroy();
+		BuildingPlacement = nullptr;
+		bIsSelecting = false;
+		return;
+	}
+	bIsSelecting = true;
 	while (SelectedActors.Num() >= 1)
 	{
 		AActor* CurrentActor = SelectedActors[0];
@@ -101,6 +122,10 @@ void ARTSPlayerPawn::StartSelectionMarquee()
 
 void ARTSPlayerPawn::FinishClickInteract()
 {
+	if (!bIsSelecting)
+	{
+		return;
+	}
 	GetWorldTimerManager().ClearTimer(StartSelectionMarqueeTimer);
 	FHitResult Hit;
 	MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
@@ -167,11 +192,55 @@ void ARTSPlayerPawn::SelectSavedGroup(const int SelectionGroupNumber)
 
 void ARTSPlayerPawn::PrepareOrder_Implementation()
 {
+	if (bIsGivingOrder)
+	{
+		return;
+	}
+	if (BuildingPlacement)
+	{
+		BuildingPlacement->Destroy();
+		BuildingPlacement = nullptr;
+		return;
+	}
+
+
 	
+	FHitResult Hit;
+	MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
+	MouseStartPosition = Hit.Location;
+	for (AActor* Actor : SelectedActors)
+	{
+		IRTSOrderable* OrderInterface = Cast<IRTSOrderable>(Actor);
+		if (OrderInterface) 
+		{
+			UStaticMeshComponent* OrderPreview = NewObject<UStaticMeshComponent>(this, IRTSOrderable::Execute_GetOrderPreviewMesh(Actor), TEXT("OrderPreviewMarker"));
+			if (OrderPreview)
+			{
+				OrderPreview->RegisterComponent();
+				OrderPreview->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepWorldTransform);
+				OrderPreviewMarkers.Add(OrderPreview);
+			}
+			//this->AddComponent()
+		}
+
+		URTSRecruitmentComponent* RecruitComponent = Cast<URTSRecruitmentComponent>(Actor->GetComponentByClass(URTSRecruitmentComponent::StaticClass()));
+		if (RecruitComponent)
+		{
+			RecruitComponent->GetMovePoint()->SetActorLocation(MouseStartPosition);
+		}
+	}
+	bIsGivingOrder = true;
 }
 
 void ARTSPlayerPawn::GiveOrder()
 {
+	if (!bIsGivingOrder)
+	{
+		return;
+	}
+	bIsGivingOrder = false;
+
+
 	APlayerController* PC = Cast<APlayerController>(GetController());
 	if (PC)
 	{
@@ -187,16 +256,44 @@ void ARTSPlayerPawn::GiveOrder()
 				//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ClickEffect, Hit.Location, FRotator(0.f, 0.f, 0.f));
 				UNiagaraComponent* ClickNiagaraComponent = UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ClickEffect, Hit.Location);
 			}
+			URTSOrderTargetComponent* TargetOrderComponent = Cast<URTSOrderTargetComponent>(TargetActor->GetComponentByClass(URTSOrderTargetComponent::StaticClass()));
+			if (TargetOrderComponent)
+			{
+				UE_LOG(LogTemp, Log, TEXT("Target has an order target component"));
+			}
+			for (int i = 0, OrderPreviewTracker = 0; i < SelectedActors.Num(); i++)
+			{
+				IRTSOrderable* OrderInterface = Cast<IRTSOrderable>(SelectedActors[i]);
+				if (OrderInterface)
+				{
+					if (OrderPreviewMarkers[OrderPreviewTracker])
+					{
+						OrderPreviewMarkers[OrderPreviewTracker]->DestroyComponent();
+						OrderPreviewTracker++;
+					}
+						
+					//IRTSOrderable::Execute_ExecuteOrder(SelectedActors[i]);
+					if (TargetOrderComponent)
+					{
+						IRTSOrderable::Execute_ExecuteOrder(SelectedActors[i]);
+					}
+					else if (OrderTargetLocations.Num() > i)
+					{	
+						IRTSOrderable::Execute_HandleOrderToLocationAndRotation(SelectedActors[i], OrderTargetLocations[i], ForwardFacingRotator);
+					}
+					else
+					{
+						IRTSOrderable::Execute_HandleOrderToLocation(SelectedActors[i], MouseEndPosition);
+					}
+					
+
+				}
+			}
+			OrderTargetLocations.Empty();
+			OrderPreviewMarkers.Empty();
 		}
 	}
-	for (int i = 0; i < SelectedActors.Num(); i++)
-	{
-		IRTSOrderable* OrderInterface = Cast<IRTSOrderable>(SelectedActors[i]);
-		if (OrderInterface)
-		{
-			IRTSOrderable::Execute_ExecuteOrder(SelectedActors[i]);
-		}
-	}
+	
 }
 
 void ARTSPlayerPawn::SelectActorBeneathMouse(APlayerController* PC)
@@ -266,30 +363,61 @@ void ARTSPlayerPawn::ResetCamera()
 	TargetCameraPitch = PlayerDefaultRotation.Pitch;
 }
 
+void ARTSPlayerPawn::StartBuildingPlacement(FBuildingData BuildingToPlace)
+{
+	
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Instigator = this;
+	BuildingPlacement = Cast<ARTSBuildingPlacement>(GetWorld()->SpawnActor(BuildingToPlace.BuildingPlacementActor, &MouseStartPosition, &FRotator::ZeroRotator, SpawnParams));
+	FHitResult Hit = GetMousePosition();
+	FVector CurrentMousePosition = Hit.Location;
+	BuildingPlacement->SetActorLocation(CurrentMousePosition);
+	//Cast<ARTSSelectionMarqueeActor>(GetWorld()->SpawnActor(SelectionMarqueeClass, &MouseStartPosition, &FRotator::ZeroRotator, SpawnParams));
+}
+
+FHitResult ARTSPlayerPawn::GetMousePosition()
+{
+	FHitResult Hit;
+	MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
+	return Hit;
+}
+
 // Called every frame
 void ARTSPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	PlayerCameraTick(DeltaTime);
 
-	if (SelectionMarquee && SelectionMarquee->bIsSelecting)
+	if (SelectionMarquee || bIsGivingOrder || BuildingPlacement)
 	{
 		FHitResult Hit;
 		MyPlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, Hit);
 		FVector CurrentMousePosition = Hit.Location;
-
+		if (bIsGivingOrder)
+		{
+			OrderPreviewTick(DeltaTime, Hit);
+		}
 		
+	
+		if (SelectionMarquee && SelectionMarquee->bIsSelecting)
+		{
+			FVector LerpedVector = UKismetMathLibrary::VLerp(CurrentMousePosition, MouseStartPosition, 0.5f);
+			//FVector LerpedPosition = LerpedVector;
+			/*LerpedPosition.Z = CurrentMousePosition.Z;*/
+			//SelectionMarquee->BoxCollider->SetWorldLocation(LerpedVector);
+	
+			FVector NewBoxExtents = UKismetMathLibrary::Vector_GetAbs(CurrentMousePosition - MouseStartPosition);
+			//Abs(CurrentMousePosition - MouseStartPosition);
+			NewBoxExtents /= 2.f;
+			//NewBoxExtents.Z = 500.f;
+			//SelectionMarquee->BoxCollider->SetWorldRotation(CameraComponent->GetComponentTransform().GetRotation());
+			//SelectionMarquee->BoxCollider->SetBoxExtent(NewBoxExtents);
+		}
 
-		FVector LerpedVector = UKismetMathLibrary::VLerp(CurrentMousePosition, MouseStartPosition, 0.5f);
-		//FVector LerpedPosition = LerpedVector;
-		/*LerpedPosition.Z = CurrentMousePosition.Z;*/
-		SelectionMarquee->BoxCollider->SetWorldLocation(LerpedVector);
-
-		FVector NewBoxExtents = UKismetMathLibrary::Vector_GetAbs(CurrentMousePosition - MouseStartPosition);
-		//Abs(CurrentMousePosition - MouseStartPosition);
-		NewBoxExtents /= 2.f;
-		NewBoxExtents.Z = 500.f;
-		SelectionMarquee->BoxCollider->SetBoxExtent(NewBoxExtents);
+		if (BuildingPlacement)
+		{
+			BuildingPlacement->SetActorLocation(CurrentMousePosition);
+		}
 	}
 }
 
@@ -349,6 +477,78 @@ void ARTSPlayerPawn::PlayerCameraTick(float DeltaTime)
 		CurrentRotation.Pitch = CameraPitch;
 		CurrentRotation.Roll = CameraRoll;
 		SpringArmComp->SetRelativeRotation(CurrentRotation);
+	}
+}
+
+void ARTSPlayerPawn::OrderPreviewTick(float DeltaTime, FHitResult Hit)
+{
+	
+	OrderTargetLocations.Empty();
+	//Setting up core variables
+	MouseEndPosition = Hit.Location;
+	int NumActorsOrdered = SelectedActors.Num();
+	FVector OrderLine = MouseEndPosition - MouseStartPosition;
+	FVector MouseMidPosition = UKismetMathLibrary::VLerp(MouseStartPosition, MouseEndPosition, 0.5);
+	//Building Quaternion for rotating the order line 90 degrees to produce a rotator facing forward perpendicular to that vector
+	FRotator VectorRotator; VectorRotator.Pitch = 0.f;	VectorRotator.Roll = 0.f;	VectorRotator.Yaw = -90.f;
+	//FQuat VectorQuat = UKismetMathLibrary::QuatFromVectorRotator;
+	ForwardFacingRotator = UKismetMathLibrary::MakeRotFromX(UKismetMathLibrary::Quat_RotateVector(VectorRotator.Quaternion(), OrderLine));
+
+	float MinimumSpacing = 300.f;
+	
+	float LineLength = OrderLine.Size();
+	float Spacing = MinimumSpacing;
+	//If the line is bigger than the minimum for the currently selected units, allow more distant spacing. Implement a max length later
+	if (NumActorsOrdered * MinimumSpacing < LineLength)
+	{
+		Spacing = LineLength / NumActorsOrdered;
+	}
+	int RowTracker = 0;
+	int RowNum = 0;
+	FVector ForwardVector = UKismetMathLibrary::GetForwardVector(ForwardFacingRotator);
+	FVector RightVector = UKismetMathLibrary::GetRightVector(ForwardFacingRotator);
+	float NumRows = (NumActorsOrdered * Spacing)/LineLength;
+	FVector StartPosition = MouseMidPosition + (RightVector * (NumActorsOrdered / 2 * Spacing / NumRows));
+	for (UStaticMeshComponent* PreviewMarker : OrderPreviewMarkers)
+	{
+		//First Work Out Lateral Modifiers to Position
+		FVector LateralModifier = RightVector * (RowTracker * -1 * Spacing);
+		//Second Work Out Forward Modifiers to Position
+		FVector ForwardModifier = ForwardVector * (RowNum * -2 * Spacing);
+		FVector PreviewLocation = StartPosition + ForwardModifier + LateralModifier;
+		OrderTargetLocations.Add(PreviewLocation);
+		PreviewLocation.Z += 100;
+		PreviewMarker->SetWorldLocation(PreviewLocation);
+		//PreviewMarker->SetWorldLocationAndRotation(PreviewLocation, ForwardFacingRotator);
+		
+		//if (bDrawDebugHelpers)
+		//{
+			DrawDebugSphere(GetWorld(), PreviewLocation, 32.f, 12, FColor::Yellow, false, -1.0f, 0U, 4.f);
+		//}
+
+		
+		
+		if ((RowTracker * Spacing) > LineLength)
+		{
+			RowTracker = 0;
+			RowNum++;
+		}
+		else
+		{
+			RowTracker++;
+		}
+
+	}
+
+	DrawDebugLine(GetWorld(), MouseStartPosition, MouseEndPosition, FColor::White, false, -1.0f, 0, 4.f);
+	DrawDebugDirectionalArrow(GetWorld(), MouseMidPosition, (MouseMidPosition + (ForwardVector * 500)), 220.f, FColor::Black);
+
+	if (bDrawDebugHelpers)
+	{
+		UE_LOG(LogTemp, Log, TEXT("Line Length: %f, Actors Ordered: %d, Spacing: %f"), LineLength, NumActorsOrdered, Spacing);
+		DrawDebugSphere(GetWorld(), MouseMidPosition, 32.f, 12, FColor::Yellow, false, -1.0f, 0U, 4.f);
+		DrawDebugSphere(GetWorld(), MouseMidPosition + (RightVector * 500), 32.f, 12, FColor::Red, false, -1.0f, 0U, 4.f);
+		DrawDebugSphere(GetWorld(), MouseMidPosition + (ForwardVector * 500), 32.f, 12, FColor::Black, false, -1.0f, 0U, 4.f);
 	}
 }
 

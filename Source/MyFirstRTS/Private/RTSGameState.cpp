@@ -62,3 +62,29 @@ void ARTSGameState::ModifyPlayerResourceCount(int PlayerNum, EResourceType Resou
 		UE_LOG(LogTemp, Error, TEXT("Tried to modify resources of player number %d, which does not exist"), PlayerNum);
 	}
 }
+
+bool ARTSGameState::AddBuildingToPlayer(int PlayerId, ARTSBuildingBase* Building)
+{
+	if (PlayerRecords.Num() > PlayerId)
+	{
+		PlayerRecords[PlayerId]->Buildings.Add(Building);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool ARTSGameState::RemoveBuildingFromPlayer(int PlayerId, ARTSBuildingBase* Building)
+{
+	if (PlayerRecords.Num() > PlayerId)
+	{
+		PlayerRecords[PlayerId]->Buildings.Remove(Building);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

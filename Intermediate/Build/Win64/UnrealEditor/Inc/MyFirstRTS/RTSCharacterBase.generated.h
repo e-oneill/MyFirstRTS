@@ -8,25 +8,47 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class ARTSBuildingBase;
+class AActor;
+class URTSOrderTargetComponent;
 #ifdef MYFIRSTRTS_RTSCharacterBase_generated_h
 #error "RTSCharacterBase.generated.h already included, missing '#pragma once' in RTSCharacterBase.h"
 #endif
 #define MYFIRSTRTS_RTSCharacterBase_generated_h
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_SPARSE_DATA
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_RPC_WRAPPERS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_54_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FMission_Statics; \
+	MYFIRSTRTS_API static class UScriptStruct* StaticStruct();
+
+
+template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<struct FMission>();
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_SPARSE_DATA
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_RPC_WRAPPERS \
+	virtual void AIStatusTick_Implementation(); \
  \
+	DECLARE_FUNCTION(execAIStatusTick); \
 	DECLARE_FUNCTION(execFinishConstructBuilding); \
-	DECLARE_FUNCTION(execFinishExploitResource);
+	DECLARE_FUNCTION(execMoveToBuildingAndConstruct); \
+	DECLARE_FUNCTION(execMoveToAndDepositResources); \
+	DECLARE_FUNCTION(execFinishExploitResource); \
+	DECLARE_FUNCTION(execMoveToResourceAndExploit);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void AIStatusTick_Implementation(); \
  \
+	DECLARE_FUNCTION(execAIStatusTick); \
 	DECLARE_FUNCTION(execFinishConstructBuilding); \
-	DECLARE_FUNCTION(execFinishExploitResource);
+	DECLARE_FUNCTION(execMoveToBuildingAndConstruct); \
+	DECLARE_FUNCTION(execMoveToAndDepositResources); \
+	DECLARE_FUNCTION(execFinishExploitResource); \
+	DECLARE_FUNCTION(execMoveToResourceAndExploit);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_INCLASS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_EVENT_PARMS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_CALLBACK_WRAPPERS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARTSCharacterBase(); \
 	friend struct Z_Construct_UClass_ARTSCharacterBase_Statics; \
@@ -36,7 +58,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<ARTSCharacterBase*>(this); }
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_INCLASS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_INCLASS \
 private: \
 	static void StaticRegisterNativesARTSCharacterBase(); \
 	friend struct Z_Construct_UClass_ARTSCharacterBase_Statics; \
@@ -46,7 +68,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<ARTSCharacterBase*>(this); }
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_STANDARD_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ARTSCharacterBase(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ARTSCharacterBase) \
@@ -59,7 +81,7 @@ private: \
 public:
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_ENHANCED_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ARTSCharacterBase(ARTSCharacterBase&&); \
@@ -70,25 +92,30 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ARTSCharacterBase)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_22_PROLOG
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_GENERATED_BODY_LEGACY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_68_PROLOG \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_EVENT_PARMS
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_RPC_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_INCLASS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_STANDARD_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_CALLBACK_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_INCLASS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_INCLASS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_25_ENHANCED_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_CALLBACK_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_INCLASS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_71_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -99,4 +126,23 @@ template<> MYFIRSTRTS_API UClass* StaticClass<class ARTSCharacterBase>();
 #define CURRENT_FILE_ID FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h
 
 
+#define FOREACH_ENUM_EBOTSTATUS(op) \
+	op(Idle) \
+	op(Moving) \
+	op(MovingToExtract) \
+	op(MovingToConstruct) \
+	op(MovingToDeposit) \
+	op(MovingToAttack) \
+	op(Extracting) \
+	op(Depositing) \
+	op(Constructing) \
+	op(Attacking) 
+#define FOREACH_ENUM_EMISSIONTYPE(op) \
+	op(Nothing) \
+	op(Guard) \
+	op(MoveToLocation) \
+	op(AttackMoveToLocation) \
+	op(MoveToAndBuild) \
+	op(ExtractAndDeposit) \
+	op(AttackTarget) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

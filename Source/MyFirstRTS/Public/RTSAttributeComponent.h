@@ -59,6 +59,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetHealth() const {return Health;}
+	
+	void SetHealth (float NewHealth) { Health = NewHealth;}
 
 	//Function to heal a target, will return the current percentage HP of the target
 	UFUNCTION(BlueprintCallable)

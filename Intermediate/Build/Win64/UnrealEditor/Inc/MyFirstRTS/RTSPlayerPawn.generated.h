@@ -8,31 +8,34 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+struct FBuildingData;
 #ifdef MYFIRSTRTS_RTSPlayerPawn_generated_h
 #error "RTSPlayerPawn.generated.h already included, missing '#pragma once' in RTSPlayerPawn.h"
 #endif
 #define MYFIRSTRTS_RTSPlayerPawn_generated_h
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_SPARSE_DATA
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_SPARSE_DATA
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_RPC_WRAPPERS \
 	virtual void PrepareOrder_Implementation(); \
  \
+	DECLARE_FUNCTION(execStartBuildingPlacement); \
 	DECLARE_FUNCTION(execPrepareOrder); \
 	DECLARE_FUNCTION(execSelectSavedGroup); \
 	DECLARE_FUNCTION(execSaveSelection);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void PrepareOrder_Implementation(); \
  \
+	DECLARE_FUNCTION(execStartBuildingPlacement); \
 	DECLARE_FUNCTION(execPrepareOrder); \
 	DECLARE_FUNCTION(execSelectSavedGroup); \
 	DECLARE_FUNCTION(execSaveSelection);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_EVENT_PARMS
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_CALLBACK_WRAPPERS
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_EVENT_PARMS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_CALLBACK_WRAPPERS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARTSPlayerPawn(); \
 	friend struct Z_Construct_UClass_ARTSPlayerPawn_Statics; \
@@ -41,7 +44,7 @@ public: \
 	DECLARE_SERIALIZER(ARTSPlayerPawn)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_INCLASS \
 private: \
 	static void StaticRegisterNativesARTSPlayerPawn(); \
 	friend struct Z_Construct_UClass_ARTSPlayerPawn_Statics; \
@@ -50,7 +53,7 @@ public: \
 	DECLARE_SERIALIZER(ARTSPlayerPawn)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_STANDARD_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ARTSPlayerPawn(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ARTSPlayerPawn) \
@@ -63,7 +66,7 @@ private: \
 public:
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_ENHANCED_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ARTSPlayerPawn(ARTSPlayerPawn&&); \
@@ -74,30 +77,30 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ARTSPlayerPawn)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_17_PROLOG \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_EVENT_PARMS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_19_PROLOG \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_EVENT_PARMS
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_GENERATED_BODY_LEGACY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_CALLBACK_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_STANDARD_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_CALLBACK_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_INCLASS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_CALLBACK_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_INCLASS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_20_ENHANCED_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_CALLBACK_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_INCLASS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSPlayerPawn_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

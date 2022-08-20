@@ -40,6 +40,10 @@ class MYFIRSTRTS_API ARTSGameState : public AGameStateBase
 	//UPROPERTY(BlueprintReadOnly)
 	TArray<FPlayerRecord*> PlayerRecords;
 
+	bool AddBuildingToPlayer(int PlayerId, ARTSBuildingBase* Building);
+
+	bool RemoveBuildingFromPlayer(int PlayerId, ARTSBuildingBase* Building);
+
 	protected:
 	//UPROPERTY(BlueprintReadOnly)
 	

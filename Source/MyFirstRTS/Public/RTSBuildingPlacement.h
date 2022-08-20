@@ -33,4 +33,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintNativeEvent)
+	bool CanPlaceBuilding();
+
+	TSubclassOf<ARTSBuildingBase> GetBuilding() const { return Building;}
+
+	ARTSBuildingBase* PlaceBuilding(int PlayerId);
 };

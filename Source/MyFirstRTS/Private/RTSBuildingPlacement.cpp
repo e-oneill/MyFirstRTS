@@ -3,6 +3,9 @@
 
 #include "RTSBuildingPlacement.h"
 #include "Components/StaticMeshComponent.h"
+#include "RTSBuildingBase.h"
+#include "RTSGameState.h"
+#include "RTSAttributeComponent.h"
 
 // Sets default values
 ARTSBuildingPlacement::ARTSBuildingPlacement()
@@ -26,5 +29,31 @@ void ARTSBuildingPlacement::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+bool ARTSBuildingPlacement::CanPlaceBuilding_Implementation()
+{
+	//NOT IMPLEMENTED
+	return true;
+}
+
+ARTSBuildingBase* ARTSBuildingPlacement::PlaceBuilding(int PlayerId)
+{
+	FActorSpawnParameters SpawnParams;
+	const FVector Location = GetActorLocation();
+	const FRotator Rotator = GetActorRotation();
+	ARTSBuildingBase* SpawnedBuilding = Cast<ARTSBuildingBase>(GetWorld()->SpawnActor(Building, &Location, &Rotator, SpawnParams));
+	
+	FVector Scale = SpawnedBuilding->GetBuildingMesh()->GetRelativeScale3D();
+	Scale.Z = 0.1f;
+	SpawnedBuilding->GetBuildingMesh()->SetRelativeScale3D(Scale);
+	SpawnedBuilding->SetIsConstructed(false);
+	SpawnedBuilding->GetAttributeComponent()->SetHealth(0.f);
+	ARTSGameState* GameState = Cast<ARTSGameState>(GetWorld()->GetGameState());
+	if (GameState)
+	{
+		bool AddedBuilding = GameState->AddBuildingToPlayer(PlayerId, SpawnedBuilding);
+	}
+	return SpawnedBuilding;
 }
 
