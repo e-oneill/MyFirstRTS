@@ -13,9 +13,18 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSGameState();
 	ENGINE_API UClass* Z_Construct_UClass_AGameStateBase();
 	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
+	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSUnitComponent_NoRegister();
 	MYFIRSTRTS_API UScriptStruct* Z_Construct_UScriptStruct_FPlayerRecord();
 	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType();
 // End Cross Module References
+	DEFINE_FUNCTION(ARTSGameState::execGetIdleUnitsForPlayer)
+	{
+		P_GET_PROPERTY(FIntProperty,Z_Param_Player);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(TArray<URTSUnitComponent*>*)Z_Param__Result=P_THIS->GetIdleUnitsForPlayer(Z_Param_Player);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ARTSGameState::execGetPlayerResourceQuantity)
 	{
 		P_GET_PROPERTY(FIntProperty,Z_Param_PlayerIndex);
@@ -37,10 +46,58 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 	{
 		UClass* Class = ARTSGameState::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "GetIdleUnitsForPlayer", &ARTSGameState::execGetIdleUnitsForPlayer },
 			{ "GetPlayerRecordForBlueprint", &ARTSGameState::execGetPlayerRecordForBlueprint },
 			{ "GetPlayerResourceQuantity", &ARTSGameState::execGetPlayerResourceQuantity },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics
+	{
+		struct RTSGameState_eventGetIdleUnitsForPlayer_Parms
+		{
+			int32 Player;
+			TArray<URTSUnitComponent*> ReturnValue;
+		};
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_Player;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_Player = { "Player", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetIdleUnitsForPlayer_Parms, Player), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_URTSUnitComponent_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010008000000588, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetIdleUnitsForPlayer_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_Player,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/RTSGameState.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ARTSGameState, nullptr, "GetIdleUnitsForPlayer", nullptr, nullptr, sizeof(Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::RTSGameState_eventGetIdleUnitsForPlayer_Parms), Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics
 	{
@@ -58,7 +115,7 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
 	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_index = { "index", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetPlayerRecordForBlueprint_Parms, index), METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetPlayerRecordForBlueprint_Parms, ReturnValue), Z_Construct_UScriptStruct_FPlayerRecord, METADATA_PARAMS(nullptr, 0) }; // 3161735594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010008000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(RTSGameState_eventGetPlayerRecordForBlueprint_Parms, ReturnValue), Z_Construct_UScriptStruct_FPlayerRecord, METADATA_PARAMS(nullptr, 0) }; // 2082802627
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_index,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint_Statics::NewProp_ReturnValue,
@@ -140,7 +197,8 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ARTSGameState_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint, "GetPlayerRecordForBlueprint" }, // 624579100
+		{ &Z_Construct_UFunction_ARTSGameState_GetIdleUnitsForPlayer, "GetIdleUnitsForPlayer" }, // 3920046444
+		{ &Z_Construct_UFunction_ARTSGameState_GetPlayerRecordForBlueprint, "GetPlayerRecordForBlueprint" }, // 2765232494
 		{ &Z_Construct_UFunction_ARTSGameState_GetPlayerResourceQuantity, "GetPlayerResourceQuantity" }, // 3651918767
 	};
 #if WITH_METADATA
@@ -188,9 +246,9 @@ void EmptyLinkFunctionForGeneratedCodeRTSGameState() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSGameState, ARTSGameState::StaticClass, TEXT("ARTSGameState"), &Z_Registration_Info_UClass_ARTSGameState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSGameState), 3957125259U) },
+		{ Z_Construct_UClass_ARTSGameState, ARTSGameState::StaticClass, TEXT("ARTSGameState"), &Z_Registration_Info_UClass_ARTSGameState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSGameState), 3107197434U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_2811379091(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_3177461361(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

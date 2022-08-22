@@ -3,6 +3,8 @@
 
 #include "RTSGameState.h"
 #include "Structs/FPlayerStateStructs.h"
+#include "RTSUnitComponent.h"
+#include "Structs/UnitStructs.h"
 
 bool ARTSGameState::HasBegunPlay() const
 {
@@ -49,6 +51,23 @@ FPlayerRecord* ARTSGameState::GetPlayerRecordByIndex(int Index) const
 	}
 	//FPlayerRecord* EmptyPlayerRecord;
 	return nullptr;
+}
+
+TArray<URTSUnitComponent*> ARTSGameState::GetIdleUnitsForPlayer(int Player)
+{
+	FPlayerRecord* PlayerRecord = GetPlayerRecordByIndex(Player);
+	TArray<URTSUnitComponent*> UnemployedUnits;
+	if (PlayerRecord)
+	{
+		for (URTSUnitComponent* Unit : PlayerRecord->Units)
+		{
+			if (Unit->GetJob() == EJobType::Unemployed)
+			{
+				UnemployedUnits.Add(Unit);
+			}
+		}
+	}
+	return UnemployedUnits;
 }
 
 void ARTSGameState::ModifyPlayerResourceCount(int PlayerNum, EResourceType Resource, int Quantity)

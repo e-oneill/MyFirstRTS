@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class URTSUnitComponent;
 struct FPlayerRecord;
 #ifdef MYFIRSTRTS_RTSGameState_generated_h
 #error "RTSGameState.generated.h already included, missing '#pragma once' in RTSGameState.h"
@@ -17,12 +18,14 @@ struct FPlayerRecord;
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_18_SPARSE_DATA
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_18_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execGetIdleUnitsForPlayer); \
 	DECLARE_FUNCTION(execGetPlayerResourceQuantity); \
 	DECLARE_FUNCTION(execGetPlayerRecordForBlueprint);
 
 
 #define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSGameState_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execGetIdleUnitsForPlayer); \
 	DECLARE_FUNCTION(execGetPlayerResourceQuantity); \
 	DECLARE_FUNCTION(execGetPlayerRecordForBlueprint);
 

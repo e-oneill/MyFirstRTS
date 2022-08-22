@@ -6,6 +6,7 @@
 #include "FPlayerStateStructs.generated.h"
 
 class ARTSBuildingBase;
+class URTSUnitComponent;
 
 enum EResourceType;
 
@@ -51,6 +52,9 @@ struct FPlayerRecord
 
 	UPROPERTY(BlueprintReadWrite)
 	TArray<ARTSBuildingBase*> Buildings;
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<URTSUnitComponent*> Units;
 
 	bool ModifyResource(TEnumAsByte<EResourceType> Resource, int32 Quantity) {
 		for (int i = 0; i < PlayerResources.Num(); i++)

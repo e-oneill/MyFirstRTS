@@ -13,6 +13,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MYFIRSTRTS_EResourceType_generated_h
 
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h_18_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FResourceCount_Statics; \
+	MYFIRSTRTS_API static class UScriptStruct* StaticStruct();
+
+
+template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<struct FResourceCount>();
+
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_MyFirstRTS_Source_MyFirstRTS_Public_EResourceType_h
 

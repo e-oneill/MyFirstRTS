@@ -10,12 +10,13 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class URTSOrderTargetComponent;
 class AActor;
+class URTSUnitComponent;
 #ifdef MYFIRSTRTS_RTSOrderTargetComponent_generated_h
 #error "RTSOrderTargetComponent.generated.h already included, missing '#pragma once' in RTSOrderTargetComponent.h"
 #endif
 #define MYFIRSTRTS_RTSOrderTargetComponent_generated_h
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_13_DELEGATE \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_16_DELEGATE \
 struct _Script_MyFirstRTS_eventOnValueChangedSignature_Parms \
 { \
 	URTSOrderTargetComponent* ModifiedComponent; \
@@ -34,20 +35,53 @@ static inline void FOnValueChangedSignature_DelegateWrapper(const FMulticastScri
 }
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_SPARSE_DATA
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_RPC_WRAPPERS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_17_DELEGATE \
+struct _Script_MyFirstRTS_eventOnResourceDepositedSignature_Parms \
+{ \
+	URTSOrderTargetComponent* ModifiedComp; \
+	TEnumAsByte<EResourceType> Resource; \
+	int32 NewQuantity; \
+	int32 OldQuantity; \
+}; \
+static inline void FOnResourceDepositedSignature_DelegateWrapper(const FMulticastScriptDelegate& OnResourceDepositedSignature, URTSOrderTargetComponent* ModifiedComp, EResourceType Resource, int32 NewQuantity, int32 OldQuantity) \
+{ \
+	_Script_MyFirstRTS_eventOnResourceDepositedSignature_Parms Parms; \
+	Parms.ModifiedComp=ModifiedComp; \
+	Parms.Resource=Resource; \
+	Parms.NewQuantity=NewQuantity; \
+	Parms.OldQuantity=OldQuantity; \
+	OnResourceDepositedSignature.ProcessMulticastDelegate<UObject>(&Parms); \
+}
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_SPARSE_DATA
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_RPC_WRAPPERS \
+	virtual void WorkAtJobSite_Implementation(URTSUnitComponent* Worker); \
  \
+	DECLARE_FUNCTION(execAssignUnemployedWorker); \
+	DECLARE_FUNCTION(execWorkAtJobSite); \
 	DECLARE_FUNCTION(execSetResourceValue); \
 	DECLARE_FUNCTION(execGetResourceValue);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void WorkAtJobSite_Implementation(URTSUnitComponent* Worker); \
  \
+	DECLARE_FUNCTION(execAssignUnemployedWorker); \
+	DECLARE_FUNCTION(execWorkAtJobSite); \
 	DECLARE_FUNCTION(execSetResourceValue); \
 	DECLARE_FUNCTION(execGetResourceValue);
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_INCLASS_NO_PURE_DECLS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_EVENT_PARMS \
+	struct RTSOrderTargetComponent_eventWorkAtJobSite_Parms \
+	{ \
+		URTSUnitComponent* Worker; \
+	};
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_CALLBACK_WRAPPERS
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesURTSOrderTargetComponent(); \
 	friend struct Z_Construct_UClass_URTSOrderTargetComponent_Statics; \
@@ -56,7 +90,7 @@ public: \
 	DECLARE_SERIALIZER(URTSOrderTargetComponent)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_INCLASS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_INCLASS \
 private: \
 	static void StaticRegisterNativesURTSOrderTargetComponent(); \
 	friend struct Z_Construct_UClass_URTSOrderTargetComponent_Statics; \
@@ -65,7 +99,7 @@ public: \
 	DECLARE_SERIALIZER(URTSOrderTargetComponent)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_STANDARD_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API URTSOrderTargetComponent(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(URTSOrderTargetComponent) \
@@ -78,7 +112,7 @@ private: \
 public:
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_ENHANCED_CONSTRUCTORS \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API URTSOrderTargetComponent(URTSOrderTargetComponent&&); \
@@ -89,25 +123,30 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(URTSOrderTargetComponent)
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_15_PROLOG
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_GENERATED_BODY_LEGACY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_19_PROLOG \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_EVENT_PARMS
+
+
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_RPC_WRAPPERS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_INCLASS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_STANDARD_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_RPC_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_CALLBACK_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_INCLASS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_SPARSE_DATA \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_INCLASS_NO_PURE_DECLS \
-	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_18_ENHANCED_CONSTRUCTORS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_SPARSE_DATA \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_CALLBACK_WRAPPERS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_INCLASS_NO_PURE_DECLS \
+	FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSOrderTargetComponent_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

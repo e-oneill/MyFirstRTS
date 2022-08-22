@@ -7,6 +7,7 @@
 #include "RTSSelectable.h"
 #include "RTSOrderable.h"
 #include "EResourceType.h"
+#include "Structs/UnitStructs.h"
 #include "RTSCharacterBase.generated.h"
 
 class URTSUnitComponent;
@@ -15,57 +16,17 @@ class URTSOrderTargetComponent;
 class ARTSBuildingBase;
 class UStaticMeshComponent;
 class ARTSAIController;
+class URTSUtilityAIBrain;
 enum EResourceType;
 class ARTSResource;
 
 struct FAIRequestID;
 struct FPathFollowingResult;
+enum EBotStatus;
+enum EMissionType;
+struct FMission;
 
-UENUM(BlueprintType)
-enum EBotStatus
-{
-	Idle,
-	Moving,
-	MovingToExtract,
-	MovingToConstruct,
-	MovingToDeposit,
-	MovingToAttack,
-	Extracting,
-	Depositing,
-	Constructing,
-	Attacking,
-};
-
-UENUM(BlueprintType)
-enum EMissionType
-{
-	Nothing,
-	Guard,
-	MoveToLocation,
-	AttackMoveToLocation,
-	MoveToAndBuild,
-	ExtractAndDeposit,
-	AttackTarget
-};
-
-USTRUCT(BlueprintType)
-struct FMission
-{
-	GENERATED_BODY();
-
-	public: 
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	TEnumAsByte<EMissionType> MissionType;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	FVector MissionTargetLocation;
-
-	UPROPERTY()
-	AActor* TargetActor;
-};
-
-UCLASS()
+UCLASS(Abstract)
 class MYFIRSTRTS_API ARTSCharacterBase : public ACharacter, public IRTSSelectable, public IRTSOrderable
 {
 	GENERATED_BODY()
@@ -99,10 +60,15 @@ public:
 	TSubclassOf<UStaticMeshComponent> GetOrderPreviewMesh_Implementation() override;
 
 protected:
+
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	ARTSAIController* MyController;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	URTSUtilityAIBrain* MyBrain;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int OwningPlayerId = 0;
@@ -112,6 +78,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UStaticMeshComponent> OrderPreviewMarker;
+
 
 	UPROPERTY(BlueprintReadWrite)
 		FMission Mission;

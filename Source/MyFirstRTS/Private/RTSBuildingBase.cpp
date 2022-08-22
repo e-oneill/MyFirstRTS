@@ -18,6 +18,7 @@ ARTSBuildingBase::ARTSBuildingBase()
 
 	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
 	OrderTargetComponent = CreateDefaultSubobject<URTSOrderTargetComponent>(TEXT("OrderTargetComponent"));
+	
 	//MeshComponent = CreateDefaultSubobject<UMeshComponent>(TEXT("MeshComponent"));
 }
 
@@ -26,6 +27,7 @@ void ARTSBuildingBase::BeginPlay()
 {
 	Super::BeginPlay();
 	OrderTargetComponent->AttributeComponent = AttributeComponent;
+	OrderTargetComponent->OwningPlayerId = OwningPlayerId;
 }
 
 // Called every frame

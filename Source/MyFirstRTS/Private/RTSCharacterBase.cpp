@@ -21,6 +21,7 @@
 #include "RTSOrderTargetComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "RTSAIController.h"
+#include "RTSUtilityAIBrain.h"
 // Sets default values
 ARTSCharacterBase::ARTSCharacterBase()
 {
@@ -28,6 +29,8 @@ ARTSCharacterBase::ARTSCharacterBase()
 	PrimaryActorTick.bCanEverTick = true;
 	UnitComponent = CreateDefaultSubobject<URTSUnitComponent>(TEXT("UnitComponent"));
 	AttributeComponent = CreateDefaultSubobject<URTSAttributeComponent>(TEXT("AttributeComponent"));
+	MyBrain = CreateDefaultSubobject<URTSUtilityAIBrain>(TEXT("MyBrain"));
+
 	ExtractionDistance = 800.f;
 
 	OrderTargetComponent = CreateDefaultSubobject<URTSOrderTargetComponent>(TEXT("OrderTargetComponent"));
@@ -390,19 +393,10 @@ void ARTSCharacterBase::DepositToNearestCollector()
 void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowingResult& Result)
 {
 	AAIController* AIController = Cast<AAIController>(GetController());
-	//if (AIController)
-	//{
-	//	AIController->GetPathFollowingComponent()->OnRequestFinished.Remove(MoveCompleteDelegate);
-	//}
 	if (CharacterStatus == Idle)
 	{
 		return;
 	}
-	//if (GetDistanceTo(OrderTarget) > ExtractionDistance) //using extraction distance for now, need to decide whether I should use one interaction distance or separate for each type of interaction
-	//{
-	//	//MoveToLocation(OrderTarget->GetActorLocation());
-	//	return;
-	//}
 	
 	if (GetDistanceTo(OrderTarget) <= 800.f && CharacterStatus != Depositing)
 	{
@@ -417,9 +411,12 @@ void ARTSCharacterBase::DepositResource(FAIRequestID Request, const FPathFollowi
 				OwningPlayerRecord->ModifyResource(CarriedResource, ResourcesCarried);
 			}
 		}
+
+		UnitComponent->DepositResource();
+		
 		//CarriedResource 
 		ResourcesCarried = 0;
-		UE_LOG(LogTemp, Log, TEXT("Resources Carried: %d"), ResourcesCarried);
+		UE_LOG(LogTemp, Log, TEXT("Resources Carried: %d"), UnitComponent->GetCarriedResourceQuantity());
 		if (LastExploitedResource && bShouldAutoReturnToResource)
 		{
 			CharacterStatus = MovingToExtract;

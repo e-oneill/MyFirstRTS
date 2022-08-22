@@ -31,6 +31,9 @@ class MYFIRSTRTS_API ARTSGameState : public AGameStateBase
 
 	FPlayerRecord* GetPlayerRecordByIndex(int Index) const;
 
+	UFUNCTION(BlueprintCallable)
+	TArray<URTSUnitComponent*> GetIdleUnitsForPlayer(int Player);
+
 	void SetPlayerRecord(FPlayerRecord* NewRecord, int Index) { PlayerRecords[Index] = NewRecord; }
 
 	void AddPlayerRecord(FPlayerRecord* NewRecord) { PlayerRecords.AddUnique(NewRecord); }

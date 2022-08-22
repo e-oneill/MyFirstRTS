@@ -13,14 +13,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MYFIRSTRTS_FPlayerStateStructs_generated_h
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_15_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_16_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPlayerStateResource_Statics; \
 	MYFIRSTRTS_API static class UScriptStruct* StaticStruct();
 
 
 template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<struct FPlayerStateResource>();
 
-#define FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_40_GENERATED_BODY \
+#define FID_MyFirstRTS_Source_MyFirstRTS_Public_Structs_FPlayerStateStructs_h_41_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPlayerRecord_Statics; \
 	MYFIRSTRTS_API static class UScriptStruct* StaticStruct();
 

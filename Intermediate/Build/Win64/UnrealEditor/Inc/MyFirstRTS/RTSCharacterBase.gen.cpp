@@ -9,247 +9,24 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeRTSCharacterBase() {}
 // Cross Module References
-	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EBotStatus();
-	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
-	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EMissionType();
-	MYFIRSTRTS_API UScriptStruct* Z_Construct_UScriptStruct_FMission();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
-	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSCharacterBase_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSCharacterBase();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
+	UPackage* Z_Construct_UPackage__Script_MyFirstRTS();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_ARTSBuildingBase_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSOrderTargetComponent_NoRegister();
+	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EBotStatus();
+	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSUtilityAIBrain_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSAttributeComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
+	MYFIRSTRTS_API UScriptStruct* Z_Construct_UScriptStruct_FMission();
 	MYFIRSTRTS_API UEnum* Z_Construct_UEnum_MyFirstRTS_EResourceType();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSUnitComponent_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSSelectable_NoRegister();
 	MYFIRSTRTS_API UClass* Z_Construct_UClass_URTSOrderable_NoRegister();
 // End Cross Module References
-	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EBotStatus;
-	static UEnum* EBotStatus_StaticEnum()
-	{
-		if (!Z_Registration_Info_UEnum_EBotStatus.OuterSingleton)
-		{
-			Z_Registration_Info_UEnum_EBotStatus.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_MyFirstRTS_EBotStatus, Z_Construct_UPackage__Script_MyFirstRTS(), TEXT("EBotStatus"));
-		}
-		return Z_Registration_Info_UEnum_EBotStatus.OuterSingleton;
-	}
-	template<> MYFIRSTRTS_API UEnum* StaticEnum<EBotStatus>()
-	{
-		return EBotStatus_StaticEnum();
-	}
-	struct Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics
-	{
-		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FEnumParams EnumParams;
-	};
-	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::Enumerators[] = {
-		{ "Idle", (int64)Idle },
-		{ "Moving", (int64)Moving },
-		{ "MovingToExtract", (int64)MovingToExtract },
-		{ "MovingToConstruct", (int64)MovingToConstruct },
-		{ "MovingToDeposit", (int64)MovingToDeposit },
-		{ "MovingToAttack", (int64)MovingToAttack },
-		{ "Extracting", (int64)Extracting },
-		{ "Depositing", (int64)Depositing },
-		{ "Constructing", (int64)Constructing },
-		{ "Attacking", (int64)Attacking },
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::Enum_MetaDataParams[] = {
-		{ "Attacking.Name", "Attacking" },
-		{ "BlueprintType", "true" },
-		{ "Constructing.Name", "Constructing" },
-		{ "Depositing.Name", "Depositing" },
-		{ "Extracting.Name", "Extracting" },
-		{ "Idle.Name", "Idle" },
-		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
-		{ "Moving.Name", "Moving" },
-		{ "MovingToAttack.Name", "MovingToAttack" },
-		{ "MovingToConstruct.Name", "MovingToConstruct" },
-		{ "MovingToDeposit.Name", "MovingToDeposit" },
-		{ "MovingToExtract.Name", "MovingToExtract" },
-	};
-#endif
-	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::EnumParams = {
-		(UObject*(*)())Z_Construct_UPackage__Script_MyFirstRTS,
-		nullptr,
-		"EBotStatus",
-		"EBotStatus",
-		Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::Enumerators,
-		UE_ARRAY_COUNT(Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::Enumerators),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EEnumFlags::None,
-		(uint8)UEnum::ECppForm::Regular,
-		METADATA_PARAMS(Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::Enum_MetaDataParams))
-	};
-	UEnum* Z_Construct_UEnum_MyFirstRTS_EBotStatus()
-	{
-		if (!Z_Registration_Info_UEnum_EBotStatus.InnerSingleton)
-		{
-			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EBotStatus.InnerSingleton, Z_Construct_UEnum_MyFirstRTS_EBotStatus_Statics::EnumParams);
-		}
-		return Z_Registration_Info_UEnum_EBotStatus.InnerSingleton;
-	}
-	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EMissionType;
-	static UEnum* EMissionType_StaticEnum()
-	{
-		if (!Z_Registration_Info_UEnum_EMissionType.OuterSingleton)
-		{
-			Z_Registration_Info_UEnum_EMissionType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_MyFirstRTS_EMissionType, Z_Construct_UPackage__Script_MyFirstRTS(), TEXT("EMissionType"));
-		}
-		return Z_Registration_Info_UEnum_EMissionType.OuterSingleton;
-	}
-	template<> MYFIRSTRTS_API UEnum* StaticEnum<EMissionType>()
-	{
-		return EMissionType_StaticEnum();
-	}
-	struct Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics
-	{
-		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FEnumParams EnumParams;
-	};
-	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::Enumerators[] = {
-		{ "Nothing", (int64)Nothing },
-		{ "Guard", (int64)Guard },
-		{ "MoveToLocation", (int64)MoveToLocation },
-		{ "AttackMoveToLocation", (int64)AttackMoveToLocation },
-		{ "MoveToAndBuild", (int64)MoveToAndBuild },
-		{ "ExtractAndDeposit", (int64)ExtractAndDeposit },
-		{ "AttackTarget", (int64)AttackTarget },
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::Enum_MetaDataParams[] = {
-		{ "AttackMoveToLocation.Name", "AttackMoveToLocation" },
-		{ "AttackTarget.Name", "AttackTarget" },
-		{ "BlueprintType", "true" },
-		{ "ExtractAndDeposit.Name", "ExtractAndDeposit" },
-		{ "Guard.Name", "Guard" },
-		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
-		{ "MoveToAndBuild.Name", "MoveToAndBuild" },
-		{ "MoveToLocation.Name", "MoveToLocation" },
-		{ "Nothing.Name", "Nothing" },
-	};
-#endif
-	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::EnumParams = {
-		(UObject*(*)())Z_Construct_UPackage__Script_MyFirstRTS,
-		nullptr,
-		"EMissionType",
-		"EMissionType",
-		Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::Enumerators,
-		UE_ARRAY_COUNT(Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::Enumerators),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EEnumFlags::None,
-		(uint8)UEnum::ECppForm::Regular,
-		METADATA_PARAMS(Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::Enum_MetaDataParams))
-	};
-	UEnum* Z_Construct_UEnum_MyFirstRTS_EMissionType()
-	{
-		if (!Z_Registration_Info_UEnum_EMissionType.InnerSingleton)
-		{
-			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EMissionType.InnerSingleton, Z_Construct_UEnum_MyFirstRTS_EMissionType_Statics::EnumParams);
-		}
-		return Z_Registration_Info_UEnum_EMissionType.InnerSingleton;
-	}
-	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_Mission;
-class UScriptStruct* FMission::StaticStruct()
-{
-	if (!Z_Registration_Info_UScriptStruct_Mission.OuterSingleton)
-	{
-		Z_Registration_Info_UScriptStruct_Mission.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FMission, Z_Construct_UPackage__Script_MyFirstRTS(), TEXT("Mission"));
-	}
-	return Z_Registration_Info_UScriptStruct_Mission.OuterSingleton;
-}
-template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
-{
-	return FMission::StaticStruct();
-}
-	struct Z_Construct_UScriptStruct_FMission_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
-#endif
-		static void* NewStructOps();
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_MissionType_MetaData[];
-#endif
-		static const UECodeGen_Private::FBytePropertyParams NewProp_MissionType;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_MissionTargetLocation_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_MissionTargetLocation;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_TargetActor_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_TargetActor;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-		static const UECodeGen_Private::FStructParams ReturnStructParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FMission_Statics::Struct_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
-	};
-#endif
-	void* Z_Construct_UScriptStruct_FMission_Statics::NewStructOps()
-	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FMission>();
-	}
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionType_MetaData[] = {
-		{ "Category", "Mission" },
-		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionType = { "MissionType", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FMission, MissionType), Z_Construct_UEnum_MyFirstRTS_EMissionType, METADATA_PARAMS(Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionType_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionType_MetaData)) }; // 2039271885
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionTargetLocation_MetaData[] = {
-		{ "Category", "Mission" },
-		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionTargetLocation = { "MissionTargetLocation", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FMission, MissionTargetLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionTargetLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionTargetLocation_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FMission_Statics::NewProp_TargetActor_MetaData[] = {
-		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FMission_Statics::NewProp_TargetActor = { "TargetActor", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FMission, TargetActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(Z_Construct_UScriptStruct_FMission_Statics::NewProp_TargetActor_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FMission_Statics::NewProp_TargetActor_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FMission_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionType,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FMission_Statics::NewProp_MissionTargetLocation,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FMission_Statics::NewProp_TargetActor,
-	};
-	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FMission_Statics::ReturnStructParams = {
-		(UObject* (*)())Z_Construct_UPackage__Script_MyFirstRTS,
-		nullptr,
-		&NewStructOps,
-		"Mission",
-		sizeof(FMission),
-		alignof(FMission),
-		Z_Construct_UScriptStruct_FMission_Statics::PropPointers,
-		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FMission_Statics::PropPointers),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EStructFlags(0x00000001),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FMission_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FMission_Statics::Struct_MetaDataParams))
-	};
-	UScriptStruct* Z_Construct_UScriptStruct_FMission()
-	{
-		if (!Z_Registration_Info_UScriptStruct_Mission.InnerSingleton)
-		{
-			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_Mission.InnerSingleton, Z_Construct_UScriptStruct_FMission_Statics::ReturnStructParams);
-		}
-		return Z_Registration_Info_UScriptStruct_Mission.InnerSingleton;
-	}
 	DEFINE_FUNCTION(ARTSCharacterBase::execAIStatusTick)
 	{
 		P_FINISH;
@@ -504,6 +281,10 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
 #endif
 		static const UECodeGen_Private::FBytePropertyParams NewProp_CharacterStatus;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MyBrain_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_MyBrain;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningPlayerId_MetaData[];
 #endif
 		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_OwningPlayerId;
@@ -639,7 +420,15 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
 		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus = { "CharacterStatus", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, CharacterStatus), Z_Construct_UEnum_MyFirstRTS_EBotStatus, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus_MetaData)) }; // 2112051723
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus = { "CharacterStatus", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, CharacterStatus), Z_Construct_UEnum_MyFirstRTS_EBotStatus, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus_MetaData)) }; // 2675024659
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_MyBrain_MetaData[] = {
+		{ "Category", "RTSCharacterBase" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_MyBrain = { "MyBrain", nullptr, (EPropertyFlags)0x002008000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, MyBrain), Z_Construct_UClass_URTSUtilityAIBrain_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_MyBrain_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_MyBrain_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OwningPlayerId_MetaData[] = {
 		{ "Category", "RTSCharacterBase" },
@@ -668,7 +457,7 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
 		{ "ModuleRelativePath", "Public/RTSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_Mission = { "Mission", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, Mission), Z_Construct_UScriptStruct_FMission, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_Mission_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_Mission_MetaData)) }; // 4027777035
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_Mission = { "Mission", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ARTSCharacterBase, Mission), Z_Construct_UScriptStruct_FMission, METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_Mission_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_Mission_MetaData)) }; // 295345503
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTarget_MetaData[] = {
 		{ "Category", "RTSCharacterBase" },
@@ -845,6 +634,7 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARTSCharacterBase_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderTargetComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_CharacterStatus,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_MyBrain,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OwningPlayerId,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_AttributeComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARTSCharacterBase_Statics::NewProp_OrderPreviewMarker,
@@ -888,7 +678,7 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
 		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::PropPointers),
 		UE_ARRAY_COUNT(InterfaceParams),
-		0x009000A4u,
+		0x009000A5u,
 		METADATA_PARAMS(Z_Construct_UClass_ARTSCharacterBase_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_ARTSCharacterBase_Statics::Class_MetaDataParams))
 	};
 	UClass* Z_Construct_UClass_ARTSCharacterBase()
@@ -906,22 +696,13 @@ template<> MYFIRSTRTS_API UScriptStruct* StaticStruct<FMission>()
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ARTSCharacterBase);
 	struct Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics
 	{
-		static const FEnumRegisterCompiledInInfo EnumInfo[];
-		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::EnumInfo[] = {
-		{ EBotStatus_StaticEnum, TEXT("EBotStatus"), &Z_Registration_Info_UEnum_EBotStatus, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2112051723U) },
-		{ EMissionType_StaticEnum, TEXT("EMissionType"), &Z_Registration_Info_UEnum_EMissionType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2039271885U) },
-	};
-	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ScriptStructInfo[] = {
-		{ FMission::StaticStruct, Z_Construct_UScriptStruct_FMission_Statics::NewStructOps, TEXT("Mission"), &Z_Registration_Info_UScriptStruct_Mission, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FMission), 4027777035U) },
-	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARTSCharacterBase, ARTSCharacterBase::StaticClass, TEXT("ARTSCharacterBase"), &Z_Registration_Info_UClass_ARTSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSCharacterBase), 674689649U) },
+		{ Z_Construct_UClass_ARTSCharacterBase, ARTSCharacterBase::StaticClass, TEXT("ARTSCharacterBase"), &Z_Registration_Info_UClass_ARTSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARTSCharacterBase), 192001410U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_4250115794(TEXT("/Script/MyFirstRTS"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_1809924644(TEXT("/Script/MyFirstRTS"),
 		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ClassInfo),
-		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::ScriptStructInfo),
-		Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_MyFirstRTS_Source_MyFirstRTS_Public_RTSCharacterBase_h_Statics::EnumInfo));
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
